@@ -1,0 +1,524 @@
+.xp-projects-window {
+  min-width: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #111;
+}
+.xp-projects-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: #fff;
+}
+.xp-projects-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px 18px 20px;
+}
+.xp-projects-welcome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d5deec;
+}
+.xp-projects-welcome > img {
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.xp-projects-welcome > div {
+  flex: 1;
+  min-width: 0;
+}
+.xp-projects-welcome h1 {
+  color: #003c74;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 5px;
+}
+.xp-projects-welcome p {
+  font-size: 12px;
+  color: #4b5870;
+  line-height: 1.45;
+  margin: 0;
+}
+.xp-projects-window .xp-button {
+  font:
+    12px Tahoma,
+    Arial,
+    sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 28px;
+  white-space: normal;
+  cursor: pointer;
+}
+.xp-projects-window .xp-button > img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.xp-project-contact {
+  flex-shrink: 0;
+  max-width: 155px;
+}
+.xp-project-find {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 13px 0;
+}
+.xp-project-find > label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 6px;
+  min-width: 200px;
+}
+.xp-project-find > label > img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.xp-project-find input {
+  width: 100%;
+  max-width: 320px;
+  height: 26px;
+  min-width: 0;
+  font:
+    12px Tahoma,
+    Arial,
+    sans-serif;
+}
+.xp-project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+}
+.xp-project-filters button {
+  font:
+    11px Tahoma,
+    Arial,
+    sans-serif;
+  padding: 5px 7px;
+  border: 1px solid transparent;
+  color: #244676;
+}
+.xp-project-filters button:hover {
+  border-color: #b6c9e5;
+  background: #eef4ff;
+}
+.xp-project-filters button[aria-pressed='true'] {
+  background: #e2eaf7;
+  border-color: #7f9db9;
+  box-shadow: inset 1px 1px 1px #a6bad4;
+  color: #111;
+}
+.xp-project-preview {
+  border: 1px solid #b2c3dc;
+  background: #fff;
+}
+.xp-project-preview-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 29px;
+  padding: 3px 7px;
+  background: linear-gradient(90deg, #dce9fc, #f3f7fd);
+  border-bottom: 1px solid #c4d5ee;
+  color: #254b7b;
+  font-size: 12px;
+  font-weight: bold;
+}
+.xp-project-preview-title > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.xp-project-preview-title > span img {
+  width: 18px;
+  height: 18px;
+}
+.xp-project-preview-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: normal;
+}
+.xp-project-preview-nav button {
+  padding: 1px;
+  border: 1px solid transparent;
+}
+.xp-project-preview-nav button:hover:enabled {
+  border-color: #7f9db9;
+  background: #fff;
+}
+.xp-project-preview-nav button:disabled {
+  opacity: 0.35;
+}
+.xp-project-preview-nav img {
+  width: 19px;
+  height: 19px;
+}
+.xp-project-preview-body {
+  display: grid;
+  grid-template-columns: minmax(0, 43%) minmax(0, 1fr);
+  gap: 18px;
+  padding: 15px;
+}
+.xp-project-preview-picture {
+  min-width: 0;
+  margin: 0;
+}
+.xp-project-preview-picture > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border: 1px solid #8b9bad;
+  padding: 4px;
+  background: #edf1f6;
+  box-shadow: inset 1px 1px white;
+  cursor: zoom-in;
+}
+.xp-project-preview-picture > button > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  background: white;
+}
+.xp-project-preview-picture figcaption {
+  font-size: 10px;
+  color: #626a75;
+  line-height: 1.45;
+  margin-top: 7px;
+}
+.xp-project-preview-copy {
+  min-width: 0;
+  user-select: text;
+}
+.xp-project-preview-copy h2 {
+  margin: 0 0 6px;
+  color: #003c74;
+  font:
+    700 20px/1.2 Tahoma,
+    Arial,
+    sans-serif;
+  overflow-wrap: anywhere;
+}
+.xp-project-headline {
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: bold;
+  color: #344d6e;
+  margin: 0 0 9px;
+}
+.xp-project-description {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #333;
+}
+.xp-project-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 13px;
+  margin-bottom: 11px;
+}
+.xp-project-evidence > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #526176;
+}
+.xp-project-evidence img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+.xp-project-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.xp-projects-window .xp-project-open {
+  border-color: #517ab6;
+  box-shadow: inset 0 0 0 1px #d6e6fc;
+}
+.xp-project-stack {
+  margin-top: 11px;
+  font-size: 11px;
+}
+.xp-project-stack summary {
+  color: #32578b;
+  cursor: pointer;
+  width: max-content;
+  max-width: 100%;
+}
+.xp-project-stack p {
+  line-height: 1.6;
+  color: #555;
+  margin: 5px 0 0;
+}
+.xp-project-collection > h2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 17px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #c9d8ed;
+  color: #003c74;
+  font-size: 13px;
+  font-weight: bold;
+}
+.xp-project-collection > h2 > span {
+  font-size: 11px;
+  color: #707b8d;
+  font-weight: normal;
+}
+.xp-project-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 12px 10px;
+}
+.xp-project-thumbnail {
+  padding: 6px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  text-align: center;
+  font:
+    12px Tahoma,
+    Arial,
+    sans-serif;
+  cursor: pointer;
+}
+.xp-project-thumbnail:hover {
+  background: #f3f7fe;
+  border-color: #cfddf2;
+}
+.xp-project-thumbnail.selected {
+  border: 1px dotted #7595be;
+  background: #f0f5fe;
+}
+.xp-project-thumbnail-picture {
+  position: relative;
+  width: 100%;
+  height: 92px;
+  padding: 3px;
+  border: 1px solid #a7b1bd;
+  background: #fff;
+  box-shadow: 1px 1px 2px #b5bdc7;
+}
+.xp-project-thumbnail-picture > img:first-child {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.xp-project-thumbnail-picture .xp-project-folder-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: -3px;
+  bottom: -3px;
+}
+.xp-project-thumbnail-name {
+  line-height: 1.35;
+  padding: 2px 3px;
+  color: #183e74;
+}
+.xp-project-thumbnail.selected .xp-project-thumbnail-name {
+  color: white;
+  background: #316ac5;
+}
+.xp-project-thumbnail-type {
+  font-size: 10px;
+  color: #68788f;
+}
+.xp-project-thumbnail-tech {
+  font-size: 10px;
+  line-height: 1.4;
+  color: #666;
+}
+.xp-project-status {
+  height: 23px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  border-top: 1px solid #aaa;
+  background: #ece9d8;
+  overflow: hidden;
+}
+.xp-project-status > span {
+  padding: 2px 6px;
+  border-right: 1px solid #b9b6ab;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.xp-project-status > span:last-child {
+  margin-left: auto;
+  border: 0;
+}
+.xp-project-empty {
+  text-align: center;
+  padding: 30px 10px;
+  color: #586476;
+  font-size: 13px;
+}
+.xp-project-empty > img {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 12px;
+}
+.xp-project-empty h3 {
+  color: #003c74;
+  font-size: 16px;
+  margin: 0;
+}
+.xp-project-empty p {
+  margin: 10px 0 15px;
+}
+.xp-projects-window button:focus-visible,
+.xp-projects-window a:focus-visible {
+  outline: 1px dotted #222;
+  outline-offset: 2px;
+}
+@media (max-width: 850px) {
+  .xp-project-preview-body {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .xp-project-preview-picture > button {
+    max-height: 240px;
+  }
+  .xp-projects-welcome {
+    flex-wrap: wrap;
+  }
+  .xp-project-contact {
+    margin-left: 60px;
+  }
+}
+@media (max-width: 560px) {
+  .xp-projects-scroll {
+    padding: 12px;
+  }
+  .xp-projects-welcome h1 {
+    font-size: 20px;
+  }
+  .xp-projects-welcome > img {
+    width: 38px;
+    height: 38px;
+  }
+  .xp-projects-welcome {
+    gap: 9px;
+  }
+  .xp-project-contact {
+    margin-left: 47px;
+  }
+  .xp-project-preview-body {
+    padding: 11px;
+  }
+  .xp-project-preview-copy h2 {
+    font-size: 19px;
+  }
+  .xp-project-thumbnails {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 5px;
+  }
+  .xp-project-thumbnail-picture {
+    height: 88px;
+  }
+  .xp-project-find > label {
+    min-width: 100%;
+  }
+  .xp-project-status > span:last-child {
+    display: none;
+  }
+}
+
+/* Adapt to the resizable Explorer window, as well as the device viewport. */
+.xp-projects-window {
+  container: projects-shell / inline-size;
+}
+.xp-projects-main {
+  container: projects-content / inline-size;
+}
+@container projects-shell (max-width: 650px) {
+  .xp-projects-window > div:first-child {
+    display: none;
+  }
+}
+@container projects-content (max-width: 600px) {
+  .xp-project-preview-body {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .xp-project-preview-picture > button {
+    max-height: 240px;
+  }
+  .xp-projects-welcome {
+    flex-wrap: wrap;
+  }
+  .xp-project-contact {
+    margin-left: 60px;
+  }
+}
+.xp-project-preview-tabs {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  padding: 0 3px;
+}
+.xp-project-preview-tabs button {
+  border: 1px solid #9baec7;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  padding: 4px 9px;
+  font:
+    11px Tahoma,
+    Arial,
+    sans-serif;
+  background: linear-gradient(#f9f8f1, #dedccc);
+  color: #536176;
+}
+.xp-project-preview-tabs button[aria-pressed='true'] {
+  background: white;
+  color: #163b71;
+  padding-top: 5px;
+  border-top: 2px solid #e9a544;
+}
+.xp-projects-window {
+  --project-header-offset: 60px;
+}
+@media (max-width: 560px) {
+  .xp-projects-window {
+    --project-header-offset: 47px;
+  }
+}
+@container projects-content (max-width:600px) {
+  .xp-projects-welcome > div {
+    flex: 1 1 calc(100% - var(--project-header-offset));
+  }
+  .xp-project-contact {
+    margin-left: var(--project-header-offset);
+  }
+}

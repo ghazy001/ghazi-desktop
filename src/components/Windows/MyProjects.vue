@@ -1,156 +1,131 @@
 <script setup>
-import { ref, reactive, watch, computed, onMounted, nextTick, onUnmounted } from 'vue'
+import { ref, computed, inject, onMounted, nextTick, onUnmounted } from 'vue'
 import { useLocaleStore } from '@/stores/localeStore'
 import { useGoBackStore } from '@/stores/goBackStore'
-
 import ProjectFolder from './MyProjects/ProjectFolder.vue'
+import ProjectPreview from './MyProjects/ProjectPreview.vue'
 import projectData from '@/data/projects-data.json'
+import { matchesProject } from '@/lib/project-presentation.mjs'
 import WindowLeftMenu from '@/components/Windows/WindowLeftMenu.vue'
-
-const props = defineProps({
-  leftMenuType: String
-})
-
-// Locale management
-const isTouch = window.matchMedia('(pointer: coarse)').matches
+import './MyProjects/project-explorer.css'
+const props = defineProps({ leftMenuType: String })
 const localeStore = useLocaleStore()
 const goBackStore = useGoBackStore()
-
-onUnmounted(() => {
-  goBackStore.currentActiveProject = null
-})
-
-const categories = ref(
-  projectData.categories.map((category) => ({
-    ...category,
-    projects: category.projects.map((project) => ({ ...project, isFocus: false, isActive: false }))
-  }))
-)
-
+const openWindow = inject('openWindow')
+const featured = projectData.featuredIds || []
+const rank = (project) => (featured.includes(project.id) ? featured.indexOf(project.id) : featured.length)
+const projects = projectData.categories.flatMap((category) => category.projects).sort((a, b) => rank(a) - rank(b))
 const search = ref('')
+const filter = ref('all')
+const selectedId = ref(projects[0].id)
 const searchInput = ref(null)
-const filteredCategories = computed(() =>
-  categories.value.map((category) => ({
-    ...category,
-    projects: category.projects.filter((project) =>
-      `${project.name} ${project.summary} ${project.technologies.join(' ')}`.toLowerCase().includes(search.value.toLowerCase())
-    )
-  }))
-)
+const filters = ['all', 'video', 'live', 'source']
+const filteredProjects = computed(() => projects.filter((project) => matchesProject(project, search.value, filter.value)))
+const selected = computed(() => filteredProjects.value.find((project) => project.id === selectedId.value) || filteredProjects.value[0])
+const position = computed(() => filteredProjects.value.indexOf(selected.value))
+const openProject = (project) => {
+  selectedId.value = project.id
+  goBackStore.currentActiveProject = project
+}
+const move = (direction) => {
+  const count = filteredProjects.value.length
+  if (count) selectedId.value = filteredProjects.value[(position.value + direction + count) % count].id
+}
 const focusSearch = async () => {
   goBackStore.currentActiveProject = null
   await nextTick()
   searchInput.value?.focus()
 }
+const resetFilters = () => {
+  search.value = ''
+  filter.value = 'all'
+}
 onMounted(() => window.addEventListener('portfolio-search', focusSearch))
-onUnmounted(() => window.removeEventListener('portfolio-search', focusSearch))
-
-const state = reactive({
-  selectedProject: null
+onUnmounted(() => {
+  window.removeEventListener('portfolio-search', focusSearch)
+  goBackStore.currentActiveProject = null
 })
-
-const focusProject = (project) => {
-  if (project.isFocus) {
-    return
-  }
-
-  project.isFocus = !project.isFocus
-
-  categories.value.forEach((category) => {
-    category.projects.forEach((p) => {
-      if (p.name !== project.name) {
-        p.isFocus = false
-      }
-    })
-  })
-  state.selectedProject = project
-}
-
-const toggleProject = (project) => {
-  // Before opening a project, close all others
-  closeAllProjects()
-
-  // Then open the selected project
-  project.isActive = true
-  state.selectedProject = project
-
-  goBackStore.currentActiveProject = project
-}
-
-const closeAllProjects = () => {
-  categories.value.forEach((category) => {
-    category.projects.forEach((project) => {
-      project.isActive = false
-    })
-  })
-}
-
-const getLocalizedCategoryName = (category) => category.name[localeStore.currentLocale] || category.name.en
-
-// Watch for changes in currentActiveProject
-watch(
-  () => goBackStore.currentActiveProject,
-  (newProject) => {
-    if (!newProject) {
-      closeAllProjects()
-    }
-  },
-  { immediate: true }
-)
-
-// Unfocus the project when the user clicks outside the project card
-const clearSelection = (e) => {
-  if (!e.target.closest('.project-card') && state.selectedProject) {
-    state.selectedProject.isFocus = false
-    state.selectedProject = null
-  }
-}
-window.addEventListener('click', clearSelection)
-onUnmounted(() => window.removeEventListener('click', clearSelection))
 </script>
 
 <template>
-  <div class="relative right-0 h-content-window flex">
+  <div class="relative right-0 h-content-window flex xp-projects-window">
     <WindowLeftMenu :leftMenuType="props.leftMenuType" />
-    <!-- Content of project -->
-    <ProjectFolder v-if="goBackStore.currentActiveProject" :key="goBackStore.currentActiveProject.id" :project="goBackStore.currentActiveProject" />
-    <!-- Content window Foreach categories and projects -->
-    <div v-else class="flex flex-col w-full h-full bg-white overflow-auto pt-0.5">
-      <label class="text-xs px-3 py-2"
-        >{{ $t('common.search') }}: <input ref="searchInput" v-model="search" type="search" class="xp-input" placeholder="Project or technology"
-      /></label>
-      <p v-if="filteredCategories.every((category) => !category.projects.length)" class="p-3 text-xs" role="status">No matching projects.</p>
-      <div v-for="category in filteredCategories" :key="category.name" class="relative group mb-3">
-        <h1 class="text-xs font-semibold px-3">{{ getLocalizedCategoryName(category) }}</h1>
-        <div class="absolute left-[-12px] top-5 w-80 h-px bg-gradient-to-r from-blue-300 to-white"></div>
-
-        <!-- Content for the projects -->
-        <div class="flex flex-wrap gap-2 pt-2 md:pt-3 pb-3 w-full">
-          <div
-            v-for="project in category.projects"
-            :key="project.name"
-            @click="isTouch ? toggleProject(project) : focusProject(project)"
-            @dblclick="toggleProject(project)"
-            @keydown.enter.prevent="toggleProject(project)"
-            @keydown.space.prevent="toggleProject(project)"
-            role="button"
-            tabindex="0"
-            class="flex items-center px-4 pb-2 gap-2.5 cursor-pointer project-card"
-            :class="{ active: project.isFocus }"
-          >
-            <img :src="'/img/icons/' + project.icon" alt="project" class="w-10 h-10" :style="{ opacity: project.isFocus ? 0.5 : 1 }" />
-            <p
-              class="text-xs font-tahoma font-medium"
-              :style="{
-                backgroundColor: project.isFocus ? '#0B61FF' : 'transparent',
-                color: project.isFocus ? 'white' : 'black'
-              }"
-            >
-              {{ project.name }}
-            </p>
+    <main class="xp-projects-main">
+      <ProjectFolder v-if="goBackStore.currentActiveProject" :key="goBackStore.currentActiveProject.id" :project="goBackStore.currentActiveProject" />
+      <template v-else>
+        <div class="xp-projects-scroll">
+          <header class="xp-projects-welcome">
+            <img src="/img/icons/projects/projects-icon-lg.webp" alt="" width="48" height="48" />
+            <div>
+              <h1>{{ $t('projectExplorer.title') }}</h1>
+              <p>{{ $t('projectExplorer.introduction') }}</p>
+            </div>
+            <button class="xp-button xp-project-contact" @click="openWindow('contact')">
+              <img src="/img/icons/contact/email-icon-sm.webp" alt="" />{{ $t('projectExplorer.contact') }}
+            </button>
+          </header>
+          <div class="xp-project-find">
+            <label
+              ><img src="/img/icons/windows-header-tools/magnifier-icon.webp" alt="" /><span class="sr-only">{{ $t('common.search') }}</span
+              ><input ref="searchInput" v-model="search" type="search" :placeholder="$t('projectExplorer.search')" class="xp-input"
+            /></label>
+            <div class="xp-project-filters" role="group" :aria-label="$t('projectExplorer.filterProjects')">
+              <button v-for="kind in filters" :key="kind" :aria-pressed="filter === kind" @click="filter = kind">{{ $t('projectExplorer.filters.' + kind) }}</button>
+            </div>
           </div>
+          <ProjectPreview v-if="selected" :project="selected" @open-folder="openProject(selected)">
+            <template #navigation
+              ><div class="xp-project-preview-nav">
+                <button @click="move(-1)" :disabled="filteredProjects.length < 2" :aria-label="$t('projectExplorer.previous')">
+                  <img src="/img/icons/pictures/previous-icon.svg" alt="" /></button
+                ><span>{{ position + 1 }} / {{ filteredProjects.length }}</span
+                ><button @click="move(1)" :disabled="filteredProjects.length < 2" :aria-label="$t('projectExplorer.next')">
+                  <img src="/img/icons/pictures/next-icon.svg" alt="" />
+                </button></div
+            ></template>
+          </ProjectPreview>
+          <section class="xp-project-collection" :aria-label="$t('projectExplorer.collection')">
+            <h2>
+              {{ $t('projectExplorer.collection')
+              }}<span>{{ filteredProjects.length }} {{ $t(filteredProjects.length === 1 ? 'projectExplorer.projectSingular' : 'projectExplorer.projects') }}</span>
+            </h2>
+            <div v-if="filteredProjects.length" class="xp-project-thumbnails">
+              <button
+                v-for="project in filteredProjects"
+                :key="project.id"
+                class="xp-project-thumbnail"
+                :class="{ selected: selected.id === project.id }"
+                :aria-pressed="selected.id === project.id"
+                @click="selectedId = project.id"
+                @dblclick="openProject(project)"
+                @keydown.enter.prevent="openProject(project)"
+                :title="$t('projectExplorer.openFolder') + ' — ' + project.name"
+              >
+                <span class="xp-project-thumbnail-picture"
+                  ><img :src="project.image" :alt="project.caseStudyName" loading="lazy" decoding="async" /><img
+                    class="xp-project-folder-corner"
+                    src="/img/icons/windows-header-tools/open-folders.webp"
+                    alt=""
+                /></span>
+                <span class="xp-project-thumbnail-name">{{ project.caseStudyName || project.name }}</span>
+                <span class="xp-project-thumbnail-type">{{ $t('projectExplorer.coverIllustration') }}</span>
+                <span class="xp-project-thumbnail-tech">{{ project.technologies.slice(0, 3).join(' · ') }}</span>
+              </button>
+            </div>
+            <div v-else class="xp-project-empty" role="status">
+              <img src="/img/icons/windows-header-tools/magnifier-icon.webp" alt="" />
+              <h3>{{ $t('projectExplorer.noMatches') }}</h3>
+              <p>{{ $t('projectExplorer.tryAnother') }}</p>
+              <button class="xp-button" @click="resetFilters">{{ $t('projectExplorer.clearFilters') }}</button>
+            </div>
+          </section>
         </div>
-      </div>
-    </div>
+        <footer class="xp-project-status">
+          <span>{{ filteredProjects.length }} {{ $t(filteredProjects.length === 1 ? 'projectExplorer.projectSingular' : 'projectExplorer.projects') }}</span
+          ><span>{{ selected?.caseStudyName || $t('projectExplorer.noMatches') }}</span
+          ><span>{{ localeStore.currentLocale === 'fr' ? 'Portfolio de Ghazi Saoudi' : 'Ghazi Saoudi’s portfolio' }}</span>
+        </footer>
+      </template>
+    </main>
   </div>
 </template>

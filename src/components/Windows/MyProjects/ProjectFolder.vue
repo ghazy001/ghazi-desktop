@@ -1,6 +1,7 @@
 <script setup>
 import { computed, inject, ref } from 'vue'
 import { projectFiles } from '@/lib/project-files.mjs'
+import ProjectPreview from './ProjectPreview.vue'
 const props = defineProps({ project: { type: Object, required: true } })
 const openFile = inject('openFile')
 const files = computed(() => projectFiles(props.project))
@@ -19,27 +20,35 @@ const choose = (file) => {
 </script>
 <template>
   <div class="xp-project-folder">
-    <div class="xp-project-files" :aria-label="project.name + ' files'">
-      <component
-        :is="file.kind === 'link' ? 'a' : 'button'"
-        v-for="file in files"
-        :key="file.name"
-        :href="file.kind === 'link' ? file.url : undefined"
-        :target="file.kind === 'link' ? '_blank' : undefined"
-        :rel="file.kind === 'link' ? 'noopener noreferrer' : undefined"
-        class="xp-project-file"
-        :class="{ selected: selected === file.name }"
-        :title="file.availability || file.caption || file.url || file.name"
-        @click.prevent="choose(file)"
-        @dblclick.prevent="openFile(file)"
-        @keydown.enter.prevent="openFile(file)"
-        @keydown.space.prevent="openFile(file)"
-      >
-        <img :src="icons[file.kind]" alt="" /><span>{{ file.name }}</span>
-      </component>
+    <div class="xp-project-folder-body">
+      <ProjectPreview :project="project" inside-folder />
+      <h2 class="xp-project-files-heading">
+        {{ $t('projectExplorer.files') }}<span>{{ $t('projectExplorer.fileHint') }}</span>
+      </h2>
+      <div class="xp-project-files" :aria-label="project.name + ' files'">
+        <component
+          :is="file.kind === 'link' ? 'a' : 'button'"
+          v-for="file in files"
+          :key="file.name"
+          :href="file.kind === 'link' ? file.url : undefined"
+          :target="file.kind === 'link' ? '_blank' : undefined"
+          :rel="file.kind === 'link' ? 'noopener noreferrer' : undefined"
+          class="xp-project-file"
+          :class="{ selected: selected === file.name }"
+          :title="file.availability || file.caption || file.url || file.name"
+          @click.prevent="choose(file)"
+          @dblclick.prevent="openFile(file)"
+          @keydown.enter.prevent="openFile(file)"
+          @keydown.space.prevent="openFile(file)"
+        >
+          <img :src="file.kind === 'image' ? file.src : icons[file.kind]" :class="{ 'xp-file-picture': file.kind === 'image' }" alt="" loading="lazy" /><span>{{
+            file.name
+          }}</span>
+        </component>
+      </div>
     </div>
     <footer class="xp-project-folder-status">
-      {{ files.length }} objects<span>{{ selected || project.name }}</span>
+      {{ files.length }} {{ $t('projectExplorer.objects') }}<span>{{ selected || project.name }}</span>
     </footer>
   </div>
 </template>
@@ -56,19 +65,35 @@ const choose = (file) => {
     12px Tahoma,
     sans-serif;
 }
+.xp-project-folder-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+}
+.xp-project-files-heading {
+  color: #003c74;
+  font-weight: bold;
+  padding: 14px 0 7px;
+  border-bottom: 1px solid #c9d7e9;
+}
+.xp-project-files-heading span {
+  display: block;
+  color: #555;
+  font-size: 11px;
+  font-weight: normal;
+  padding-top: 3px;
+}
 .xp-project-files {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 8px 3px;
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
-  padding: 16px 8px;
+  padding: 12px 0;
 }
 .xp-project-file {
-  width: 108px;
-  min-height: 85px;
+  width: 116px;
+  min-height: 94px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,6 +109,16 @@ const choose = (file) => {
   height: 40px;
   object-fit: contain;
   flex-shrink: 0;
+}
+.xp-project-file .xp-file-picture {
+  width: 66px;
+  height: 48px;
+  object-fit: contain;
+  border: 1px solid #aaa;
+  background: #f5f5f5;
+}
+.xp-project-file:hover {
+  background: #f0f5ff;
 }
 .xp-project-file span {
   padding: 1px 3px;

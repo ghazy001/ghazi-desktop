@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync, existsSync } from 'node:fs'
 import { projectDescription, projectFiles } from '../src/lib/project-files.mjs'
+import { projectDestinations, matchesProject, projectPreview } from '../src/lib/project-presentation.mjs'
 const projects = JSON.parse(readFileSync(new URL('../src/data/projects-data.json', import.meta.url))).categories.flatMap((category) => category.projects)
 let videos = 0,
   images = 0,
@@ -37,3 +38,27 @@ assert.equal(images, 18)
 console.log(
   `Verified ${projects.length} project folders, ${projects.length} complete descriptions, ${images} real images, ${videos} available videos and ${links} web shortcuts.`
 )
+
+// Client-facing filters must use available, original destinations and real previews.
+assert.deepEqual(
+  projects.filter((p) => matchesProject(p, '', 'video')).map((p) => p.id),
+  ['testflow', 'chkobba']
+)
+assert.deepEqual(
+  projects.filter((p) => matchesProject(p, '', 'live')).map((p) => p.id),
+  ['testflow', 'chkobba']
+)
+assert.deepEqual(
+  projects.filter((p) => matchesProject(p, 'rabbitmq', 'all')).map((p) => p.id),
+  ['microservices-architecture-platform']
+)
+assert.equal(projects.filter((p) => matchesProject(p, 'no-such-project-987', 'all')).length, 0)
+assert.equal(projectDestinations(projects.find((p) => p.id === 'ai-art-gallery')).live, undefined)
+for (const project of projects) {
+  const destinations = projectDestinations(project)
+  if (destinations.source) assert.ok(project.links.some((link) => link.url === destinations.source.url && !link.availability))
+  const preview = projectPreview(project)
+  assert.ok(existsSync(new URL('../public' + preview.src, import.meta.url)))
+  if (project.video) assert.equal(preview.src, project.video.poster)
+}
+console.log('Project presentation checks passed: available demos, source links, real preview assets and search results.')

@@ -1,0 +1,33 @@
+{
+  "width": 1000,
+  "height": 720,
+  "skillGroups": ["Frontend", "Backend", "Programming Languages", "DevOps / Cloud"],
+  "en": {
+    "filename": "About Me.png",
+    "hello": "hello, I'm",
+    "role": "Software Engineer",
+    "focus": "Full-Stack  /  Cloud  /  AI",
+    "intro": ["I build full-stack applications,", "cloud-native systems, and practical", "AI-powered features."],
+    "tools": "A few things in my toolbox",
+    "location": "Based in",
+    "education": "My background",
+    "degree": "Computer Engineering",
+    "invitation": "Let's build something useful.",
+    "note": "You can draw here, too!",
+    "code": "ideas → code → product"
+  },
+  "fr": {
+    "filename": "À propos de moi.png",
+    "hello": "salut, moi c'est",
+    "role": "Ingénieur logiciel",
+    "focus": "Full-Stack  /  Cloud  /  IA",
+    "intro": ["Je développe des applications full-stack,", "des systèmes cloud-native et des", "fonctionnalités d'IA concrètes."],
+    "tools": "Quelques outils de ma boîte",
+    "location": "Installé à",
+    "education": "Mon parcours",
+    "degree": "Ingénierie informatique",
+    "invitation": "Créons quelque chose d'utile.",
+    "note": "Vous pouvez aussi dessiner ici !",
+    "code": "idées → code → produit"
+  }
+}
