@@ -1,0 +1,1652 @@
+{
+  "categories": [
+    {
+      "name": {
+        "en": "Software Projects",
+        "fr": "Projets logiciels"
+      },
+      "projects": [
+        {
+          "id": "testflow",
+          "name": "AI-Powered QA Platform",
+          "caseStudyName": "TestFlow",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "AI-Powered QA Platform",
+            "fr": "AI-Powered QA Platform"
+          },
+          "summary": "Quality assurance platform focused on using AI to support test analysis, defect discovery, and software validation workflows.",
+          "technologies": ["Next.js", "NestJS", "FastAPI", "PostgreSQL", "Prisma", "Qdrant", "Redis", "Celery", "BullMQ", "Playwright", "Docker"],
+          "highlights": ["AI-assisted quality analysis", "Test workflow support", "Developer-friendly reporting"],
+          "source": "https://ghazi-saoudi.vercel.app/projects/testflow",
+          "links": [
+            {
+              "name": "Source Repo",
+              "url": "https://github.com/ghazy001/ci"
+            },
+            {
+              "name": "Backend Image",
+              "url": "https://github.com/ghazy001/ci/pkgs/container/ci%2Fbackend"
+            },
+            {
+              "name": "AI Service Image",
+              "url": "https://github.com/ghazy001/ci/pkgs/container/ci%2Fai-service"
+            },
+            {
+              "name": "Live Demo",
+              "url": "https://www.testflow.tn"
+            }
+          ],
+          "image": "/img/ghazi/projects/testflow.webp",
+          "imageCaption": "Project preview illustration. See the recorded product walkthrough for application footage.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "QA work spans requirements, test plans, automation scripts, execution results, and defect tracking. TestFlow connects those stages around project WorkItems, while keeping generated assets under human review rather than treating AI output as automatically trustworthy."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "AI-assisted QA / Full-stack engineering"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "Jira and specification intake, project knowledge indexing, and RAG-assisted test generation."
+                },
+                {
+                  "type": "li",
+                  "text": "Manual and API test review, automation candidates, controlled execution, and assertion-level reporting."
+                },
+                {
+                  "type": "li",
+                  "text": "Smart QA Planner, visual AI QA Studio workflows, live discussions, and human-confirmed Jira defect sync."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Requirements"
+                },
+                {
+                  "type": "li",
+                  "text": "02 AI generation"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Human review"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Execution"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Reports"
+                },
+                {
+                  "type": "h3",
+                  "text": "Product workspace"
+                },
+                {
+                  "type": "p",
+                  "text": "Next.js / React / React Flow"
+                },
+                {
+                  "type": "p",
+                  "text": "Planning, workflow canvas, review inbox, execution history, and analytics."
+                },
+                {
+                  "type": "h3",
+                  "text": "System of record"
+                },
+                {
+                  "type": "p",
+                  "text": "NestJS / Prisma / PostgreSQL"
+                },
+                {
+                  "type": "p",
+                  "text": "Project access, asset lifecycle, audit trails, Jira integration, and durable product data."
+                },
+                {
+                  "type": "h3",
+                  "text": "AI pipeline"
+                },
+                {
+                  "type": "p",
+                  "text": "FastAPI / Celery / Qdrant"
+                },
+                {
+                  "type": "p",
+                  "text": "Async generation, structured output validation, and retrieval of project knowledge."
+                },
+                {
+                  "type": "h3",
+                  "text": "Execution workers"
+                },
+                {
+                  "type": "p",
+                  "text": "Redis / BullMQ / Docker"
+                },
+                {
+                  "type": "p",
+                  "text": "Queued API execution and framework-specific browser runners, separate from generation."
+                }
+              ]
+            },
+            {
+              "title": "Engineering decisions",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "AI proposes. A person approves."
+                },
+                {
+                  "type": "p",
+                  "text": "Generation and review have separate lifecycle states. API execution requires approved, configured cases; workflow human tasks synchronize async results before offering approval."
+                },
+                {
+                  "type": "h3",
+                  "text": "Keep generation separate from execution."
+                },
+                {
+                  "type": "p",
+                  "text": "FastAPI/Celery handles AI generation, while NestJS/BullMQ owns HTTP execution, persistence, and reporting. This keeps slow AI work outside the synchronous product flow."
+                },
+                {
+                  "type": "h3",
+                  "text": "Durable writes before live updates."
+                },
+                {
+                  "type": "p",
+                  "text": "Discussion commands go through REST and PostgreSQL. Authenticated Socket.IO rooms broadcast committed changes, with idempotent client updates and REST recovery after reconnect."
+                },
+                {
+                  "type": "h3",
+                  "text": "Treat execution as a security boundary."
+                },
+                {
+                  "type": "p",
+                  "text": "The documented API worker checks destinations, blocks redirects, limits timeouts and response sizes, encrypts runtime variables, and redacts stored snapshots. The README separately identifies further production-hardening work."
+                }
+              ]
+            },
+            {
+              "title": "Engineering takeaways",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "A reviewable lifecycle matters as much as the generation model."
+                },
+                {
+                  "type": "li",
+                  "text": "Traceability connects requirements, tests, executions, and defects into useful evidence."
+                },
+                {
+                  "type": "li",
+                  "text": "Explicit worker boundaries make AI and execution workflows easier to reason about."
+                },
+                {
+                  "type": "h3",
+                  "text": "Next steps"
+                },
+                {
+                  "type": "p",
+                  "text": "The documented roadmap includes OpenAPI intake, managed reusable secrets, distributed performance execution, and further runner isolation, quotas, and service-authentication hardening. These are next steps, not completed claims."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "video": {
+            "url": "https://ghazi-saoudi.vercel.app/demos/testflow.mp4",
+            "poster": "/img/ghazi/projects/testflow-demo.jpg",
+            "caption": "Recorded product demo. Features shown reflect the version in this recording."
+          },
+          "headline": "From requirements to reviewable, executable tests.",
+          "description": "A connected QA workspace that brings requirement intake, AI generation, human review, controlled execution, and reporting into one traceable workflow."
+        },
+        {
+          "id": "e-learning-platform-with-ai",
+          "name": "E-Learning Platform with AI",
+          "caseStudyName": "AI E-Learning Platform",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "E-Learning Platform with AI",
+            "fr": "E-Learning Platform with AI"
+          },
+          "summary": "Learning platform designed around course delivery, learner interaction, and AI-assisted educational experiences.",
+          "technologies": ["React", "Node.js", "Express.js", "MongoDB", "WebSocket", "Machine Learning", "Google OAuth", "CI/CD"],
+          "highlights": ["Course and learning content flows", "AI-enhanced learner support", "User-focused platform experience"],
+          "source": "https://ghazi-saoudi.vercel.app/projects/e-learning-platform-with-ai",
+          "links": [
+            {
+              "name": "GitHub",
+              "url": "https://github.com/ghazy001/EDADVANCE"
+            }
+          ],
+          "image": "/img/ghazi/projects/e-learning-platform-with-ai.webp",
+          "imageCaption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "A digital learning environment needs more than course content: students also need interaction, access, and relevant resources. This project brings AI-assisted learning features and live communication into one web platform."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Education / AI integration / MERN"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "Facial recognition and emotion detection using machine learning."
+                },
+                {
+                  "type": "li",
+                  "text": "GitHub and Google Classroom recommendations, plus an AI chatbot."
+                },
+                {
+                  "type": "li",
+                  "text": "WebSocket chatroom, Google OAuth, and a CI/CD deployment workflow."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Sign in"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Learning space"
+                },
+                {
+                  "type": "li",
+                  "text": "03 AI support"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Live chat"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Delivery"
+                },
+                {
+                  "type": "h3",
+                  "text": "Learning interface"
+                },
+                {
+                  "type": "p",
+                  "text": "React"
+                },
+                {
+                  "type": "p",
+                  "text": "The frontend layer for learner interaction, recommendations, and conversations."
+                },
+                {
+                  "type": "h3",
+                  "text": "Application & data"
+                },
+                {
+                  "type": "p",
+                  "text": "Node.js / Express.js / MongoDB"
+                },
+                {
+                  "type": "p",
+                  "text": "The MERN backend and database foundation for the learning platform."
+                },
+                {
+                  "type": "h3",
+                  "text": "Intelligent features"
+                },
+                {
+                  "type": "p",
+                  "text": "Machine Learning / AI chatbot"
+                },
+                {
+                  "type": "p",
+                  "text": "Facial recognition, emotion detection, and GitHub/Google Classroom recommendations."
+                },
+                {
+                  "type": "h3",
+                  "text": "Connected delivery"
+                },
+                {
+                  "type": "p",
+                  "text": "WebSocket / Google OAuth / CI/CD"
+                },
+                {
+                  "type": "p",
+                  "text": "Real-time chat, Google sign-in integration, and automated delivery workflows."
+                }
+              ]
+            },
+            {
+              "title": "Engineering considerations",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "Keep AI supportive, not authoritative."
+                },
+                {
+                  "type": "p",
+                  "text": "Emotion detection should be treated as a model inference, not a reliable diagnosis or a definitive assessment of a learner. Clear communication of uncertainty is important for this type of feature."
+                },
+                {
+                  "type": "h3",
+                  "text": "Design for live conversations."
+                },
+                {
+                  "type": "p",
+                  "text": "A WebSocket chatroom introduces connection state, message ordering, and reconnect considerations alongside the regular HTTP application flow."
+                },
+                {
+                  "type": "h3",
+                  "text": "Treat identity and facial data carefully."
+                },
+                {
+                  "type": "p",
+                  "text": "Google OAuth and facial recognition introduce different privacy boundaries. Consent, data minimization, and protection of identity information are important review points."
+                }
+              ]
+            },
+            {
+              "title": "Technical focus",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Combining MERN application development with machine-learning features."
+                },
+                {
+                  "type": "li",
+                  "text": "Connecting real-time communication with an educational user experience."
+                },
+                {
+                  "type": "li",
+                  "text": "Bringing authentication and CI/CD into a full-stack project."
+                },
+                {
+                  "type": "h3",
+                  "text": "Possible extensions"
+                },
+                {
+                  "type": "p",
+                  "text": "Possible extensions include accessibility testing, clearer AI consent controls, and evaluating recommendation relevance. These are improvement opportunities, not claims of completed work."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "headline": "Learning, connected in real time.",
+          "description": "A MERN learning platform combining facial recognition, emotion detection, classroom recommendations, real-time conversations, and an AI chatbot."
+        },
+        {
+          "id": "microservices-architecture-platform",
+          "name": "Microservices Architecture Platform",
+          "caseStudyName": "Microservices Architecture Platform",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "Microservices Architecture Platform",
+            "fr": "Microservices Architecture Platform"
+          },
+          "summary": "Cloud-native platform focused on service separation, API communication, deployment readiness, and scalable architecture.",
+          "technologies": ["Spring Boot", "Angular", "Docker", "RabbitMQ", "Keycloak", "PostgreSQL", "MongoDB", "Spring Cloud Gateway", "Eureka"],
+          "highlights": ["Service-oriented architecture", "Independent backend modules", "Deployment-aware structure"],
+          "source": "https://ghazi-saoudi.vercel.app/projects/microservices-architecture-platform",
+          "links": [
+            {
+              "name": "GitHub",
+              "url": "https://github.com/IsraaBoulaares/TourneyPulse"
+            }
+          ],
+          "image": "/img/ghazi/projects/microservices-architecture-platform.webp",
+          "imageCaption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "Teams, tournaments, venues, and reservations involve different business responsibilities. A service-oriented structure lets those domains have distinct modules while remaining connected through common access and communication layers."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Distributed systems / Sports management"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "Domain services for teams, tournaments, stadiums, users, and reservations, documented in the repository."
+                },
+                {
+                  "type": "li",
+                  "text": "API Gateway, Keycloak SSO, RabbitMQ messaging, and mixed SQL/NoSQL persistence listed in the CV."
+                },
+                {
+                  "type": "li",
+                  "text": "Docker-based deployment, Eureka discovery, and centralized Spring Cloud configuration documented in the repository."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Client"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Gateway"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Identity"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Services"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Persistence"
+                },
+                {
+                  "type": "h3",
+                  "text": "Client & entry point"
+                },
+                {
+                  "type": "p",
+                  "text": "Angular / Spring Cloud Gateway"
+                },
+                {
+                  "type": "p",
+                  "text": "A frontend and gateway layer for reaching the platform’s domain services."
+                },
+                {
+                  "type": "h3",
+                  "text": "Business domains"
+                },
+                {
+                  "type": "p",
+                  "text": "Spring Boot / Microservices"
+                },
+                {
+                  "type": "p",
+                  "text": "Separate modules for team, tournament, venue, reservation, and user management."
+                },
+                {
+                  "type": "h3",
+                  "text": "Identity & communication"
+                },
+                {
+                  "type": "p",
+                  "text": "Keycloak / RabbitMQ / Eureka"
+                },
+                {
+                  "type": "p",
+                  "text": "SSO and messaging listed in the CV; service discovery documented in the repository."
+                },
+                {
+                  "type": "h3",
+                  "text": "Data & deployment"
+                },
+                {
+                  "type": "p",
+                  "text": "SQL / MongoDB / Docker / Spring Cloud Config"
+                },
+                {
+                  "type": "p",
+                  "text": "Mixed persistence and containerized services. The CV lists PostgreSQL; the public repository documents MySQL, reflecting different documented configurations."
+                }
+              ]
+            },
+            {
+              "title": "Engineering considerations",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "Organize services around business domains."
+                },
+                {
+                  "type": "p",
+                  "text": "The repository separates team, tournament, stadium, reservation, and user responsibilities into modules rather than presenting one undifferentiated backend."
+                },
+                {
+                  "type": "h3",
+                  "text": "Give clients a gateway entry point."
+                },
+                {
+                  "type": "p",
+                  "text": "Spring Cloud Gateway provides the documented routing layer, while Eureka and centralized configuration support the service topology."
+                },
+                {
+                  "type": "h3",
+                  "text": "Keep identity consistent across services."
+                },
+                {
+                  "type": "p",
+                  "text": "The repository documents Keycloak, JWT, roles, and single sign-on. Authorization and token handling remain important boundaries across service calls."
+                }
+              ]
+            },
+            {
+              "title": "Technical focus",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Domain decomposition and service-to-service integration."
+                },
+                {
+                  "type": "li",
+                  "text": "Shared identity alongside independent backend modules."
+                },
+                {
+                  "type": "li",
+                  "text": "Containerized delivery with mixed persistence and centralized configuration."
+                },
+                {
+                  "type": "h3",
+                  "text": "Possible extensions"
+                },
+                {
+                  "type": "p",
+                  "text": "Possible extensions include contract tests, tracing across service calls, and documented failure-recovery scenarios. No uptime, throughput, or latency benchmark is claimed here."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "headline": "Separate services. One connected platform.",
+          "description": "A distributed sports-management platform built around domain services, an API gateway, shared identity, messaging, and relational/document data storage."
+        },
+        {
+          "id": "ai-art-gallery",
+          "name": "AI Art Gallery",
+          "caseStudyName": "AI Art Gallery",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "AI Art Gallery",
+            "fr": "AI Art Gallery"
+          },
+          "summary": "Creative web project combining a gallery-style user experience with AI-generated or AI-assisted artwork presentation.",
+          "technologies": ["Django", "Python", "PyTorch", "OpenAI API", "PythonAnywhere"],
+          "highlights": ["Gallery-based browsing experience", "AI art presentation workflow", "Clean responsive interface"],
+          "source": "https://ghazi-saoudi.vercel.app/projects/ai-art-gallery",
+          "links": [
+            {
+              "name": "GitHub",
+              "url": "https://github.com/ghazy001/Echo-Gallery"
+            },
+            {
+              "name": "Live Demo",
+              "url": "https://ghazi001.pythonanywhere.com",
+              "availability": "Currently unavailable (404); original URL preserved."
+            }
+          ],
+          "image": "/img/ghazi/projects/ai-art-gallery.webp",
+          "imageCaption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "Creative exploration involves discovery, conversation, and image manipulation. This project brings those interactions together in a gallery-oriented web experience with AI-powered tools."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Creative tools / Applied AI"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "AI chatbot, image generation, and image editing through the platform."
+                },
+                {
+                  "type": "li",
+                  "text": "Background removal and a PyTorch artist-classification model."
+                },
+                {
+                  "type": "li",
+                  "text": "Price estimation and deployment on PythonAnywhere."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Explore art"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Ask assistant"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Generate"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Edit"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Analyze"
+                },
+                {
+                  "type": "h3",
+                  "text": "Gallery application"
+                },
+                {
+                  "type": "p",
+                  "text": "Django / Python"
+                },
+                {
+                  "type": "p",
+                  "text": "Web application layer connecting gallery interactions with the creative tools."
+                },
+                {
+                  "type": "h3",
+                  "text": "Generative assistant"
+                },
+                {
+                  "type": "p",
+                  "text": "OpenAI API"
+                },
+                {
+                  "type": "p",
+                  "text": "AI chat alongside the documented image-generation and editing capabilities."
+                },
+                {
+                  "type": "h3",
+                  "text": "Image intelligence"
+                },
+                {
+                  "type": "p",
+                  "text": "PyTorch / Image processing"
+                },
+                {
+                  "type": "p",
+                  "text": "Artist classification and background-removal capabilities listed in the CV."
+                },
+                {
+                  "type": "h3",
+                  "text": "Estimation & hosting"
+                },
+                {
+                  "type": "p",
+                  "text": "Price estimation / PythonAnywhere"
+                },
+                {
+                  "type": "p",
+                  "text": "An estimated-price feature and a deployed web application, without a claimed valuation accuracy."
+                }
+              ]
+            },
+            {
+              "title": "Engineering considerations",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "Separate creative output from analysis."
+                },
+                {
+                  "type": "p",
+                  "text": "Generating an image, removing a background, and classifying an artist solve different problems. Distinct inputs and results make these tools easier to understand."
+                },
+                {
+                  "type": "h3",
+                  "text": "Present estimates as estimates."
+                },
+                {
+                  "type": "p",
+                  "text": "An artist classification or price estimate is model output, not authenticated attribution or a professional appraisal. The interface should make that distinction clear."
+                },
+                {
+                  "type": "h3",
+                  "text": "Consider image ownership and privacy."
+                },
+                {
+                  "type": "p",
+                  "text": "Uploaded artwork and generated images introduce consent, rights, and storage questions. These are important considerations for a creative AI platform."
+                }
+              ]
+            },
+            {
+              "title": "Technical focus",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Combining a Django application with generative and analytical AI."
+                },
+                {
+                  "type": "li",
+                  "text": "Supporting multiple image workflows in a gallery experience."
+                },
+                {
+                  "type": "li",
+                  "text": "Taking a Python web project through deployment."
+                },
+                {
+                  "type": "h3",
+                  "text": "Possible extensions"
+                },
+                {
+                  "type": "p",
+                  "text": "Possible extensions include before/after editing comparisons, model-evaluation documentation, and clearer handling of image rights. No prediction accuracy or valuation guarantee is claimed."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "headline": "A gallery with an intelligent creative toolkit.",
+          "description": "A Django art platform that combines AI chat, image generation and editing, background removal, artist classification, and price estimation."
+        },
+        {
+          "id": "donation-platform",
+          "name": "Donation Platform",
+          "caseStudyName": "Donation Platform",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "Donation Platform",
+            "fr": "Donation Platform"
+          },
+          "summary": "Web platform for donation workflows, user-facing contribution flows, and organized campaign-style information.",
+          "technologies": ["Laravel", "PHP", "Stripe API", "AI Chatbot", "AlwaysData", "Docker"],
+          "highlights": ["Donation-oriented user flow", "Campaign or cause presentation", "Structured data handling"],
+          "source": "https://ghazi-saoudi.vercel.app/projects/donation-platform",
+          "links": [
+            {
+              "name": "Source Repo",
+              "url": "https://github.com/ghazy001/EcoEvent"
+            },
+            {
+              "name": "Container Image",
+              "url": "https://github.com/ghazy001/EcoEvent/pkgs/container/ecoevent"
+            }
+          ],
+          "image": "/img/ghazi/projects/donation-platform.webp",
+          "imageCaption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "A donation experience combines a contribution flow with questions about campaigns, statistics, and events. This project connects payments and database-backed assistance rather than offering only a static campaign page."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Donation workflows / Payments / AI integration"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "Donation-oriented contribution flows backed by a Laravel application."
+                },
+                {
+                  "type": "li",
+                  "text": "Stripe payment integration."
+                },
+                {
+                  "type": "li",
+                  "text": "AI chatbot using live database information for donation statistics and events; AlwaysData hosting listed in the CV."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Discover"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Contribute"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Payment"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Data"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Ask assistant"
+                },
+                {
+                  "type": "h3",
+                  "text": "Donation application"
+                },
+                {
+                  "type": "p",
+                  "text": "Laravel / PHP"
+                },
+                {
+                  "type": "p",
+                  "text": "The web application foundation for contribution workflows and campaign information."
+                },
+                {
+                  "type": "h3",
+                  "text": "Payment integration"
+                },
+                {
+                  "type": "p",
+                  "text": "Stripe API"
+                },
+                {
+                  "type": "p",
+                  "text": "A dedicated integration for the payment step in the donation experience."
+                },
+                {
+                  "type": "h3",
+                  "text": "Data-aware assistant"
+                },
+                {
+                  "type": "p",
+                  "text": "AI chatbot / Live database"
+                },
+                {
+                  "type": "p",
+                  "text": "Answers grounded in donation statistics and event information from the database."
+                },
+                {
+                  "type": "h3",
+                  "text": "Delivery resources"
+                },
+                {
+                  "type": "p",
+                  "text": "AlwaysData / Container package"
+                },
+                {
+                  "type": "p",
+                  "text": "AlwaysData is listed in the CV; a user-provided GitHub container package is available as an additional resource."
+                }
+              ]
+            },
+            {
+              "title": "Engineering considerations",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "Separate payment state from page state."
+                },
+                {
+                  "type": "p",
+                  "text": "A successful-looking frontend is not proof of a completed payment. Provider-confirmed state, duplicate handling, and failure recovery are important payment-integration review points."
+                },
+                {
+                  "type": "h3",
+                  "text": "Ground assistance in current data."
+                },
+                {
+                  "type": "p",
+                  "text": "The CV describes a chatbot connected to a live database. Donation totals and event answers should come from that data rather than generated guesses."
+                },
+                {
+                  "type": "h3",
+                  "text": "Handle contributions with care."
+                },
+                {
+                  "type": "p",
+                  "text": "Payment errors, cancellation, and private donor information require clear boundaries. Security guarantees or audited compliance are not claimed in this project brief."
+                }
+              ]
+            },
+            {
+              "title": "Technical focus",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Integrating payment services into a Laravel application."
+                },
+                {
+                  "type": "li",
+                  "text": "Connecting AI assistance with database-backed information."
+                },
+                {
+                  "type": "li",
+                  "text": "Combining contribution flows with campaign and event context."
+                },
+                {
+                  "type": "h3",
+                  "text": "Possible extensions"
+                },
+                {
+                  "type": "p",
+                  "text": "Possible extensions include documented payment-recovery tests, accessibility checks, and stronger donor privacy controls. No donation totals, impact statistics, or conversion results are claimed."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "headline": "Connect contributions with useful information.",
+          "description": "A Laravel donation platform with Stripe payment integration and an AI chatbot connected to live donation statistics and event information."
+        },
+        {
+          "id": "football-tournament-management-system",
+          "name": "Football Tournament Management System",
+          "caseStudyName": "Football Tournament Management",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "Football Tournament Management System",
+            "fr": "Football Tournament Management System"
+          },
+          "summary": "Sports management system for organizing tournaments, teams, matches, schedules, and competition data.",
+          "technologies": ["Symfony", "PHP", "JavaFX", "Java", "FlutterFlow"],
+          "highlights": ["Tournament and team management", "Match scheduling workflows", "Competition data organization"],
+          "source": "https://ghazi-saoudi.vercel.app/projects/football-tournament-management-system",
+          "links": [
+            {
+              "name": "Desktop Repo",
+              "url": "https://github.com/ghazy001/Pidev_3A4_CompilerCrew_Desktop_JavaFx_Tourney-Pulse"
+            },
+            {
+              "name": "Web Repo",
+              "url": "https://github.com/ghazy001/Pidev_3A4_CompilerCrew_Web_Symfony_Tourney-Pulse"
+            }
+          ],
+          "image": "/img/ghazi/projects/football-tournament-management-system.webp",
+          "imageCaption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "A tournament connects team information, match schedules, administration, and updates for participants. This project supports those responsibilities across web, desktop, and mobile experiences."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Sports operations / Multiplatform development"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "Team and match management across a multiplatform system."
+                },
+                {
+                  "type": "li",
+                  "text": "Automated scheduling and an administration dashboard."
+                },
+                {
+                  "type": "li",
+                  "text": "Real-time notifications, with Symfony, JavaFX, and FlutterFlow listed in the CV."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Teams"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Matches"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Schedule"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Dashboard"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Notifications"
+                },
+                {
+                  "type": "h3",
+                  "text": "Web application"
+                },
+                {
+                  "type": "p",
+                  "text": "Symfony / PHP"
+                },
+                {
+                  "type": "p",
+                  "text": "The web component, with a dedicated repository provided in the portfolio."
+                },
+                {
+                  "type": "h3",
+                  "text": "Desktop application"
+                },
+                {
+                  "type": "p",
+                  "text": "JavaFX / Java"
+                },
+                {
+                  "type": "p",
+                  "text": "A desktop component with its own source repository."
+                },
+                {
+                  "type": "h3",
+                  "text": "Mobile experience"
+                },
+                {
+                  "type": "p",
+                  "text": "FlutterFlow"
+                },
+                {
+                  "type": "p",
+                  "text": "The mobile technology documented in the CV; no separate mobile repository was provided."
+                },
+                {
+                  "type": "h3",
+                  "text": "Competition workflows"
+                },
+                {
+                  "type": "p",
+                  "text": "Scheduling / Administration / Notifications"
+                },
+                {
+                  "type": "p",
+                  "text": "The documented feature scope: teams, matches, automated scheduling, dashboard, and real-time updates."
+                }
+              ]
+            },
+            {
+              "title": "Engineering considerations",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "Keep competition concepts consistent."
+                },
+                {
+                  "type": "p",
+                  "text": "Teams, matches, and schedules need consistent meaning across clients. Shared validation rules and data contracts are important considerations for multiplatform systems."
+                },
+                {
+                  "type": "h3",
+                  "text": "Scheduling is more than displaying dates."
+                },
+                {
+                  "type": "p",
+                  "text": "Automated scheduling introduces constraints such as team availability and conflicting matches. Documenting supported rules makes the behavior easier to inspect and test."
+                },
+                {
+                  "type": "h3",
+                  "text": "Distinguish notifications from stored state."
+                },
+                {
+                  "type": "p",
+                  "text": "Notifications tell users that something changed; the application data remains the reference. Reconnect recovery and clear update states are useful review points."
+                }
+              ]
+            },
+            {
+              "title": "Technical focus",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Working across Symfony, JavaFX, and FlutterFlow experiences."
+                },
+                {
+                  "type": "li",
+                  "text": "Modeling team, match, and schedule relationships."
+                },
+                {
+                  "type": "li",
+                  "text": "Connecting administration workflows with real-time updates."
+                },
+                {
+                  "type": "h3",
+                  "text": "Possible extensions"
+                },
+                {
+                  "type": "p",
+                  "text": "Possible extensions include documented scheduling constraints, cross-client consistency tests, and match-update recovery scenarios. No match counts, user totals, or performance results are claimed."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "headline": "One competition. Web, desktop, and mobile.",
+          "description": "A multiplatform tournament system for managing teams and matches, automated scheduling, an administration dashboard, and real-time notifications."
+        },
+        {
+          "id": "chkobba",
+          "name": "Chkobba — Online Tunisian Card Game",
+          "caseStudyName": "Chkobba",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "Chkobba — Online Tunisian Card Game",
+            "fr": "Chkobba — Online Tunisian Card Game"
+          },
+          "summary": "Real-time multiplayer Chkobba with private rooms, ranked matchmaking, and personality-driven AI bots. An authoritative Node.js server validates every move, backed by a shared TypeScript game engine and Supabase persistence.",
+          "technologies": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Zustand", "Node.js", "Socket.IO", "Supabase", "PostgreSQL"],
+          "highlights": [
+            "Private 1v1 and 2v2 rooms, ranked matchmaking, and AI opponents",
+            "Server-validated moves, turn timers, and reconnect support",
+            "Accounts, match history, friends, ratings, and progression"
+          ],
+          "source": "https://ghazi-saoudi.vercel.app/projects/chkobba",
+          "links": [
+            {
+              "name": "Live Demo",
+              "url": "https://www.chkobba.cc"
+            }
+          ],
+          "image": "/img/ghazi/projects/chkobba.webp",
+          "imageCaption": "Project preview illustration. See the recorded product walkthrough for application footage.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "Moving a card game online means more than rendering cards. Players need one consistent match state, enforceable rules, synchronized turns, and a way to reconnect without letting browsers decide which moves are legal."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Real-time multiplayer / Full-stack engineering"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "A Next.js game interface with Zustand state and Socket.IO player intent."
+                },
+                {
+                  "type": "li",
+                  "text": "A pure TypeScript engine for rules, scoring, AI, and tests, shared with the realtime server."
+                },
+                {
+                  "type": "li",
+                  "text": "Guest play plus Supabase-backed accounts, match history, friends, ranked ratings, and progression."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Player intent"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Server validation"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Game engine"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Approved state"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Match history"
+                },
+                {
+                  "type": "h3",
+                  "text": "Player interface"
+                },
+                {
+                  "type": "p",
+                  "text": "Next.js / React / Zustand"
+                },
+                {
+                  "type": "p",
+                  "text": "Renders a sanitized game view and sends intent without deciding move legality."
+                },
+                {
+                  "type": "h3",
+                  "text": "Authoritative server"
+                },
+                {
+                  "type": "p",
+                  "text": "Node.js / Socket.IO"
+                },
+                {
+                  "type": "p",
+                  "text": "Owns rooms, turns, timers, validation, bots, reconnects, and match persistence."
+                },
+                {
+                  "type": "h3",
+                  "text": "Rules & contracts"
+                },
+                {
+                  "type": "p",
+                  "text": "TypeScript / pnpm workspaces"
+                },
+                {
+                  "type": "p",
+                  "text": "Pure game engine and shared event/DTO types, independent of the browser and database."
+                },
+                {
+                  "type": "h3",
+                  "text": "Player persistence"
+                },
+                {
+                  "type": "p",
+                  "text": "Supabase / PostgreSQL"
+                },
+                {
+                  "type": "p",
+                  "text": "Authentication, history, friends, ranked ratings, and progression; optional for guest play."
+                }
+              ]
+            },
+            {
+              "title": "Engineering decisions",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "One authority for every move."
+                },
+                {
+                  "type": "p",
+                  "text": "The realtime server owns the game state. Browsers submit intent and receive sanitized, server-approved views rather than acting as the rules authority."
+                },
+                {
+                  "type": "h3",
+                  "text": "Rules without framework dependencies."
+                },
+                {
+                  "type": "p",
+                  "text": "The game engine contains no React, Socket.IO, database, or browser code. Rules, scoring, and AI can be tested independently of transport and UI."
+                },
+                {
+                  "type": "h3",
+                  "text": "Guest play stays independent of accounts."
+                },
+                {
+                  "type": "p",
+                  "text": "Supabase is optional for guest play and required for account-based history, friends, ranked ratings, and progression. Core gameplay and account services have distinct boundaries."
+                },
+                {
+                  "type": "h3",
+                  "text": "Deploy the web and realtime server separately."
+                },
+                {
+                  "type": "p",
+                  "text": "The documented deployment uses Vercel for the Next.js frontend and Render for the realtime server, with Supabase migrations deployed before server changes that depend on them."
+                }
+              ]
+            },
+            {
+              "title": "Engineering takeaways",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Realtime consistency starts with clear ownership of state."
+                },
+                {
+                  "type": "li",
+                  "text": "A pure rules engine separates correctness from rendering and networking."
+                },
+                {
+                  "type": "li",
+                  "text": "Shared contracts keep player intent and server-approved views aligned."
+                },
+                {
+                  "type": "h3",
+                  "text": "Next steps"
+                },
+                {
+                  "type": "p",
+                  "text": "The README identifies engine tests as the source of truth for captures, scoring, dealer rotation, and 1v1/2v2 rules. Further case-study updates can document measured reconnect behavior and player feedback once those results are available."
+                }
+              ]
+            }
+          ],
+          "gallery": [],
+          "video": {
+            "url": "https://ghazi-saoudi.vercel.app/demos/chkobba.mp4",
+            "poster": "/img/ghazi/projects/chkobba-demo.jpg",
+            "caption": "Recorded product demo. Features shown reflect the version in this recording."
+          },
+          "headline": "A Tunisian classic. A shared, real-time table.",
+          "description": "Online Chkobba for private 1v1 and 2v2 rooms, ranked matchmaking, and personality-driven AI opponents, built around server-authoritative game state."
+        },
+        {
+          "id": "configpilot",
+          "name": "ConfigPilot — Environment Configuration Diagnostics",
+          "caseStudyName": "ConfigPilot",
+          "icon": "projects/projects-icon-lg.webp",
+          "title": {
+            "en": "ConfigPilot — Environment Configuration Diagnostics",
+            "fr": "ConfigPilot — Environment Configuration Diagnostics"
+          },
+          "summary": "Published npm CLI and JavaScript API for discovering environment-variable references, previewing safe placeholders, and diagnosing configuration inconsistencies without displaying assignment values.",
+          "technologies": ["JavaScript", "TypeScript declarations", "Node.js", "Babel AST", "Vue SFC parser", "JSON Schema", "GitHub Actions", "npm"],
+          "highlights": [
+            "Static source discovery and consent-based initialization with dry-run previews",
+            "Explainable diagnostics, explicit project rules, and independent workspaces",
+            "Typed ESM API, JSON reports, GitHub annotations, and CI failure policies"
+          ],
+          "source": "https://ghazi-saoudi.vercel.app/projects/configpilot",
+          "links": [
+            {
+              "name": "GitHub",
+              "url": "https://github.com/ghazy001/configpilot"
+            },
+            {
+              "name": "npm Package",
+              "url": "https://www.npmjs.com/package/configpilot"
+            },
+            {
+              "name": "Workflow documentation",
+              "url": "https://github.com/ghazy001/configpilot/blob/main/docs/PROJECT_WORKFLOWS.md"
+            },
+            {
+              "name": "Security boundaries",
+              "url": "https://github.com/ghazy001/configpilot/blob/main/SECURITY.md"
+            }
+          ],
+          "image": "/img/ghazi/projects/configpilot.webp",
+          "imageCaption": "Provided ConfigPilot cover illustration. The terminal artwork represents the scan, init, and check workflow; it is not a live execution report.",
+          "sections": [
+            {
+              "title": "The problem",
+              "blocks": [
+                {
+                  "type": "p",
+                  "text": "An unfamiliar codebase can scatter environment references across source files while its templates drift out of sync. ConfigPilot gives developers a discover–configure–verify workflow, with source locations, actionable findings, and explicit boundaries around what static analysis can prove."
+                },
+                {
+                  "type": "p",
+                  "text": "Project context"
+                },
+                {
+                  "type": "p",
+                  "text": "Open source / Developer tooling / npm"
+                },
+                {
+                  "type": "h3",
+                  "text": "Implementation scope"
+                },
+                {
+                  "type": "li",
+                  "text": "AST-based discovery for JavaScript, TypeScript, JSX, TSX, and supported inline Vue script blocks; dynamic lookups remain explicitly unresolved."
+                },
+                {
+                  "type": "li",
+                  "text": "Read-only syntax/key checks and consent-based initialization with dry-run previews, exclusive file creation, and no copied source or configuration values."
+                },
+                {
+                  "type": "li",
+                  "text": "Version 1.3.0 adds explicit JSON rules, required-local blank checks, independent workspaces, template-addition previews, CI failure policies, GitHub annotations, and exported JSON Schemas."
+                },
+                {
+                  "type": "li",
+                  "text": "ESM JavaScript APIs with bundled TypeScript declarations, published on npm with an MIT license."
+                }
+              ]
+            },
+            {
+              "title": "System architecture",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "01 Discover"
+                },
+                {
+                  "type": "li",
+                  "text": "02 Preview"
+                },
+                {
+                  "type": "li",
+                  "text": "03 Configure"
+                },
+                {
+                  "type": "li",
+                  "text": "04 Verify"
+                },
+                {
+                  "type": "li",
+                  "text": "05 Report"
+                },
+                {
+                  "type": "h3",
+                  "text": "Source understanding"
+                },
+                {
+                  "type": "p",
+                  "text": "Babel AST / Vue SFC parser"
+                },
+                {
+                  "type": "p",
+                  "text": "Static reference discovery with lexical binding awareness and an isolated, resource-bounded parser worker for project scans. Project modules are not executed."
+                },
+                {
+                  "type": "h3",
+                  "text": "Analysis core"
+                },
+                {
+                  "type": "p",
+                  "text": "JavaScript / Pure APIs / Type declarations"
+                },
+                {
+                  "type": "p",
+                  "text": "Explicit string inputs produce structured parsing and comparison reports. Assignment values are not included in public diagnostics."
+                },
+                {
+                  "type": "h3",
+                  "text": "Project policy"
+                },
+                {
+                  "type": "p",
+                  "text": "Explicit JSON / Workspaces / JSON Schema"
+                },
+                {
+                  "type": "p",
+                  "text": "Opt-in required, optional, and externally supplied key rules, severity thresholds, scoped workspaces, and versioned machine-readable contracts."
+                },
+                {
+                  "type": "h3",
+                  "text": "Developer & CI interface"
+                },
+                {
+                  "type": "p",
+                  "text": "Node.js CLI / npm / GitHub Actions"
+                },
+                {
+                  "type": "p",
+                  "text": "Terminal, JSON, and explicit GitHub annotation output, with documented exits. Initialization is a separate, authorized write operation."
+                }
+              ]
+            },
+            {
+              "title": "Engineering decisions",
+              "blocks": [
+                {
+                  "type": "h3",
+                  "text": "Analyze code without running the project."
+                },
+                {
+                  "type": "p",
+                  "text": "Source discovery parses supported syntax instead of importing application modules, evaluating expressions, or executing project configuration. Unsupported and dynamic references are reported instead of guessed."
+                },
+                {
+                  "type": "h3",
+                  "text": "Make file creation an explicit decision."
+                },
+                {
+                  "type": "p",
+                  "text": "Init supports dry runs and requires consent or an explicit flag to create one nonexistent file. Exclusive creation protects existing files; source fallbacks and private configuration values are never copied into generated output."
+                },
+                {
+                  "type": "h3",
+                  "text": "Do not confuse a clean check with a healthy deployment."
+                },
+                {
+                  "type": "p",
+                  "text": "Default checks compare supported syntax and declared keys. Explicit required-local rules can check blankness, but credentials, external provisioning, network access, and application readiness remain outside the tool’s scope."
+                },
+                {
+                  "type": "h3",
+                  "text": "Keep human-readable and automated reports aligned."
+                },
+                {
+                  "type": "p",
+                  "text": "Stable issue codes, locations, JSON Schemas, policy reports, and GitHub annotations let developers and CI consume the same findings. The documented test strategy covers contracts, packaging, type declarations, and multiple OS/Node combinations."
+                }
+              ]
+            },
+            {
+              "title": "Engineering takeaways",
+              "blocks": [
+                {
+                  "type": "li",
+                  "text": "Static analysis that separates observable evidence from runtime assumptions."
+                },
+                {
+                  "type": "li",
+                  "text": "Privacy-aware diagnostics and explicit filesystem authorization boundaries."
+                },
+                {
+                  "type": "li",
+                  "text": "Shipping an npm CLI and typed library with versioned report contracts and documented limits."
+                },
+                {
+                  "type": "h3",
+                  "text": "Next steps"
+                },
+                {
+                  "type": "p",
+                  "text": "The repository’s stability plan tracks remaining validation and owner approval gates. The supplied ecosystem screenshots document a point in time; they are not live adoption, security, or performance claims."
+                }
+              ]
+            }
+          ],
+          "gallery": [
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fnpm-overview.png&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/npm-overview.png",
+              "title": "npm overview",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fscan.jpg&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/scan.jpg",
+              "title": "Scan",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Finit-preview.jpg&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/init-preview.jpg",
+              "title": "Init Preview",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcheck-warnings.jpg&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/check-warnings.jpg",
+              "title": "Check Warnings",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcheck-invalid.jpg&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/check-invalid.jpg",
+              "title": "Check Invalid",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcheck-clean.jpg&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/check-clean.jpg",
+              "title": "Check Clean",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fnpm-releases.png&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/npm-releases.png",
+              "title": "Npm Releases",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fsocket-snapshot.png&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/socket-snapshot.png",
+              "title": "Socket Snapshot",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fbundlephobia-snapshot.png&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/bundlephobia-snapshot.png",
+              "title": "Bundlephobia Snapshot",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            },
+            {
+              "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fdependency-graph.png&w=3840&q=75",
+              "url": "/img/ghazi/projects/configpilot/dependency-graph.png",
+              "title": "Dependency Graph",
+              "caption": "Provided screenshot, October 27, 2026. Versions, statistics, and scan output are historical snapshots."
+            }
+          ],
+          "headline": "Understand configuration before it becomes a deployment problem.",
+          "description": "A published CLI and JavaScript API for discovering environment-variable references, previewing safe placeholders, and explaining configuration inconsistencies without displaying assignment values."
+        }
+      ]
+    }
+  ]
+}

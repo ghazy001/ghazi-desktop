@@ -1,0 +1,129 @@
+{
+  "common": {
+    "name": "Nom",
+    "tiny": "Petite",
+    "errorVideo": "Votre navigateur ne supporte pas la vidéo.",
+    "context": "Contexte",
+    "objectives": "Objectifs",
+    "icon": "Icône",
+    "back": "Retour",
+    "search": "Rechercher",
+    "files": "Fichiers",
+    "folder": "Dossier",
+    "next": "Suivant",
+    "projects": "Projets",
+    "go": "Aller",
+    "address": "Adresse",
+    "design": "Maquette",
+    "tasksDone": "Tâches réalisées sur le projet",
+    "videoNotSupported": "Votre navigateur ne supporte pas la vidéo.",
+    "techInfo": "Informations techniques",
+    "componentsDot": "Composants :",
+    "components": "Composants",
+    "models": "Modèles",
+    "model": "Modèle",
+    "links": "Liens",
+    "link": "Lien",
+    "hddDots": "HDD :",
+    "disks": "Disques",
+    "quantity": "Quantité",
+    "viewModel": "Voir le modèle",
+    "CDM": "MCD",
+    "PDM": "MPD",
+    "years": "ans",
+    "webdev": "Développeur web",
+    "textDocument": "Document texte",
+    "list": "Liste",
+    "modifications": "Modifications",
+    "loading": "Chargement...",
+    "language": "Langue",
+    "french": "Français",
+    "english": "Anglais"
+  },
+  "message": {
+    "welcome": "Bienvenue sur mon ordinateur.",
+    "toBegin": "Pour commencer, cliquez sur mon nom d’utilisateur",
+    "explainer": "Après avoir ouvert ma session, vous pourrez vous balader dans les dossiers de mon ordinateur. Depuis le bureau vous pourrez vois mes projets"
+  },
+  "header": {
+    "disconnect": "Se Déconnecter",
+    "shutdown": "Éteindre L'ordinateur"
+  },
+  "modale": {
+    "fullscreenTitle": "Le mode plein écran est disponible !",
+    "fullscreenFirstText": "Pour une expérience plus immersive,",
+    "fullscreenSecondText": "Clickez sur l'icone d'écran ci-dessous",
+    "control": "Contrôle"
+  },
+  "buttons": {
+    "start": "démarrer",
+    "downloadCV": "Télécharger le CV",
+    "linkWebSite": "Voir le site",
+    "linkRepository": "Voir le dépôt"
+  },
+  "windows": {
+    "contact": {
+      "name": "@:common.name",
+      "description": "Envie de parler d'un projet, ou de simplement papoter, laissez moi un message, je reviendrai vers vous dans les plus brefs délais!",
+      "email": "Email",
+      "msgPlaceholder": "Entrez votre message ici...",
+      "success": "Votre message a été envoyé avec succès",
+      "error": {
+        "email": " n'est pas une adresse e-mail valide",
+        "empty": "Veuillez remplir tous les champs avant d'envoyer votre message",
+        "unknown": "Le message n'a pas pu être envoyé. Vous pouvez me contacter directement à l'adresse email suivante: "
+      },
+      "send": "Envoyer",
+      "cut": "Couper",
+      "copy": "Copier",
+      "paste": "Coller",
+      "undo": "Annuler",
+      "check": "Check",
+      "spelling": "Orthographe",
+      "attach": "Joindre",
+      "priority": "Priorité",
+      "sign": "Signer",
+      "to": "A :",
+      "from": "De :",
+      "subject": "Objet :"
+    },
+    "cv": {
+      "education": "Formation",
+      "altPicture": "présentation CV",
+      "proExperience": "Expérience professionnelle"
+    },
+    "pictures": {
+      "previous": "Photo précédente",
+      "next": "Photo suivante",
+      "rotateLeft": "Tourner à gauche",
+      "rotateRight": "Tourner à droite"
+    },
+    "documents": {
+      "about": {
+        "title": "À propos de moi"
+      }
+    }
+  },
+  "alt": {
+    "logoStart": "Logo portfolio XP noir démarrage",
+    "logoLoading": "Logo portfolio XP noir chargement",
+    "logoLogin": "Logo portfolio XP blanc connexion",
+    "currLang": "Langue actuelle"
+  },
+  "clippy": {
+    "greeting": "Salut ! 👋",
+    "message": "Explorez mes projets, expériences et compétences dans les dossiers du bureau.",
+    "starRepo": "GitHub",
+    "buyMeCoffee": "LinkedIn",
+    "dontShowAgain": "Ne plus afficher",
+    "close": "Fermer",
+    "clippyAlt": "Assistant Clippy"
+  },
+  "login": {
+    "role": "Ingénieur logiciel",
+    "logIn": "Ouvrir la session de {name}",
+    "toBegin": "Pour commencer, cliquez sur {name} pour ouvrir la session",
+    "explore": "Une fois connecté, explorez mon univers.",
+    "exploreDetails": "Découvrez mes projets, mon expérience et mes compétences."
+  }
+}

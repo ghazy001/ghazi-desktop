@@ -1,0 +1,68 @@
+AI E-Learning Platform
+======================
+
+Learning, connected in real time.
+
+A MERN learning platform combining facial recognition, emotion detection, classroom recommendations, real-time conversations, and an AI chatbot.
+
+Technologies
+React · Node.js · Express.js · MongoDB · WebSocket · Machine Learning · Google OAuth · CI/CD
+
+Highlights
+• Course and learning content flows
+• AI-enhanced learner support
+• User-focused platform experience
+
+The problem
+-----------
+A digital learning environment needs more than course content: students also need interaction, access, and relevant resources. This project brings AI-assisted learning features and live communication into one web platform.
+Project context
+Education / AI integration / MERN
+Implementation scope
+• Facial recognition and emotion detection using machine learning.
+• GitHub and Google Classroom recommendations, plus an AI chatbot.
+• WebSocket chatroom, Google OAuth, and a CI/CD deployment workflow.
+
+System architecture
+-------------------
+• 01 Sign in
+• 02 Learning space
+• 03 AI support
+• 04 Live chat
+• 05 Delivery
+Learning interface
+React
+The frontend layer for learner interaction, recommendations, and conversations.
+Application & data
+Node.js / Express.js / MongoDB
+The MERN backend and database foundation for the learning platform.
+Intelligent features
+Machine Learning / AI chatbot
+Facial recognition, emotion detection, and GitHub/Google Classroom recommendations.
+Connected delivery
+WebSocket / Google OAuth / CI/CD
+Real-time chat, Google sign-in integration, and automated delivery workflows.
+
+Engineering considerations
+--------------------------
+Keep AI supportive, not authoritative.
+Emotion detection should be treated as a model inference, not a reliable diagnosis or a definitive assessment of a learner. Clear communication of uncertainty is important for this type of feature.
+Design for live conversations.
+A WebSocket chatroom introduces connection state, message ordering, and reconnect considerations alongside the regular HTTP application flow.
+Treat identity and facial data carefully.
+Google OAuth and facial recognition introduce different privacy boundaries. Consent, data minimization, and protection of identity information are important review points.
+
+Technical focus
+---------------
+• Combining MERN application development with machine-learning features.
+• Connecting real-time communication with an educational user experience.
+• Bringing authentication and CI/CD into a full-stack project.
+Possible extensions
+Possible extensions include accessibility testing, clearer AI consent controls, and evaluating recommendation relevance. These are improvement opportunities, not claims of completed work.
+
+Image information
+AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.
+
+Links
+GitHub: https://github.com/ghazy001/EDADVANCE
+Original case study: https://ghazi-saoudi.vercel.app/projects/e-learning-platform-with-ai

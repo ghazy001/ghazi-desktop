@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Doom</title>
+    <link rel="stylesheet" href="/game/doom.css?v=xp-1" />
+    <script defer src="/game/vendor/js-dos.js"></script>
+    <script type="module" src="/game/doom.js?v=xp-1"></script>
+  </head>
+  <body data-phase="idle">
+    <main id="player">
+      <nav class="toolbar" aria-label="Game tools">
+        <button id="pause" disabled>Pause</button>
+        <button id="fullscreen">Full Screen</button>
+        <button id="sound" aria-pressed="false">Sound On</button>
+        <span class="separator"></span>
+        <button id="controls">Controls</button>
+        <button id="restart" disabled>Restart</button>
+        <label class="picture-mode"><input id="smooth" type="checkbox" /> <span id="smooth-label">Smooth picture</span></label>
+      </nav>
+      <div id="viewport">
+        <canvas id="screen" width="320" height="200" tabindex="0" aria-label="Doom game screen"></canvas>
+        <div id="cover" class="overlay">
+          <div class="launch-panel">
+            <img src="/img/icons/doom/doom-ultimate.png" alt="Doom" width="112" height="112" />
+            <h1>DOOM</h1>
+            <p id="intro">Ready for a quick trip to 1993?</p>
+            <button id="start" class="primary">Play Doom</button>
+            <p id="loading" role="status" hidden></p>
+            <progress id="progress" max="100" value="0" hidden aria-label="Loading Doom"></progress>
+            <p id="launch-hint">Arrows / WASD to move · Ctrl to fire · Space to open</p>
+          </div>
+        </div>
+        <div id="paused-overlay" class="overlay" hidden>
+          <div class="xp-dialog">
+            <header id="paused-title">Doom — Paused</header>
+            <div class="dialog-body">
+              <p id="paused-text">Your game is paused.</p>
+              <button id="resume" class="primary">Resume Game</button>
+            </div>
+          </div>
+        </div>
+        <section id="help" class="overlay" hidden aria-label="Doom controls" role="dialog" aria-modal="true">
+          <div class="xp-dialog">
+            <header id="help-title">Doom — Controls</header>
+            <div class="dialog-body">
+              <dl id="key-list"></dl>
+              <p id="help-note"></p>
+              <button id="close-help">Close</button>
+            </div>
+          </div>
+        </section>
+        <section id="restart-dialog" class="overlay" hidden role="alertdialog" aria-labelledby="restart-title">
+          <div class="xp-dialog">
+            <header id="restart-title">Restart Doom?</header>
+            <div class="dialog-body">
+              <p id="restart-note">This will end the current run. Saved games will remain.</p>
+              <div class="dialog-actions"><button id="confirm-restart">Restart</button><button id="cancel-restart">Cancel</button></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div id="touch-pad" aria-label="Touch game controls">
+        <div class="direction-pad">
+          <button data-key="38" aria-label="Move forward">▲</button>
+          <button data-key="37" aria-label="Turn left">◀</button><button data-key="40" aria-label="Move backward">▼</button
+          ><button data-key="39" aria-label="Turn right">▶</button>
+        </div>
+        <div class="action-pad">
+          <button data-key="13">Enter</button><button data-key="27">Esc</button><button data-key="32" id="touch-use">Open</button
+          ><button data-key="17" id="touch-fire">Fire</button>
+        </div>
+      </div>
+      <footer><span id="status" role="status">Ready</span><span id="status-hint">Click the game to focus</span></footer>
+    </main>
+  </body>
+</html>

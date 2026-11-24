@@ -1,0 +1,74 @@
+Chkobba
+=======
+
+A Tunisian classic. A shared, real-time table.
+
+Online Chkobba for private 1v1 and 2v2 rooms, ranked matchmaking, and personality-driven AI opponents, built around server-authoritative game state.
+
+Technologies
+Next.js 16 · React 19 · TypeScript · Tailwind CSS · Zustand · Node.js · Socket.IO · Supabase · PostgreSQL
+
+Highlights
+• Private 1v1 and 2v2 rooms, ranked matchmaking, and AI opponents
+• Server-validated moves, turn timers, and reconnect support
+• Accounts, match history, friends, ratings, and progression
+
+The problem
+-----------
+Moving a card game online means more than rendering cards. Players need one consistent match state, enforceable rules, synchronized turns, and a way to reconnect without letting browsers decide which moves are legal.
+Project context
+Real-time multiplayer / Full-stack engineering
+Implementation scope
+• A Next.js game interface with Zustand state and Socket.IO player intent.
+• A pure TypeScript engine for rules, scoring, AI, and tests, shared with the realtime server.
+• Guest play plus Supabase-backed accounts, match history, friends, ranked ratings, and progression.
+
+System architecture
+-------------------
+• 01 Player intent
+• 02 Server validation
+• 03 Game engine
+• 04 Approved state
+• 05 Match history
+Player interface
+Next.js / React / Zustand
+Renders a sanitized game view and sends intent without deciding move legality.
+Authoritative server
+Node.js / Socket.IO
+Owns rooms, turns, timers, validation, bots, reconnects, and match persistence.
+Rules & contracts
+TypeScript / pnpm workspaces
+Pure game engine and shared event/DTO types, independent of the browser and database.
+Player persistence
+Supabase / PostgreSQL
+Authentication, history, friends, ranked ratings, and progression; optional for guest play.
+
+Engineering decisions
+---------------------
+One authority for every move.
+The realtime server owns the game state. Browsers submit intent and receive sanitized, server-approved views rather than acting as the rules authority.
+Rules without framework dependencies.
+The game engine contains no React, Socket.IO, database, or browser code. Rules, scoring, and AI can be tested independently of transport and UI.
+Guest play stays independent of accounts.
+Supabase is optional for guest play and required for account-based history, friends, ranked ratings, and progression. Core gameplay and account services have distinct boundaries.
+Deploy the web and realtime server separately.
+The documented deployment uses Vercel for the Next.js frontend and Render for the realtime server, with Supabase migrations deployed before server changes that depend on them.
+
+Engineering takeaways
+---------------------
+• Realtime consistency starts with clear ownership of state.
+• A pure rules engine separates correctness from rendering and networking.
+• Shared contracts keep player intent and server-approved views aligned.
+Next steps
+The README identifies engine tests as the source of truth for captures, scoring, dealer rotation, and 1v1/2v2 rules. Further case-study updates can document measured reconnect behavior and player feedback once those results are available.
+
+Image information
+Project preview illustration. See the recorded product walkthrough for application footage.
+
+Video demo
+Recorded product demo. Features shown reflect the version in this recording.
+https://ghazi-saoudi.vercel.app/demos/chkobba.mp4
+
+Links
+Live Demo: https://www.chkobba.cc
+Original case study: https://ghazi-saoudi.vercel.app/projects/chkobba

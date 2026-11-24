@@ -1,0 +1,7 @@
+{
+  "frameRestrictions": [
+    { "hostname": "github.com", "name": "GitHub", "checked": "2026-11-23", "policy": "X-Frame-Options: deny; frame-ancestors 'none'" },
+    { "hostname": "linkedin.com", "name": "LinkedIn", "checked": "2026-11-23", "policy": "X-Frame-Options: sameorigin; frame-ancestors 'self'" },
+    { "hostname": "credly.com", "name": "Credly", "checked": "2026-11-23", "policy": "X-Frame-Options: SAMEORIGIN; frame-ancestors none" }
+  ]
+}

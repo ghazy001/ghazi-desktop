@@ -1,0 +1,12 @@
+{
+  "bookmarks": [
+    { "id": "profile", "page": 1, "match": "PROFESSIONALPROFILE", "en": "Professional profile", "fr": "Profil professionnel" },
+    { "id": "experience", "page": 1, "match": "PROFESSIONALEXPERIENCE", "en": "Professional experience", "fr": "Expérience professionnelle" },
+    { "id": "education", "page": 1, "match": "EDUCATION", "en": "Education", "fr": "Formation" },
+    { "id": "skills", "page": 1, "match": "TECHNICALSKILLS", "en": "Technical skills", "fr": "Compétences techniques" },
+    { "id": "projects", "page": 1, "match": "ACADEMICPROJECTS", "en": "Academic projects", "fr": "Projets académiques" },
+    { "id": "certifications", "page": 2, "match": "CERTIFICATIONS", "en": "Certifications", "fr": "Certifications" },
+    { "id": "languages", "page": 2, "match": "LANGUAGES", "en": "Languages", "fr": "Langues" },
+    { "id": "strengths", "page": 2, "match": "SOFTSKILLS", "en": "Professional strengths", "fr": "Qualités professionnelles" }
+  ]
+}

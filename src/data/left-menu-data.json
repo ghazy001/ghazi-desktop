@@ -1,0 +1,334 @@
+{
+  "leftMenuItems": {
+    "default": [
+      {
+        "id": 0,
+        "title": {
+          "en": "Portfolio Tasks",
+          "fr": "Tâches du portfolio"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "computer",
+            "subtitle": {
+              "en": "My Computer",
+              "fr": "Poste de travail"
+            },
+            "iconUrl": "/img/icons/my-computer.png",
+            "action": "computer"
+          },
+          {
+            "id": "about",
+            "subtitle": {
+              "en": "About Me",
+              "fr": "À propos de moi"
+            },
+            "iconUrl": "/img/icons/documents/txt-icon.webp",
+            "action": "about"
+          },
+          {
+            "id": "skills",
+            "subtitle": {
+              "en": "My Skills",
+              "fr": "Mes compétences"
+            },
+            "iconUrl": "/img/icons/services-icon-lg.webp",
+            "action": "skills"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": {
+          "en": "Other Places",
+          "fr": "Autres emplacements"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "myProjects",
+            "subtitle": {
+              "en": "My Projects",
+              "fr": "Mes projets"
+            },
+            "iconUrl": "/img/icons/projects/projects-icon-sm.webp",
+            "action": "myProjects"
+          },
+          {
+            "id": "documents",
+            "subtitle": {
+              "en": "My Documents",
+              "fr": "Mes documents"
+            },
+            "iconUrl": "/img/icons/documents/folder-docs-icon-sm.webp",
+            "action": "documents"
+          },
+          {
+            "id": "certifications",
+            "subtitle": {
+              "en": "Certifications",
+              "fr": "Certifications"
+            },
+            "iconUrl": "/img/icons/cv/cv-icon-lg.webp",
+            "action": "certifications"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": {
+          "en": "Professional Links",
+          "fr": "Liens professionnels"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "internet",
+            "subtitle": {
+              "en": "Internet Explorer",
+              "fr": "Internet Explorer"
+            },
+            "iconUrl": "/img/icons/explorer-icon-lg.webp",
+            "action": "internet"
+          },
+          {
+            "id": "contact",
+            "subtitle": {
+              "en": "Outlook Express",
+              "fr": "Outlook Express"
+            },
+            "iconUrl": "/img/icons/contact/email-icon-sm.webp",
+            "action": "contact"
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": 0,
+        "title": {
+          "en": "Portfolio Tasks",
+          "fr": "Tâches du portfolio"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "computer",
+            "subtitle": {
+              "en": "My Computer",
+              "fr": "Poste de travail"
+            },
+            "iconUrl": "/img/icons/my-computer.png",
+            "action": "computer"
+          },
+          {
+            "id": "about",
+            "subtitle": {
+              "en": "About Me",
+              "fr": "À propos de moi"
+            },
+            "iconUrl": "/img/icons/documents/txt-icon.webp",
+            "action": "about"
+          },
+          {
+            "id": "skills",
+            "subtitle": {
+              "en": "My Skills",
+              "fr": "Mes compétences"
+            },
+            "iconUrl": "/img/icons/services-icon-lg.webp",
+            "action": "skills"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": {
+          "en": "Other Places",
+          "fr": "Autres emplacements"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "myProjects",
+            "subtitle": {
+              "en": "My Projects",
+              "fr": "Mes projets"
+            },
+            "iconUrl": "/img/icons/projects/projects-icon-sm.webp",
+            "action": "myProjects"
+          },
+          {
+            "id": "documents",
+            "subtitle": {
+              "en": "My Documents",
+              "fr": "Mes documents"
+            },
+            "iconUrl": "/img/icons/documents/folder-docs-icon-sm.webp",
+            "action": "documents"
+          },
+          {
+            "id": "certifications",
+            "subtitle": {
+              "en": "Certifications",
+              "fr": "Certifications"
+            },
+            "iconUrl": "/img/icons/cv/cv-icon-lg.webp",
+            "action": "certifications"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": {
+          "en": "Professional Links",
+          "fr": "Liens professionnels"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "internet",
+            "subtitle": {
+              "en": "Internet Explorer",
+              "fr": "Internet Explorer"
+            },
+            "iconUrl": "/img/icons/explorer-icon-lg.webp",
+            "action": "internet"
+          },
+          {
+            "id": "contact",
+            "subtitle": {
+              "en": "Outlook Express",
+              "fr": "Outlook Express"
+            },
+            "iconUrl": "/img/icons/contact/email-icon-sm.webp",
+            "action": "contact"
+          }
+        ]
+      }
+    ],
+    "documents": [
+      {
+        "id": 0,
+        "title": {
+          "en": "Portfolio Tasks",
+          "fr": "Tâches du portfolio"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "computer",
+            "subtitle": {
+              "en": "My Computer",
+              "fr": "Poste de travail"
+            },
+            "iconUrl": "/img/icons/my-computer.png",
+            "action": "computer"
+          },
+          {
+            "id": "about",
+            "subtitle": {
+              "en": "About Me",
+              "fr": "À propos de moi"
+            },
+            "iconUrl": "/img/icons/documents/txt-icon.webp",
+            "action": "about"
+          },
+          {
+            "id": "skills",
+            "subtitle": {
+              "en": "My Skills",
+              "fr": "Mes compétences"
+            },
+            "iconUrl": "/img/icons/services-icon-lg.webp",
+            "action": "skills"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": {
+          "en": "Other Places",
+          "fr": "Autres emplacements"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "myProjects",
+            "subtitle": {
+              "en": "My Projects",
+              "fr": "Mes projets"
+            },
+            "iconUrl": "/img/icons/projects/projects-icon-sm.webp",
+            "action": "myProjects"
+          },
+          {
+            "id": "documents",
+            "subtitle": {
+              "en": "My Documents",
+              "fr": "Mes documents"
+            },
+            "iconUrl": "/img/icons/documents/folder-docs-icon-sm.webp",
+            "action": "documents"
+          },
+          {
+            "id": "certifications",
+            "subtitle": {
+              "en": "Certifications",
+              "fr": "Certifications"
+            },
+            "iconUrl": "/img/icons/cv/cv-icon-lg.webp",
+            "action": "certifications"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": {
+          "en": "Professional Links",
+          "fr": "Liens professionnels"
+        },
+        "bgColor": "bg-window-menu-card",
+        "iconSrc": "/img/icons/side-menu/top-icon-card-window.webp",
+        "headerActive": false,
+        "subtasks": [
+          {
+            "id": "internet",
+            "subtitle": {
+              "en": "Internet Explorer",
+              "fr": "Internet Explorer"
+            },
+            "iconUrl": "/img/icons/explorer-icon-lg.webp",
+            "action": "internet"
+          },
+          {
+            "id": "contact",
+            "subtitle": {
+              "en": "Outlook Express",
+              "fr": "Outlook Express"
+            },
+            "iconUrl": "/img/icons/contact/email-icon-sm.webp",
+            "action": "contact"
+          }
+        ]
+      }
+    ]
+  }
+}

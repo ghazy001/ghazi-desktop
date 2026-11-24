@@ -1,0 +1,68 @@
+Microservices Architecture Platform
+===================================
+
+Separate services. One connected platform.
+
+A distributed sports-management platform built around domain services, an API gateway, shared identity, messaging, and relational/document data storage.
+
+Technologies
+Spring Boot · Angular · Docker · RabbitMQ · Keycloak · PostgreSQL · MongoDB · Spring Cloud Gateway · Eureka
+
+Highlights
+• Service-oriented architecture
+• Independent backend modules
+• Deployment-aware structure
+
+The problem
+-----------
+Teams, tournaments, venues, and reservations involve different business responsibilities. A service-oriented structure lets those domains have distinct modules while remaining connected through common access and communication layers.
+Project context
+Distributed systems / Sports management
+Implementation scope
+• Domain services for teams, tournaments, stadiums, users, and reservations, documented in the repository.
+• API Gateway, Keycloak SSO, RabbitMQ messaging, and mixed SQL/NoSQL persistence listed in the CV.
+• Docker-based deployment, Eureka discovery, and centralized Spring Cloud configuration documented in the repository.
+
+System architecture
+-------------------
+• 01 Client
+• 02 Gateway
+• 03 Identity
+• 04 Services
+• 05 Persistence
+Client & entry point
+Angular / Spring Cloud Gateway
+A frontend and gateway layer for reaching the platform’s domain services.
+Business domains
+Spring Boot / Microservices
+Separate modules for team, tournament, venue, reservation, and user management.
+Identity & communication
+Keycloak / RabbitMQ / Eureka
+SSO and messaging listed in the CV; service discovery documented in the repository.
+Data & deployment
+SQL / MongoDB / Docker / Spring Cloud Config
+Mixed persistence and containerized services. The CV lists PostgreSQL; the public repository documents MySQL, reflecting different documented configurations.
+
+Engineering considerations
+--------------------------
+Organize services around business domains.
+The repository separates team, tournament, stadium, reservation, and user responsibilities into modules rather than presenting one undifferentiated backend.
+Give clients a gateway entry point.
+Spring Cloud Gateway provides the documented routing layer, while Eureka and centralized configuration support the service topology.
+Keep identity consistent across services.
+The repository documents Keycloak, JWT, roles, and single sign-on. Authorization and token handling remain important boundaries across service calls.
+
+Technical focus
+---------------
+• Domain decomposition and service-to-service integration.
+• Shared identity alongside independent backend modules.
+• Containerized delivery with mixed persistence and centralized configuration.
+Possible extensions
+Possible extensions include contract tests, tracing across service calls, and documented failure-recovery scenarios. No uptime, throughput, or latency benchmark is claimed here.
+
+Image information
+AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.
+
+Links
+GitHub: https://github.com/IsraaBoulaares/TourneyPulse
+Original case study: https://ghazi-saoudi.vercel.app/projects/microservices-architecture-platform

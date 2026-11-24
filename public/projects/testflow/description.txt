@@ -1,0 +1,77 @@
+TestFlow
+========
+
+From requirements to reviewable, executable tests.
+
+A connected QA workspace that brings requirement intake, AI generation, human review, controlled execution, and reporting into one traceable workflow.
+
+Technologies
+Next.js · NestJS · FastAPI · PostgreSQL · Prisma · Qdrant · Redis · Celery · BullMQ · Playwright · Docker
+
+Highlights
+• AI-assisted quality analysis
+• Test workflow support
+• Developer-friendly reporting
+
+The problem
+-----------
+QA work spans requirements, test plans, automation scripts, execution results, and defect tracking. TestFlow connects those stages around project WorkItems, while keeping generated assets under human review rather than treating AI output as automatically trustworthy.
+Project context
+AI-assisted QA / Full-stack engineering
+Implementation scope
+• Jira and specification intake, project knowledge indexing, and RAG-assisted test generation.
+• Manual and API test review, automation candidates, controlled execution, and assertion-level reporting.
+• Smart QA Planner, visual AI QA Studio workflows, live discussions, and human-confirmed Jira defect sync.
+
+System architecture
+-------------------
+• 01 Requirements
+• 02 AI generation
+• 03 Human review
+• 04 Execution
+• 05 Reports
+Product workspace
+Next.js / React / React Flow
+Planning, workflow canvas, review inbox, execution history, and analytics.
+System of record
+NestJS / Prisma / PostgreSQL
+Project access, asset lifecycle, audit trails, Jira integration, and durable product data.
+AI pipeline
+FastAPI / Celery / Qdrant
+Async generation, structured output validation, and retrieval of project knowledge.
+Execution workers
+Redis / BullMQ / Docker
+Queued API execution and framework-specific browser runners, separate from generation.
+
+Engineering decisions
+---------------------
+AI proposes. A person approves.
+Generation and review have separate lifecycle states. API execution requires approved, configured cases; workflow human tasks synchronize async results before offering approval.
+Keep generation separate from execution.
+FastAPI/Celery handles AI generation, while NestJS/BullMQ owns HTTP execution, persistence, and reporting. This keeps slow AI work outside the synchronous product flow.
+Durable writes before live updates.
+Discussion commands go through REST and PostgreSQL. Authenticated Socket.IO rooms broadcast committed changes, with idempotent client updates and REST recovery after reconnect.
+Treat execution as a security boundary.
+The documented API worker checks destinations, blocks redirects, limits timeouts and response sizes, encrypts runtime variables, and redacts stored snapshots. The README separately identifies further production-hardening work.
+
+Engineering takeaways
+---------------------
+• A reviewable lifecycle matters as much as the generation model.
+• Traceability connects requirements, tests, executions, and defects into useful evidence.
+• Explicit worker boundaries make AI and execution workflows easier to reason about.
+Next steps
+The documented roadmap includes OpenAPI intake, managed reusable secrets, distributed performance execution, and further runner isolation, quotas, and service-authentication hardening. These are next steps, not completed claims.
+
+Image information
+Project preview illustration. See the recorded product walkthrough for application footage.
+
+Video demo
+Recorded product demo. Features shown reflect the version in this recording.
+https://ghazi-saoudi.vercel.app/demos/testflow.mp4
+
+Links
+Source Repo: https://github.com/ghazy001/ci
+Backend Image: https://github.com/ghazy001/ci/pkgs/container/ci%2Fbackend
+AI Service Image: https://github.com/ghazy001/ci/pkgs/container/ci%2Fai-service
+Live Demo: https://www.testflow.tn
+Original case study: https://ghazi-saoudi.vercel.app/projects/testflow

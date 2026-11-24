@@ -1,0 +1,52 @@
+{
+  "pictures": [
+    {
+      "id": 1,
+      "title": "TestFlow (illustration)",
+      "url": "/img/ghazi/projects/testflow.webp",
+      "caption": "Project preview illustration. See the recorded product walkthrough for application footage."
+    },
+    {
+      "id": 2,
+      "title": "AI E-Learning Platform (illustration)",
+      "url": "/img/ghazi/projects/e-learning-platform-with-ai.webp",
+      "caption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative."
+    },
+    {
+      "id": 3,
+      "title": "Microservices Architecture Platform (illustration)",
+      "url": "/img/ghazi/projects/microservices-architecture-platform.webp",
+      "caption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative."
+    },
+    {
+      "id": 4,
+      "title": "AI Art Gallery (illustration)",
+      "url": "/img/ghazi/projects/ai-art-gallery.webp",
+      "caption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative."
+    },
+    {
+      "id": 5,
+      "title": "Donation Platform (illustration)",
+      "url": "/img/ghazi/projects/donation-platform.webp",
+      "caption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative."
+    },
+    {
+      "id": 6,
+      "title": "Football Tournament Management (illustration)",
+      "url": "/img/ghazi/projects/football-tournament-management-system.webp",
+      "caption": "AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative."
+    },
+    {
+      "id": 7,
+      "title": "Chkobba (illustration)",
+      "url": "/img/ghazi/projects/chkobba.webp",
+      "caption": "Project preview illustration. See the recorded product walkthrough for application footage."
+    },
+    {
+      "id": 8,
+      "title": "ConfigPilot (illustration)",
+      "url": "/img/ghazi/projects/configpilot.webp",
+      "caption": "Provided ConfigPilot cover illustration. The terminal artwork represents the scan, init, and check workflow; it is not a live execution report."
+    }
+  ]
+}

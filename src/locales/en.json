@@ -1,0 +1,130 @@
+{
+  "common": {
+    "name": "Name",
+    "tiny": "Tiny",
+    "errorVideo": "Your browser does not support videos.",
+    "context": "Context",
+    "objectives": "Objectives",
+    "icon": "Icon",
+    "back": "Back",
+    "search": "Search",
+    "files": "Files",
+    "folder": "Folder",
+    "next": "Next",
+    "projects": "Projects",
+    "go": "Go",
+    "address": "Address",
+    "design": "Design",
+    "tasksDone": "Tasks done on the project",
+    "videoNotSupported": "Your browser does not support videos.",
+    "techInfo": "Technical informations",
+    "componentsDot": "Components :",
+    "components": "Components",
+    "models": "Models",
+    "model": "Model",
+    "links": "Links",
+    "link": "Link",
+    "hddDots": "HDD :",
+    "disks": "Disks",
+    "quantity": "Quantity",
+    "viewModel": "Go to model",
+    "CDM": "CDM",
+    "PDM": "PDM",
+    "years": "years old",
+    "webdev": "Web developer",
+    "textDocument": "Text Document",
+    "list": "List",
+    "modifications": "Modifications",
+    "loading": "Loading...",
+    "language": "Language",
+    "french": "French",
+    "english": "English"
+  },
+  "message": {
+    "welcome": "Welcome to my computer.",
+    "toBegin": "To begin the journey, click on my username.",
+    "explainer": "After logging in, you can browse through the folders on my computer. Go to the desktop and click on the projects folder to see all my projects."
+  },
+  "header": {
+    "disconnect": "Log Off",
+    "shutdown": "Turn Off Computer"
+  },
+  "modale": {
+    "fullscreenTitle": "Fullscreen mode is now available!",
+    "fullscreenFirstText": "For a more immersive experience,",
+    "fullscreenSecondText": "Click on the screen icon below",
+    "control": "Control"
+  },
+  "buttons": {
+    "start": "start",
+    "send": "Send",
+    "downloadCV": "Download the CV",
+    "linkWebSite": "Visit the website",
+    "linkRepository": "Visit the repository"
+  },
+  "windows": {
+    "contact": {
+      "name": "@:common.name",
+      "description": "If you'd like to talk about a project, or just have a chat, leave me a message and I'll get back to you as soon as possible!",
+      "email": "Email",
+      "msgPlaceholder": "Message here...",
+      "success": "Message sent successfully",
+      "error": {
+        "email": " is not a valid e-mail address",
+        "empty": "Please fill in all fields before sending your message",
+        "unknown": "The message could not be sent. You can contact me directly at the following email address: "
+      },
+      "send": "Send",
+      "cut": "Cut",
+      "copy": "Copy",
+      "paste": "Paste",
+      "undo": "Undo",
+      "check": "Check",
+      "spelling": "Spelling",
+      "attach": "Attach",
+      "priority": "Priority",
+      "sign": "Sign",
+      "to": "To :",
+      "from": "From :",
+      "subject": "Subject :"
+    },
+    "cv": {
+      "altPicture": "presentation CV",
+      "education": "Education",
+      "proExperience": "Professional experiences"
+    },
+    "pictures": {
+      "previous": "Previous picture",
+      "next": "Next picture",
+      "rotateLeft": "Rotate left",
+      "rotateRight": "Rotate right"
+    },
+    "documents": {
+      "about": {
+        "title": "About Me"
+      }
+    }
+  },
+  "alt": {
+    "logoStart": "Logo portfolio XP black start",
+    "logoLoading": "Logo portfolio XP black loading",
+    "logoLogin": "Logo portfolio XP white login",
+    "currLang": "Current language"
+  },
+  "clippy": {
+    "greeting": "Hi there! 👋",
+    "message": "Explore my projects, experience, and skills using the desktop folders.",
+    "starRepo": "GitHub",
+    "buyMeCoffee": "LinkedIn",
+    "dontShowAgain": "Don't show this again",
+    "close": "Close",
+    "clippyAlt": "Clippy assistant"
+  },
+  "login": {
+    "role": "Software Engineer",
+    "logIn": "Log in as {name}",
+    "toBegin": "To begin, click on {name} to log in",
+    "explore": "After you log on, the system’s yours to explore.",
+    "exploreDetails": "Discover my projects, experience, and skills."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "version": "js-dos 6.22.60 (c3627d34f97fcc6e98ceef7fbea6e090)",
+  "downloaded": "2026-11-24",
+  "assets": [
+    {
+      "file": "js-dos.js",
+      "source": "https://js-dos.com/6.22/current/js-dos.js",
+      "sha256": "774742a2f89762b51497c6e060d7bace465470e7874a2810b59a21a0ec61a8a1"
+    },
+    {
+      "file": "wdosbox.js",
+      "source": "https://js-dos.com/6.22/current/wdosbox.js",
+      "upstreamSha256": "06feec57a69b93f84722c4d0c5ed483484052e6e1d144dc4a98ee10af1d82044",
+      "sha256": "5fc7c4f80dbfd5d348407d23bfe269869a142f32a953c82b239daddf74c02d17",
+      "modifications": "Gate Asyncify wake-up and SDL audio timers while xpPaused; expose SDL pause/resume audio helpers. Canvas sizing is controlled by the host stylesheet."
+    },
+    {
+      "file": "wdosbox.wasm.js",
+      "source": "https://js-dos.com/6.22/current/wdosbox.wasm.js",
+      "sha256": "84b873c1e5484a0f1d1adb25871f0daa92f1efc0339a9b54e84e450062182fb0"
+    }
+  ],
+  "sourceCode": [
+    "https://github.com/caiiiycuk/js-dos/tree/6.22",
+    "https://github.com/js-dos/dosbox"
+  ],
+  "licenses": [
+    "LICENSE-js-dos.txt",
+    "LICENSE-DOSBox.txt"
+  ]
+}

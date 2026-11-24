@@ -1,0 +1,118 @@
+[
+  {
+    "source": "https://ghazi-saoudi.vercel.app/Ghazi_Saoudi_CV_EN.pdf",
+    "local": "/pdf/Ghazi_Saoudi_CV_EN.pdf"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/images/about/portrait-transparent.webp",
+    "local": "/img/ghazi/portrait.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/images/ghazi-saoudi-profile.jpg",
+    "local": "/img/ghazi/profile.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=https%3A%2F%2Fimages.credly.com%2Fimages%2F73c08e76-eb9c-4c03-92da-3dad49e99e5a%2FGetting_Started_With_Artificial_Intelligence_Badge.png&w=384&q=75",
+    "local": "/img/ghazi/certifications/1.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=https%3A%2F%2Fimages.credly.com%2Fimages%2F3b7846e2-bdbd-4ed6-8543-182f47502190%2Fimage.png&w=384&q=75",
+    "local": "/img/ghazi/certifications/2.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=https%3A%2F%2Fimages.credly.com%2Fimages%2Fbc70837c-99ae-499d-a31d-2a7be79095e6%2FBadgeEmblem_AILiteracy.png&w=384&q=75",
+    "local": "/img/ghazi/certifications/3.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=https%3A%2F%2Fimages.credly.com%2Fimages%2F745b7433-8c95-4978-87ed-a5b280fcb1aa%2Fblob&w=384&q=75",
+    "local": "/img/ghazi/certifications/4.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=https%3A%2F%2Fimages.credly.com%2Fimages%2F06cb0d8e-06f7-4f5e-9265-359e37008fcd%2Fblob&w=384&q=75",
+    "local": "/img/ghazi/certifications/5.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=https%3A%2F%2Fimages.credly.com%2Fimages%2Fe3541a0c-dd4a-4820-8052-5001006efc85%2Fblob&w=384&q=75",
+    "local": "/img/ghazi/certifications/6.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fai-powered-qa-platform.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/testflow.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fe-learning-platform-with-ai.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/e-learning-platform-with-ai.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fmicroservices-architecture-platform.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/microservices-architecture-platform.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fai-art-gallery.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/ai-art-gallery.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fdonation-platform.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/donation-platform.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Ffootball-tournament-management-system.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/football-tournament-management-system.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fchkobba.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/chkobba.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcover.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot.webp"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/projects/testflow-demo.jpg",
+    "local": "/img/ghazi/projects/testflow-demo.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/projects/chkobba-demo.jpg",
+    "local": "/img/ghazi/projects/chkobba-demo.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fnpm-overview.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/npm-overview.png"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fscan.jpg&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/scan.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Finit-preview.jpg&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/init-preview.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcheck-warnings.jpg&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/check-warnings.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcheck-invalid.jpg&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/check-invalid.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fcheck-clean.jpg&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/check-clean.jpg"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fnpm-releases.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/npm-releases.png"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fsocket-snapshot.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/socket-snapshot.png"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fbundlephobia-snapshot.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/bundlephobia-snapshot.png"
+  },
+  {
+    "source": "https://ghazi-saoudi.vercel.app/_next/image?url=%2Fprojects%2Fconfigpilot%2Fdependency-graph.png&w=3840&q=75",
+    "local": "/img/ghazi/projects/configpilot/dependency-graph.png"
+  }
+]

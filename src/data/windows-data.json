@@ -1,0 +1,451 @@
+[
+  {
+    "id": "computer",
+    "title": {
+      "en": "My Computer",
+      "fr": "Poste de travail"
+    },
+    "subtitle": {
+      "en": "Explore my professional portfolio",
+      "fr": "Explorer mon portfolio professionnel"
+    },
+    "imgSrc": "/img/icons/my-computer.png",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": true,
+    "headerPosition": "left",
+    "headerToolsId": "default",
+    "menuHeaderItemsId": "default",
+    "iconSrc": "/img/icons/my-computer.png",
+    "initPositionX": 180,
+    "initPositionY": 65,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "ProfileContent",
+    "leftMenuType": "default",
+    "mode": "overview"
+  },
+  {
+    "id": "myProjects",
+    "title": {
+      "en": "My Projects",
+      "fr": "Mes projets"
+    },
+    "subtitle": {
+      "en": "Eight software engineering projects",
+      "fr": "Huit projets de génie logiciel"
+    },
+    "imgSrc": "/img/icons/projects/projects-icon-lg.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": true,
+    "headerPosition": "left",
+    "headerToolsId": "default",
+    "menuHeaderItemsId": "default",
+    "iconSrc": "/img/icons/projects/projects-icon-sm.webp",
+    "initPositionX": 192,
+    "initPositionY": 77,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "MyProjects",
+    "leftMenuType": "default"
+  },
+  {
+    "id": "about",
+    "title": {
+      "en": "About Me",
+      "fr": "À propos de moi"
+    },
+    "subtitle": {
+      "en": "Education, experience and background",
+      "fr": "Formation, expérience et parcours"
+    },
+    "imgSrc": "/img/icons/documents/txt-icon.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": true,
+    "headerPosition": "left",
+    "headerToolsId": "default",
+    "menuHeaderItemsId": "default",
+    "iconSrc": "/img/icons/documents/txt-icon.webp",
+    "initPositionX": 204,
+    "initPositionY": 89,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "ProfileContent",
+    "leftMenuType": "default",
+    "mode": "about"
+  },
+  {
+    "id": "skills",
+    "title": {
+      "en": "My Skills",
+      "fr": "Mes compétences"
+    },
+    "subtitle": {
+      "en": "My Skills",
+      "fr": "Mes compétences"
+    },
+    "imgSrc": "/img/icons/services-icon-lg.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "default",
+    "menuHeaderItemsId": "default",
+    "iconSrc": "/img/icons/services-icon-lg.webp",
+    "initPositionX": 216,
+    "initPositionY": 101,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "ProfileContent",
+    "leftMenuType": "default",
+    "mode": "skills"
+  },
+  {
+    "id": "myCV",
+    "title": {
+      "en": "My CV",
+      "fr": "Mon CV"
+    },
+    "subtitle": {
+      "en": "Read or download my original CV",
+      "fr": "Consulter ou télécharger mon CV"
+    },
+    "imgSrc": "/img/icons/cv/adobe-pdf.png",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": false,
+    "headerPosition": "left",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "pdf-reader",
+    "iconSrc": "/img/icons/cv/adobe-pdf.png",
+    "initPositionX": 190,
+    "initPositionY": 30,
+    "initWidth": 1040,
+    "initHeight": 720,
+    "minWidth": 320,
+    "minHeight": 320,
+    "component": "MyCV",
+    "leftMenuType": "",
+    "skin": "pdf-reader",
+    "caption": "Ghazi_Saoudi_CV_EN.pdf - Adobe Reader"
+  },
+  {
+    "id": "documents",
+    "title": {
+      "en": "My Documents",
+      "fr": "Mes documents"
+    },
+    "imgSrc": "/img/icons/documents/folder-docs-icon-sm.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "pictures",
+    "menuHeaderItemsId": "documents",
+    "iconSrc": "/img/icons/documents/folder-docs-icon-sm.webp",
+    "initPositionX": 240,
+    "initPositionY": 125,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "Documents",
+    "leftMenuType": "documents",
+    "subtitle": {
+      "en": "My Documents",
+      "fr": "Mes documents"
+    }
+  },
+  {
+    "id": "contact",
+    "title": {
+      "en": "Outlook Express",
+      "fr": "Outlook Express"
+    },
+    "subtitle": {
+      "en": "Write an email to Ghazi",
+      "fr": "Écrire un e-mail à Ghazi"
+    },
+    "imgSrc": "/img/icons/contact/email-icon-lg.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": false,
+    "headerPosition": "left",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "contact",
+    "iconSrc": "/img/icons/contact/email-icon-sm.webp",
+    "initPositionX": 252,
+    "initPositionY": 137,
+    "initWidth": 740,
+    "initHeight": 600,
+    "minWidth": 320,
+    "minHeight": 400,
+    "component": "ContactMe",
+    "leftMenuType": ""
+  },
+  {
+    "id": "internet",
+    "title": {
+      "en": "Internet Explorer",
+      "fr": "Internet Explorer"
+    },
+    "subtitle": {
+      "en": "Explore my websites and professional links",
+      "fr": "Explorer mes sites et liens professionnels"
+    },
+    "imgSrc": "/img/icons/explorer-icon-lg.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": false,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "browser",
+    "iconSrc": "/img/icons/explorer-icon-lg.webp",
+    "initPositionX": 170,
+    "initPositionY": 40,
+    "initWidth": 1050,
+    "initHeight": 700,
+    "minWidth": 320,
+    "minHeight": 300,
+    "component": "InternetExplorer",
+    "leftMenuType": "",
+    "skin": "internet-explorer"
+  },
+  {
+    "id": "certifications",
+    "title": {
+      "en": "Certifications",
+      "fr": "Certifications"
+    },
+    "subtitle": {
+      "en": "Certifications",
+      "fr": "Certifications"
+    },
+    "imgSrc": "/img/icons/cv/cv-icon-lg.webp",
+    "onDesktop": false,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "default",
+    "menuHeaderItemsId": "default",
+    "iconSrc": "/img/icons/cv/cv-icon-lg.webp",
+    "initPositionX": 276,
+    "initPositionY": 161,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "ProfileContent",
+    "leftMenuType": "default",
+    "mode": "certifications"
+  },
+  {
+    "id": "pictures",
+    "title": {
+      "en": "My Pictures",
+      "fr": "Mes images"
+    },
+    "imgSrc": "/img/icons/pictures/folder-images-icon-sm.webp",
+    "onDesktop": false,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "pictures",
+    "menuHeaderItemsId": "images",
+    "iconSrc": "/img/icons/pictures/folder-images-icon-sm.webp",
+    "initPositionX": 288,
+    "initPositionY": 173,
+    "initWidth": 700,
+    "initHeight": 540,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "Pictures",
+    "leftMenuType": "pictures",
+    "subtitle": {
+      "en": "My Pictures",
+      "fr": "Mes images"
+    }
+  },
+  {
+    "id": "minesweeper",
+    "title": {
+      "en": "Minesweeper",
+      "fr": "Démineur"
+    },
+    "imgSrc": "/img/icons/minesweeper/minesweeper-icon-lg.webp",
+    "onDesktop": true,
+    "resizable": false,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "minesweeper",
+    "iconSrc": "/img/icons/minesweeper/minesweeper-icon-sm.webp",
+    "initPositionX": 160,
+    "initPositionY": 270,
+    "initWidth": 205,
+    "initHeight": 305,
+    "minWidth": 205,
+    "minHeight": 305,
+    "component": "Minesweeper",
+    "leftMenuType": ""
+  },
+  {
+    "id": "notepad",
+    "title": {
+      "en": "Notepad",
+      "fr": "Bloc-notes"
+    },
+    "imgSrc": "/img/icons/notepad/notepad-icon-lg.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "notepad",
+    "iconSrc": "/img/icons/notepad/notepad-icon-sm.webp",
+    "initPositionX": 110,
+    "initPositionY": 480,
+    "initWidth": 230,
+    "initHeight": 270,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "Notepad",
+    "leftMenuType": ""
+  },
+  {
+    "id": "terminal",
+    "title": {
+      "en": "Terminal",
+      "fr": "Terminal"
+    },
+    "subtitle": {
+      "en": "Run commands using the terminal",
+      "fr": "Lancer des commandes avec le terminal"
+    },
+    "imgSrc": "/img/icons/cmd-icon-lg.webp",
+    "onDesktop": false,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "none",
+    "iconSrc": "/img/icons/cmd-icon-sm.webp",
+    "initPositionX": 190,
+    "initPositionY": 310,
+    "initWidth": 525,
+    "initHeight": 350,
+    "minWidth": 200,
+    "minHeight": 160,
+    "component": "Terminal",
+    "leftMenuType": ""
+  },
+  {
+    "id": "doom",
+    "title": {
+      "en": "Doom",
+      "fr": "Doom"
+    },
+    "subtitle": {
+      "en": "Play doom thanks to js-dos",
+      "fr": "Jouer à doom grâce à js-dos"
+    },
+    "imgSrc": "/img/icons/doom/doom-icon-lg.webp",
+    "startMenuIcon": "/img/icons/doom/doom-ultimate.png",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": true,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "none",
+    "iconSrc": "/img/icons/doom/doom-icon-sm.webp",
+    "initPositionX": 180,
+    "initPositionY": 60,
+    "initWidth": 820,
+    "initHeight": 660,
+    "minWidth": 340,
+    "minHeight": 320,
+    "component": "Doom",
+    "leftMenuType": ""
+  },
+  {
+    "id": "music",
+    "title": {
+      "en": "Windows Media Player",
+      "fr": "Lecteur Windows Media"
+    },
+    "subtitle": {
+      "en": "Listen to my music selection",
+      "fr": "Écouter ma sélection musicale"
+    },
+    "imgSrc": "/img/icons/music/windows-media-player.png",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": false,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "media-player",
+    "iconSrc": "/img/icons/music/windows-media-player.png",
+    "initPositionX": 240,
+    "initPositionY": 80,
+    "initWidth": 800,
+    "initHeight": 570,
+    "minWidth": 360,
+    "minHeight": 320,
+    "component": "Music",
+    "leftMenuType": "",
+    "skin": "media-player"
+  },
+  {
+    "id": "pictureViewer",
+    "title": {
+      "en": "Windows Picture and Fax Viewer",
+      "fr": "Aperçu des images et télécopies Windows"
+    },
+    "subtitle": {
+      "en": "View project images",
+      "fr": "Voir les images des projets"
+    },
+    "imgSrc": "/img/icons/pictures/image-file.svg",
+    "onDesktop": false,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": false,
+    "headerPosition": "",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "none",
+    "iconSrc": "/img/icons/pictures/image-file.svg",
+    "initPositionX": 285,
+    "initPositionY": 85,
+    "initWidth": 660,
+    "initHeight": 520,
+    "minWidth": 320,
+    "minHeight": 260,
+    "component": "PictureViewer",
+    "leftMenuType": ""
+  }
+]

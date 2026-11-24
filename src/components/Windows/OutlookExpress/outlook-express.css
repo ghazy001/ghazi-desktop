@@ -1,0 +1,307 @@
+/* Outlook Express 6 compose chrome, using the shared XP window manager. */
+.oe-compose {
+  height: calc(100% - 48px);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #111;
+  background: #ece9d8;
+  font:
+    12px Tahoma,
+    sans-serif;
+}
+.oe-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 5px 3px 3px;
+  min-height: 64px;
+  flex-shrink: 0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #aca899;
+  box-shadow: inset 0 -1px #fff;
+  overflow-x: auto;
+}
+.oe-grip {
+  width: 4px;
+  height: 52px;
+  margin-right: 4px;
+  border-left: 1px solid white;
+  border-right: 1px solid #c4c1b2;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, #bbb7a8 2px 3px);
+  flex-shrink: 0;
+}
+.oe-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 3px;
+  height: 56px;
+  min-width: 59px;
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.oe-tool img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.oe-tool.oe-send {
+  min-width: 67px;
+}
+.oe-tool:disabled {
+  color: #aca899;
+  text-shadow: 1px 1px white;
+  cursor: default;
+}
+.oe-tool:disabled img {
+  filter: grayscale(1);
+  opacity: 0.42;
+}
+.oe-tool:hover:enabled,
+.oe-formatbar button:hover,
+.oe-formatbar button[aria-pressed='true'] {
+  background: #dce6f5;
+  border-color: #8ca4c3;
+  box-shadow: inset 1px 1px white;
+}
+.oe-tool:active:enabled,
+.oe-formatbar button:active {
+  background: #c6d5e9;
+  box-shadow: inset 1px 1px #8b9db6;
+}
+.oe-divider {
+  height: 51px;
+  border-left: 1px solid #aca899;
+  border-right: 1px solid white;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+.oe-addresses {
+  padding: 7px 9px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.oe-address-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 25px;
+}
+.oe-address-row > span {
+  width: 84px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.oe-address-row > span img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+.oe-address-row input {
+  min-width: 0;
+  flex: 1;
+  height: 26px;
+  background: #fff;
+  padding: 2px 5px;
+  color: #111;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow:
+    inset 1px 1px #d4d0c8,
+    1px 1px #d4d0c8;
+  font:
+    13px Tahoma,
+    sans-serif;
+  user-select: text;
+}
+.oe-address-row input:focus {
+  outline: 1px dotted #727272;
+  outline-offset: -3px;
+}
+.oe-formatbar {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 3px;
+  padding: 3px 5px;
+  border-top: 1px solid #808080;
+  box-shadow: inset 0 1px white;
+  border-bottom: 1px solid #aca899;
+  overflow-x: auto;
+}
+.oe-formatbar select {
+  height: 25px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow: inset 1px 1px #d4d0c8;
+  color: #111;
+  font:
+    12px Tahoma,
+    sans-serif;
+  padding: 0 3px;
+  flex-shrink: 0;
+}
+.oe-font {
+  width: 162px;
+}
+.oe-font-size {
+  width: 51px;
+}
+.oe-align {
+  width: 49px;
+}
+.oe-color {
+  width: 48px;
+  font-family: 'Times New Roman', serif !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  text-decoration: underline;
+}
+.oe-formatbar .oe-divider {
+  height: 23px;
+  margin: 0 2px;
+}
+.oe-formatbar button {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  font:
+    bold 20px 'Times New Roman',
+    serif;
+}
+.oe-italic {
+  font-style: italic !important;
+}
+.oe-underline {
+  text-decoration: underline;
+}
+.oe-formatbar .oe-list-button {
+  width: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font:
+    12px Tahoma,
+    sans-serif;
+}
+.oe-list-button svg {
+  width: 15px;
+  height: 15px;
+}
+.oe-message {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  outline: none;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow: inset 1px 1px #d4d0c8;
+  background: white;
+  color: black;
+  padding: 12px;
+  font:
+    16px/1.4 Arial,
+    sans-serif;
+  cursor: text;
+  user-select: text;
+  overflow-wrap: anywhere;
+}
+.oe-message:focus {
+  box-shadow: inset 1px 1px #d4d0c8;
+}
+.oe-message ul {
+  list-style: disc;
+  padding-left: 28px;
+}
+.oe-message ol {
+  list-style: decimal;
+  padding-left: 28px;
+}
+.oe-message::-webkit-scrollbar {
+  width: 17px;
+  height: 17px;
+}
+.oe-message::-webkit-scrollbar-track {
+  background: #f1f0e9;
+  border-left: 1px solid #e2e0d5;
+}
+.oe-message::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #e2ebfc, #b8cdf7);
+  border: 1px solid #8da8d7;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff;
+}
+.oe-statusbar {
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-top: 1px solid #aca899;
+  box-shadow: inset 0 1px white;
+  padding: 1px 1px 0 4px;
+  font-size: 11px;
+}
+.oe-statusbar > [role='status'] {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oe-resize-grip {
+  width: 13px;
+  height: 15px;
+  align-self: flex-end;
+  background: repeating-linear-gradient(135deg, transparent 0 2px, #9c9a8f 2px 3px, white 3px 4px);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+@media (max-width: 560px) {
+  .oe-toolbar {
+    gap: 0;
+    padding-left: 2px;
+  }
+  .oe-tool {
+    min-width: 46px;
+    padding-inline: 4px;
+    font-size: 11px;
+  }
+  .oe-tool.oe-send {
+    min-width: 48px;
+  }
+  .oe-toolbar .oe-divider {
+    margin-inline: 2px;
+  }
+  .oe-grip {
+    margin-right: 1px;
+  }
+  .oe-addresses {
+    padding-inline: 6px;
+  }
+  .oe-address-row {
+    gap: 5px;
+  }
+  .oe-address-row > span {
+    width: 68px;
+    font-size: 11px;
+  }
+  .oe-address-row input {
+    font-size: 12px;
+  }
+  .oe-font {
+    width: 125px;
+  }
+}

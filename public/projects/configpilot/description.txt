@@ -1,0 +1,74 @@
+ConfigPilot
+===========
+
+Understand configuration before it becomes a deployment problem.
+
+A published CLI and JavaScript API for discovering environment-variable references, previewing safe placeholders, and explaining configuration inconsistencies without displaying assignment values.
+
+Technologies
+JavaScript · TypeScript declarations · Node.js · Babel AST · Vue SFC parser · JSON Schema · GitHub Actions · npm
+
+Highlights
+• Static source discovery and consent-based initialization with dry-run previews
+• Explainable diagnostics, explicit project rules, and independent workspaces
+• Typed ESM API, JSON reports, GitHub annotations, and CI failure policies
+
+The problem
+-----------
+An unfamiliar codebase can scatter environment references across source files while its templates drift out of sync. ConfigPilot gives developers a discover–configure–verify workflow, with source locations, actionable findings, and explicit boundaries around what static analysis can prove.
+Project context
+Open source / Developer tooling / npm
+Implementation scope
+• AST-based discovery for JavaScript, TypeScript, JSX, TSX, and supported inline Vue script blocks; dynamic lookups remain explicitly unresolved.
+• Read-only syntax/key checks and consent-based initialization with dry-run previews, exclusive file creation, and no copied source or configuration values.
+• Version 1.3.0 adds explicit JSON rules, required-local blank checks, independent workspaces, template-addition previews, CI failure policies, GitHub annotations, and exported JSON Schemas.
+• ESM JavaScript APIs with bundled TypeScript declarations, published on npm with an MIT license.
+
+System architecture
+-------------------
+• 01 Discover
+• 02 Preview
+• 03 Configure
+• 04 Verify
+• 05 Report
+Source understanding
+Babel AST / Vue SFC parser
+Static reference discovery with lexical binding awareness and an isolated, resource-bounded parser worker for project scans. Project modules are not executed.
+Analysis core
+JavaScript / Pure APIs / Type declarations
+Explicit string inputs produce structured parsing and comparison reports. Assignment values are not included in public diagnostics.
+Project policy
+Explicit JSON / Workspaces / JSON Schema
+Opt-in required, optional, and externally supplied key rules, severity thresholds, scoped workspaces, and versioned machine-readable contracts.
+Developer & CI interface
+Node.js CLI / npm / GitHub Actions
+Terminal, JSON, and explicit GitHub annotation output, with documented exits. Initialization is a separate, authorized write operation.
+
+Engineering decisions
+---------------------
+Analyze code without running the project.
+Source discovery parses supported syntax instead of importing application modules, evaluating expressions, or executing project configuration. Unsupported and dynamic references are reported instead of guessed.
+Make file creation an explicit decision.
+Init supports dry runs and requires consent or an explicit flag to create one nonexistent file. Exclusive creation protects existing files; source fallbacks and private configuration values are never copied into generated output.
+Do not confuse a clean check with a healthy deployment.
+Default checks compare supported syntax and declared keys. Explicit required-local rules can check blankness, but credentials, external provisioning, network access, and application readiness remain outside the tool’s scope.
+Keep human-readable and automated reports aligned.
+Stable issue codes, locations, JSON Schemas, policy reports, and GitHub annotations let developers and CI consume the same findings. The documented test strategy covers contracts, packaging, type declarations, and multiple OS/Node combinations.
+
+Engineering takeaways
+---------------------
+• Static analysis that separates observable evidence from runtime assumptions.
+• Privacy-aware diagnostics and explicit filesystem authorization boundaries.
+• Shipping an npm CLI and typed library with versioned report contracts and documented limits.
+Next steps
+The repository’s stability plan tracks remaining validation and owner approval gates. The supplied ecosystem screenshots document a point in time; they are not live adoption, security, or performance claims.
+
+Image information
+Provided ConfigPilot cover illustration. The terminal artwork represents the scan, init, and check workflow; it is not a live execution report.
+
+Links
+GitHub: https://github.com/ghazy001/configpilot
+npm Package: https://www.npmjs.com/package/configpilot
+Workflow documentation: https://github.com/ghazy001/configpilot/blob/main/docs/PROJECT_WORKFLOWS.md
+Security boundaries: https://github.com/ghazy001/configpilot/blob/main/SECURITY.md
+Original case study: https://ghazi-saoudi.vercel.app/projects/configpilot

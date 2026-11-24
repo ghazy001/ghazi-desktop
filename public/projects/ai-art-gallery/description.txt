@@ -1,0 +1,69 @@
+AI Art Gallery
+==============
+
+A gallery with an intelligent creative toolkit.
+
+A Django art platform that combines AI chat, image generation and editing, background removal, artist classification, and price estimation.
+
+Technologies
+Django · Python · PyTorch · OpenAI API · PythonAnywhere
+
+Highlights
+• Gallery-based browsing experience
+• AI art presentation workflow
+• Clean responsive interface
+
+The problem
+-----------
+Creative exploration involves discovery, conversation, and image manipulation. This project brings those interactions together in a gallery-oriented web experience with AI-powered tools.
+Project context
+Creative tools / Applied AI
+Implementation scope
+• AI chatbot, image generation, and image editing through the platform.
+• Background removal and a PyTorch artist-classification model.
+• Price estimation and deployment on PythonAnywhere.
+
+System architecture
+-------------------
+• 01 Explore art
+• 02 Ask assistant
+• 03 Generate
+• 04 Edit
+• 05 Analyze
+Gallery application
+Django / Python
+Web application layer connecting gallery interactions with the creative tools.
+Generative assistant
+OpenAI API
+AI chat alongside the documented image-generation and editing capabilities.
+Image intelligence
+PyTorch / Image processing
+Artist classification and background-removal capabilities listed in the CV.
+Estimation & hosting
+Price estimation / PythonAnywhere
+An estimated-price feature and a deployed web application, without a claimed valuation accuracy.
+
+Engineering considerations
+--------------------------
+Separate creative output from analysis.
+Generating an image, removing a background, and classifying an artist solve different problems. Distinct inputs and results make these tools easier to understand.
+Present estimates as estimates.
+An artist classification or price estimate is model output, not authenticated attribution or a professional appraisal. The interface should make that distinction clear.
+Consider image ownership and privacy.
+Uploaded artwork and generated images introduce consent, rights, and storage questions. These are important considerations for a creative AI platform.
+
+Technical focus
+---------------
+• Combining a Django application with generative and analytical AI.
+• Supporting multiple image workflows in a gallery experience.
+• Taking a Python web project through deployment.
+Possible extensions
+Possible extensions include before/after editing comparisons, model-evaluation documentation, and clearer handling of image rights. No prediction accuracy or valuation guarantee is claimed.
+
+Image information
+AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.
+
+Links
+GitHub: https://github.com/ghazy001/Echo-Gallery
+Live Demo (unavailable): https://ghazi001.pythonanywhere.com
+Original case study: https://ghazi-saoudi.vercel.app/projects/ai-art-gallery

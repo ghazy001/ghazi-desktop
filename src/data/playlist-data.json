@@ -1,0 +1,103 @@
+{
+  "name": {
+    "en": "Ghazi’s Music",
+    "fr": "Les musiques de Ghazi"
+  },
+  "description": {
+    "en": "My personal music selection. Select a track and press Play.",
+    "fr": "Ma sélection musicale. Choisissez un titre et appuyez sur Lecture."
+  },
+  "tracks": [
+    {
+      "id": "hit-em-up",
+      "title": "Hit 'Em Up (Edited Version)",
+      "artist": "2Pac",
+      "album": "",
+      "src": "/musics/hit-em-up.mp3",
+      "cover": "/img/ghazi/music/hit-em-up.jpg",
+      "duration": 269.897,
+      "size": 6515781,
+      "originalFilename": "2Pac - Hit Em Up (Official Music Video).mp3",
+      "sha256": "ce9fff9c1104859b8ad485bbc49f4aad1aafd977548fbbcc19d52d2231477828",
+      "metadataTitle": "2Pac - Hit 'Em Up (Edited Version) (Official Music Video)"
+    },
+    {
+      "id": "oops-i-did-it-again",
+      "title": "Oops!...I Did It Again",
+      "artist": "Britney Spears",
+      "album": "",
+      "src": "/musics/oops-i-did-it-again.mp3",
+      "cover": "/img/ghazi/music/oops-i-did-it-again.jpg",
+      "duration": 252.447,
+      "size": 6097260,
+      "originalFilename": "Britney Spears - Oops!...I Did It Again (Official HD Video).mp3",
+      "sha256": "b5d8049393988cc752a58f65a066b93792587ac298b1b54f6a21cd768d29541f",
+      "metadataTitle": "Britney Spears - Oops!...I Did It Again (Official HD Video)"
+    },
+    {
+      "id": "still-dre",
+      "title": "Still D.R.E. ft. Snoop Dogg",
+      "artist": "Dr. Dre",
+      "album": "",
+      "src": "/musics/still-dre.mp3",
+      "cover": "/img/ghazi/music/still-dre.jpg",
+      "duration": 290.22,
+      "size": 7017011,
+      "originalFilename": "Dr. Dre - Still D.R.E. ft. Snoop Dogg.mp3",
+      "sha256": "9e6df9df062194ce174cc73446684469869d377c719fe395fe9773e0f2751d2d",
+      "metadataTitle": "Dr. Dre - Still D.R.E. ft. Snoop Dogg"
+    },
+    {
+      "id": "smack-that",
+      "title": "Smack That ft. Eminem",
+      "artist": "AkonVEVO",
+      "album": "",
+      "src": "/musics/smack-that.mp3",
+      "cover": "/img/ghazi/music/smack-that.jpg",
+      "duration": 251.611,
+      "size": 6062809,
+      "originalFilename": "Akon - Smack That (Official Music Video) ft. Eminem.mp3",
+      "sha256": "678cbaa232115f084c1bc742d17a5128e158de18178f5a681621636542ac5919",
+      "metadataTitle": "Akon - Smack That (Official Music Video) ft. Eminem"
+    },
+    {
+      "id": "who-shot-ya",
+      "title": "Who Shot Ya?",
+      "artist": "The Notorious B.I.G.",
+      "album": "",
+      "src": "/musics/who-shot-ya.mp3",
+      "cover": "/img/ghazi/music/who-shot-ya.jpg",
+      "duration": 319.425,
+      "size": 7689662,
+      "originalFilename": "The Notorious B.I.G. - Who Shot Ya (Official Audio).mp3",
+      "sha256": "eddf2a18fc1540080f3415b9e46f23ba1b1fb30aa107f9d5f7f4d05f45cd2ee3",
+      "metadataTitle": "The Notorious B.I.G. - Who Shot Ya? (Official Audio)"
+    },
+    {
+      "id": "where-the-hood-at",
+      "title": "Where The Hood At",
+      "artist": "DMX",
+      "album": "Grand Champ",
+      "src": "/musics/where-the-hood-at.mp3",
+      "cover": "/img/ghazi/music/where-the-hood-at.jpg",
+      "duration": 286.328,
+      "size": 6961034,
+      "originalFilename": "Where The Hood At.mp3",
+      "sha256": "fee4188291cee79bbc9e72773113364e485182694e83411f7ab99a9e8495b021",
+      "metadataTitle": "Where The Hood At"
+    },
+    {
+      "id": "give-it-to-me",
+      "title": "Give It To Me ft. Nelly Furtado, Justin Timberlake",
+      "artist": "Timbaland",
+      "album": "",
+      "src": "/musics/give-it-to-me.mp3",
+      "cover": "/img/ghazi/music/give-it-to-me.jpg",
+      "duration": 238.132,
+      "size": 5815545,
+      "originalFilename": "Timbaland - Give It To Me (Official Music Video) ft. Nelly Furtado, Justin Timberlake.mp3",
+      "sha256": "d8d8b252d4faedc015f01c52415c64e34b1362fab44a77fe61b2938b2c86ca5f",
+      "metadataTitle": "Timbaland - Give It To Me (Official Music Video) ft. Nelly Furtado, Justin Timberlake"
+    }
+  ]
+}

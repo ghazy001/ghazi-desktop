@@ -1,0 +1,69 @@
+Football Tournament Management
+==============================
+
+One competition. Web, desktop, and mobile.
+
+A multiplatform tournament system for managing teams and matches, automated scheduling, an administration dashboard, and real-time notifications.
+
+Technologies
+Symfony · PHP · JavaFX · Java · FlutterFlow
+
+Highlights
+• Tournament and team management
+• Match scheduling workflows
+• Competition data organization
+
+The problem
+-----------
+A tournament connects team information, match schedules, administration, and updates for participants. This project supports those responsibilities across web, desktop, and mobile experiences.
+Project context
+Sports operations / Multiplatform development
+Implementation scope
+• Team and match management across a multiplatform system.
+• Automated scheduling and an administration dashboard.
+• Real-time notifications, with Symfony, JavaFX, and FlutterFlow listed in the CV.
+
+System architecture
+-------------------
+• 01 Teams
+• 02 Matches
+• 03 Schedule
+• 04 Dashboard
+• 05 Notifications
+Web application
+Symfony / PHP
+The web component, with a dedicated repository provided in the portfolio.
+Desktop application
+JavaFX / Java
+A desktop component with its own source repository.
+Mobile experience
+FlutterFlow
+The mobile technology documented in the CV; no separate mobile repository was provided.
+Competition workflows
+Scheduling / Administration / Notifications
+The documented feature scope: teams, matches, automated scheduling, dashboard, and real-time updates.
+
+Engineering considerations
+--------------------------
+Keep competition concepts consistent.
+Teams, matches, and schedules need consistent meaning across clients. Shared validation rules and data contracts are important considerations for multiplatform systems.
+Scheduling is more than displaying dates.
+Automated scheduling introduces constraints such as team availability and conflicting matches. Documenting supported rules makes the behavior easier to inspect and test.
+Distinguish notifications from stored state.
+Notifications tell users that something changed; the application data remains the reference. Reconnect recovery and clear update states are useful review points.
+
+Technical focus
+---------------
+• Working across Symfony, JavaFX, and FlutterFlow experiences.
+• Modeling team, match, and schedule relationships.
+• Connecting administration workflows with real-time updates.
+Possible extensions
+Possible extensions include documented scheduling constraints, cross-client consistency tests, and match-update recovery scenarios. No match counts, user totals, or performance results are claimed.
+
+Image information
+AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.
+
+Links
+Desktop Repo: https://github.com/ghazy001/Pidev_3A4_CompilerCrew_Desktop_JavaFx_Tourney-Pulse
+Web Repo: https://github.com/ghazy001/Pidev_3A4_CompilerCrew_Web_Symfony_Tourney-Pulse
+Original case study: https://ghazi-saoudi.vercel.app/projects/football-tournament-management-system

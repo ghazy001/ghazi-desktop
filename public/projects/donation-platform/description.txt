@@ -1,0 +1,69 @@
+Donation Platform
+=================
+
+Connect contributions with useful information.
+
+A Laravel donation platform with Stripe payment integration and an AI chatbot connected to live donation statistics and event information.
+
+Technologies
+Laravel · PHP · Stripe API · AI Chatbot · AlwaysData · Docker
+
+Highlights
+• Donation-oriented user flow
+• Campaign or cause presentation
+• Structured data handling
+
+The problem
+-----------
+A donation experience combines a contribution flow with questions about campaigns, statistics, and events. This project connects payments and database-backed assistance rather than offering only a static campaign page.
+Project context
+Donation workflows / Payments / AI integration
+Implementation scope
+• Donation-oriented contribution flows backed by a Laravel application.
+• Stripe payment integration.
+• AI chatbot using live database information for donation statistics and events; AlwaysData hosting listed in the CV.
+
+System architecture
+-------------------
+• 01 Discover
+• 02 Contribute
+• 03 Payment
+• 04 Data
+• 05 Ask assistant
+Donation application
+Laravel / PHP
+The web application foundation for contribution workflows and campaign information.
+Payment integration
+Stripe API
+A dedicated integration for the payment step in the donation experience.
+Data-aware assistant
+AI chatbot / Live database
+Answers grounded in donation statistics and event information from the database.
+Delivery resources
+AlwaysData / Container package
+AlwaysData is listed in the CV; a user-provided GitHub container package is available as an additional resource.
+
+Engineering considerations
+--------------------------
+Separate payment state from page state.
+A successful-looking frontend is not proof of a completed payment. Provider-confirmed state, duplicate handling, and failure recovery are important payment-integration review points.
+Ground assistance in current data.
+The CV describes a chatbot connected to a live database. Donation totals and event answers should come from that data rather than generated guesses.
+Handle contributions with care.
+Payment errors, cancellation, and private donor information require clear boundaries. Security guarantees or audited compliance are not claimed in this project brief.
+
+Technical focus
+---------------
+• Integrating payment services into a Laravel application.
+• Connecting AI assistance with database-backed information.
+• Combining contribution flows with campaign and event context.
+Possible extensions
+Possible extensions include documented payment-recovery tests, accessibility checks, and stronger donor privacy controls. No donation totals, impact statistics, or conversion results are claimed.
+
+Image information
+AI-generated project illustration, not an application screenshot. Any displayed metrics are illustrative.
+
+Links
+Source Repo: https://github.com/ghazy001/EcoEvent
+Container Image: https://github.com/ghazy001/EcoEvent/pkgs/container/ecoevent
+Original case study: https://ghazi-saoudi.vercel.app/projects/donation-platform

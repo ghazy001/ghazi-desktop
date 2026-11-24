@@ -1,0 +1,311 @@
+@import 'tailwindcss';
+@config "../tailwind.config.js";
+/* Content uses the template's XP fonts, Explorer panels and system buttons. */
+.xp-content {
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.xp-content h1 {
+  font-family: 'Trebuchet MS', Tahoma, sans-serif;
+  font-size: 20px;
+  color: #003399;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+.xp-content h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #003399;
+  margin: 18px 0 8px;
+  border-bottom: 1px solid #d5dfee;
+  padding-bottom: 3px;
+}
+.xp-content h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 12px 0 4px;
+}
+.xp-content p {
+  margin: 7px 0;
+}
+.xp-content ul {
+  list-style: disc;
+  padding-left: 22px;
+}
+.xp-content a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+.xp-content a:visited {
+  color: #551a8b;
+}
+.xp-content figure {
+  margin: 16px 0;
+}
+.xp-content figcaption,
+.xp-hint {
+  font-size: 12px;
+  color: #555;
+}
+.xp-content summary {
+  cursor: pointer;
+  color: #003399;
+  padding: 6px 0;
+}
+.xp-profile-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.xp-profile-heading img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.xp-profile-heading h1 {
+  margin: 0;
+}
+.xp-fieldset {
+  border: 1px solid #b7c5d9;
+  padding: 7px 12px 10px;
+  margin: 12px 0;
+}
+.xp-fieldset legend {
+  color: #003399;
+  padding: 0 5px;
+}
+.xp-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.xp-shortcut {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 9px;
+  width: 180px;
+  padding: 9px 5px;
+  border: 1px solid transparent;
+}
+.xp-shortcut:hover,
+.xp-shortcut:focus-visible,
+.xp-document:hover,
+.xp-document:focus-visible {
+  background: #e8f0ff;
+  border-color: #7f9db9;
+}
+.xp-button,
+.xp-content a.xp-button {
+  display: inline-block;
+  color: #111;
+  text-decoration: none;
+  padding: 3px 12px;
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  background: linear-gradient(#fff, #ece9d8);
+  box-shadow: inset 0 0 0 1px #fff;
+  font:
+    12px Tahoma,
+    sans-serif;
+}
+.xp-button:hover {
+  box-shadow: inset 0 0 0 2px #f6c56a;
+}
+.xp-button:active {
+  background: #ddd9c4;
+}
+.xp-project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 12px 0;
+}
+.xp-project-media {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border: 1px solid #aaa;
+}
+.xp-list-item {
+  padding-left: 14px;
+  position: relative;
+}
+.xp-list-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+}
+.xp-credential {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+.xp-credential img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.xp-credential h2 {
+  margin: 0;
+  border: 0;
+}
+.xp-link-list,
+.xp-document-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.xp-favorite {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+.xp-favorite img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.xp-document,
+.xp-content a.xp-document {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid transparent;
+  padding: 8px;
+  color: #111;
+  text-decoration: none;
+  text-align: left;
+}
+.xp-document small {
+  display: block;
+  color: #555;
+}
+.xp-mail-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 48px;
+  padding: 3px 8px;
+  border: 1px solid transparent;
+  font:
+    11px Tahoma,
+    sans-serif;
+}
+.xp-mail-tool img {
+  height: 28px;
+  object-fit: contain;
+}
+.xp-mail-tool:hover {
+  border-color: #9db7db;
+  background: #e5effe;
+}
+.xp-toolbar-divider {
+  height: 40px;
+  border-left: 1px solid #aca899;
+  border-right: 1px solid white;
+  margin: 0 5px;
+}
+.xp-mail-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.xp-mail-label > span {
+  width: 60px;
+  flex-shrink: 0;
+}
+.xp-input {
+  width: 100%;
+  border: 1px solid #7f9db9;
+  background: #fff;
+  color: #111;
+  padding: 4px 6px;
+  font:
+    13px Tahoma,
+    sans-serif;
+}
+.xp-input:focus {
+  outline: 1px solid #316ac5;
+}
+.xp-message-label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.xp-message-label textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 1px dotted #111;
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  .xp-shortcut {
+    width: 100%;
+  }
+  .xp-profile-heading {
+    gap: 9px;
+  }
+  .xp-profile-heading img {
+    max-width: 64px;
+    max-height: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.xp-explorer-tool {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 1px 3px;
+  border: 1px solid transparent;
+  height: 32px;
+  white-space: nowrap;
+}
+.xp-explorer-tool:hover:enabled {
+  border-color: #9db7db;
+  background: #e5effe;
+}
+.xp-system-menu {
+  position: absolute;
+  top: 24px;
+  min-width: 170px;
+  padding: 2px;
+  background: #ece9d8;
+  border: 1px solid #aca899;
+  box-shadow: 2px 2px 2px #777;
+  z-index: 45;
+}
+.xp-system-menu button,
+.xp-system-menu a {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: #111;
+  padding: 4px 20px;
+  font:
+    12px Tahoma,
+    sans-serif;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.xp-system-menu button:hover,
+.xp-system-menu a:hover {
+  background: #316ac5;
+  color: white;
+}

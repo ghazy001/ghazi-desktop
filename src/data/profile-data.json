@@ -1,0 +1,310 @@
+{
+  "name": "Ghazi Saoudi",
+  "firstName": "Ghazi",
+  "title": "Junior Software Engineer | Full-Stack, Cloud & AI",
+  "specialization": "Junior Software Engineer specializing in Full-Stack, Cloud, DevOps, and AI Integration",
+  "tagline": "Your idea. Built into something real.",
+  "intro": "Have an idea that needs a working product? I build full-stack applications, integrate AI into practical workflows, and connect development with cloud deployment. Explore my work, see how I approach engineering problems, and let’s discuss what you want to build.",
+  "bio": [
+    "I'm a Junior Software Engineer focused on building modern full-stack applications that connect clean user experiences with reliable backend systems, cloud-native architecture, and practical AI-powered features.",
+    "My work spans frontend development, backend APIs, microservices, DevOps practices, CI/CD workflows, and AI integration. I care about maintainable code, clear architecture, automated delivery, and software that is easy for teams to improve over time."
+  ],
+  "focus": "I'm looking for junior software engineering opportunities where I can contribute to full-stack products, cloud-native systems, DevOps automation, and AI-enhanced developer or user workflows.",
+  "location": "Ariana, Tunisia",
+  "email": "ghazysaoudi007@gmail.com",
+  "phone": "+216 26864405",
+  "phoneUrl": "tel:+21626864405",
+  "website": "https://ghazi-saoudi.vercel.app",
+  "github": "https://github.com/ghazy001",
+  "linkedin": "https://www.linkedin.com/in/ghazi-saoudi-5b6086271/",
+  "credly": "https://www.credly.com/users/ghazi-saoudi.d26d545c",
+  "cv": {
+    "url": "/pdf/Ghazi_Saoudi_CV_EN.pdf",
+    "source": "https://ghazi-saoudi.vercel.app/Ghazi_Saoudi_CV_EN.pdf",
+    "filename": "Ghazi_Saoudi_CV_EN.pdf",
+    "language": "English"
+  },
+  "portrait": "/img/ghazi/portrait.webp",
+  "photo": "/img/ghazi/profile.jpg",
+  "education": [
+    {
+      "degree": "Computer Engineering Degree",
+      "institution": "ESPRIT — Private Higher School of Computer Science · Tunis, Tunisia",
+      "year": "2021 – 2024"
+    },
+    {
+      "degree": "Scientific Baccalaureate",
+      "institution": "Avicenne Private High School · Tunis, Tunisia",
+      "year": "2020 – 2021"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Arabic",
+      "level": "Native language"
+    },
+    {
+      "name": "French",
+      "level": "Fluent (professional)"
+    },
+    {
+      "name": "English",
+      "level": "Fluent (professional)"
+    }
+  ],
+  "softSkills": [
+    "Teamwork",
+    "Time management",
+    "Communication",
+    "Initiative",
+    "Creativity",
+    "Problem solving",
+    "Adaptability",
+    "Attention to detail",
+    "Collaborative mindset"
+  ],
+  "sources": {
+    "profile": "https://ghazi-saoudi.vercel.app",
+    "about": "https://ghazi-saoudi.vercel.app/about",
+    "education": "https://ghazi-saoudi.vercel.app/Ghazi_Saoudi_CV_EN.pdf",
+    "contact": "https://ghazi-saoudi.vercel.app/contact",
+    "retrieved": "2026-11-23",
+    "experienceResolution": "Website dates and locations selected by portfolio owner; original PDF preserved unchanged."
+  },
+  "experience": [
+    {
+      "jobTitle": "Software & Data Engineering Intern",
+      "company": "Capgemini · Tunis, Tunisia",
+      "url": "https://www.capgemini.com",
+      "year": "Feb. 2026 - Aug. 2026",
+      "responsibilities": [
+        "Contributed to professional software delivery with a focus on clean implementation, maintainability, and team collaboration.",
+        "Worked across full-stack development topics, integration needs, and engineering workflows.",
+        "Applied software engineering practices suited for scalable enterprise application environments."
+      ],
+      "cvResponsibilities": [
+        "Led the optimization of software test automation using Artificial Intelligence.",
+        "Designed and implemented AI pipelines to automatically generate, prioritize and maintain test suites.",
+        "Integrated quality dashboards into CI/CD workflows for real-time reporting and monitoring."
+      ],
+      "technologies": ["Python", "AI/ML", "CI/CD", "Jenkins", "Grafana", "Test Automation"]
+    },
+    {
+      "jobTitle": "Full-Stack MERN Developer",
+      "company": "Hellenic Cables · Athens, Greece",
+      "url": "https://www.hellenic-cables.com",
+      "year": "Jun. 2025 - Aug. 2025",
+      "responsibilities": [
+        "Supported application development and technical problem-solving for business-oriented software needs.",
+        "Worked with data, backend logic, and user-facing functionality in a structured engineering context.",
+        "Strengthened practical experience in documentation, testing, and reliable feature delivery."
+      ],
+      "cvResponsibilities": [
+        "Developed a real-time monitoring dashboard for tracking industrial machine status and performance.",
+        "Implemented a complete ticketing system (submission, assignment, tracking, resolution) integrated into the dashboard.",
+        "Developed RESTful APIs with Node.js/Express; responsive front-end interface with React."
+      ],
+      "technologies": ["MongoDB", "Express.js", "React", "Node.js", "WebSocket", "REST API"]
+    },
+    {
+      "jobTitle": "Cybersecurity Compliance Analyst Intern",
+      "company": "BH Bank · Tunis, Tunisia",
+      "url": "https://www.bhbank.tn",
+      "year": "Jun. 2024 - Aug. 2024",
+      "responsibilities": [
+        "Gained experience in software systems where reliability, security awareness, and clarity are important.",
+        "Contributed to development tasks involving application logic, data handling, and technical analysis.",
+        "Practiced professional collaboration, issue tracking, and quality-focused delivery."
+      ],
+      "cvResponsibilities": [
+        "Audited internal systems against the ISO 27001 framework.",
+        "Produced vulnerability assessment reports with concrete mitigation strategies.",
+        "Collaborated with IT and legal teams to align security policies with regulatory requirements."
+      ],
+      "technologies": ["ISO 27001", "Cybersecurity", "Risk Assessment", "GDPR"]
+    },
+    {
+      "jobTitle": "Web Developer Intern",
+      "company": "Safran · Nabeul, Tunisia",
+      "url": "https://www.safran-group.com/fr",
+      "year": "Jun. 2022 - Jul. 2022",
+      "responsibilities": [
+        "Worked in an engineering environment focused on structured development, quality, and operational discipline.",
+        "Applied full-stack and software engineering foundations to practical technical assignments.",
+        "Built experience with maintainable code, technical communication, and iterative delivery."
+      ],
+      "cvResponsibilities": [
+        "Designed and developed the architecture of a web e-commerce platform.",
+        "Produced technical documentation covering system design, data flows and API structure."
+      ],
+      "technologies": ["PHP", "HTML/CSS", "JavaScript", "MySQL"]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "items": ["JavaScript", "TypeScript", "Python", "Java", "SQL"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["React", "Next.js", "HTML", "CSS", "Responsive UI"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Node.js", "Express", "NestJS", "FastAPI", "Spring Boot", "REST APIs", "Microservices"]
+    },
+    {
+      "category": "Databases",
+      "items": ["PostgreSQL", "MySQL", "MongoDB", "Database Design"]
+    },
+    {
+      "category": "AI / Machine Learning",
+      "items": ["AI Integration", "LLM Workflows", "Prompt Engineering", "ML Concepts"]
+    },
+    {
+      "category": "DevOps / Cloud",
+      "items": ["AWS", "Docker", "CI/CD", "Cloud-Native Architecture"]
+    },
+    {
+      "category": "Testing / QA",
+      "items": ["Quality Assurance", "Automated Testing", "API Testing", "Debugging"]
+    },
+    {
+      "category": "Tools and Platforms",
+      "items": ["Git", "GitHub", "VS Code", "Linux", "Postman"]
+    },
+    {
+      "category": "Architecture Patterns",
+      "items": ["Microservices", "MVC", "REST", "Event-Driven Concepts"]
+    }
+  ],
+  "cvSkills": [
+    {
+      "category": "Languages",
+      "items": ["C", "C++", "Java", "PHP", "SQL", "JavaScript", "TypeScript", "Python", "Bash"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["React", "Next.js", "Angular", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Node.js", "NestJS", "FastAPI", "Spring Boot", "Django", "Symfony", "Laravel"]
+    },
+    {
+      "category": "Databases",
+      "items": ["PostgreSQL", "MongoDB", "MySQL", "Neo4j", "Firebase", "H2", "Redis"]
+    },
+    {
+      "category": "AI & Machine Learning",
+      "items": ["OpenAI API", "RAG", "Qdrant", "Groq", "Ollama", "Qwen", "PyTorch"]
+    },
+    {
+      "category": "Tests & QA",
+      "items": ["Playwright", "Cypress", "Selenium", "QA Automation"]
+    },
+    {
+      "category": "DevOps & Cloud",
+      "items": ["Docker", "Jenkins", "CI/CD", "SonarQube", "Grafana", "Redis", "Celery"]
+    },
+    {
+      "category": "Architecture",
+      "items": ["Microservices", "REST API", "Cloud-Native", "Event-Driven"]
+    },
+    {
+      "category": "Tools",
+      "items": ["Git", "GitHub", "Prisma ORM", "Jira API", "JavaFX", "FlutterFlow"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Getting Started with Artificial Intelligence",
+      "issuer": "IBM SkillsBuild",
+      "issued": "Nov 3, 2026",
+      "url": "https://www.credly.com/badges/bfaca7d4-e948-4c47-9582-82eee1a08dc3",
+      "image": "/img/ghazi/certifications/1.webp"
+    },
+    {
+      "name": "Agile Explorer",
+      "issuer": "IBM-SkillsBuild",
+      "issued": "Nov 30, 2025",
+      "url": "https://www.credly.com/badges/84410135-9ec6-4369-87ca-c712d67cb148",
+      "image": "/img/ghazi/certifications/2.webp"
+    },
+    {
+      "name": "AI Literacy",
+      "issuer": "IBM-SkillsBuild",
+      "issued": "Nov 14, 2025",
+      "url": "https://www.credly.com/badges/b153e0fa-fc88-4af5-8447-dece0d749aa4",
+      "image": "/img/ghazi/certifications/3.webp"
+    },
+    {
+      "name": "Build Your Own Chatbot - Level 1",
+      "issuer": "IBM",
+      "issued": "Nov 14, 2025",
+      "url": "https://www.credly.com/badges/63dbacb2-a267-4642-92a7-eb7c2ddf1914",
+      "image": "/img/ghazi/certifications/4.webp"
+    },
+    {
+      "name": "Spark - Level 1",
+      "issuer": "IBM",
+      "issued": "Nov 14, 2025",
+      "url": "https://www.credly.com/badges/7483df25-e600-4485-bdcc-51731b838656",
+      "image": "/img/ghazi/certifications/5.webp"
+    },
+    {
+      "name": "AWS Academy Graduate - Cloud Foundations - Training Badge",
+      "issuer": "Amazon Web Services Training and Certification",
+      "issued": "Nov 13, 2025",
+      "url": "https://www.credly.com/badges/6fd733aa-a76b-4985-8097-6210397cf962",
+      "image": "/img/ghazi/certifications/6.webp"
+    },
+    {
+      "name": "Hashgraph Developer Certification",
+      "issuer": "The Hashgraph Association",
+      "issued": null,
+      "url": null,
+      "image": null,
+      "source": "https://ghazi-saoudi.vercel.app/Ghazi_Saoudi_CV_EN.pdf"
+    }
+  ],
+  "links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/ghazy001",
+      "description": "Source code and repositories",
+      "icon": "/img/icons/side-menu/github-icon.webp"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ghazi-saoudi-5b6086271/",
+      "description": "Professional profile",
+      "icon": "/img/icons/side-menu/linkedin-icon.webp"
+    },
+    {
+      "name": "Credly",
+      "url": "https://www.credly.com/users/ghazi-saoudi.d26d545c",
+      "description": "Verified certification badges",
+      "icon": "/img/icons/cv/cv-icon-lg.webp"
+    },
+    {
+      "name": "Original Portfolio",
+      "url": "https://ghazi-saoudi.vercel.app",
+      "description": "Original portfolio and case studies",
+      "icon": "/img/icons/explorer-icon-lg.webp"
+    },
+    {
+      "name": "Articles",
+      "url": "https://ghazi-saoudi.vercel.app/articles",
+      "description": "Technical writing on the original portfolio",
+      "icon": "/img/icons/documents/txt-icon.webp"
+    },
+    {
+      "name": "Coding Activity",
+      "url": "https://ghazi-saoudi.vercel.app/wakatime",
+      "description": "WakaTime dashboard on the original portfolio",
+      "icon": "/img/icons/cmd-icon-lg.webp"
+    }
+  ],
+  "cvSummary": "Junior Software Engineer specializing in Full-Stack Development, Cloud-Native Architecture and Artificial Intelligence integration. Experienced with React, Next.js, Node.js, NestJS, FastAPI, Spring Boot and Django. Skilled in Docker, CI/CD pipelines, microservices, REST APIs, PostgreSQL, MongoDB and DevOps tools. Certified in AI (IBM), AWS Cloud and Agile methodologies. Able to drive projects end-to-end, from design to deployment and documentation."
+}
