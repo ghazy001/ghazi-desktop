@@ -305,3 +305,64 @@
     width: 125px;
   }
 }
+.oe-compose {
+  position: relative;
+}
+.oe-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.oe-formatbar button:disabled,
+.oe-formatbar select:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.oe-result-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: #0003;
+}
+.oe-result-dialog {
+  width: 390px;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  background: #ece9d8;
+  border: 3px solid #0855de;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 3px 3px 6px #0006;
+}
+.oe-result-dialog header {
+  padding: 5px 7px;
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(#3885f5, #0056dd);
+}
+.oe-result-dialog > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px 18px 12px;
+  font:
+    12px/1.6 Tahoma,
+    sans-serif;
+}
+.oe-result-dialog img {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.oe-result-dialog > button {
+  display: block;
+  min-width: 75px;
+  margin: 9px auto 17px;
+}

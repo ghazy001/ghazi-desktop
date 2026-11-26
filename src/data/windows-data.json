@@ -13,18 +13,18 @@
     "onDesktop": true,
     "resizable": true,
     "windowsHeaderLogo": true,
-    "isSearchVisible": true,
+    "isSearchVisible": false,
     "headerPosition": "left",
-    "headerToolsId": "default",
-    "menuHeaderItemsId": "default",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "computer",
     "iconSrc": "/img/icons/my-computer.png",
     "initPositionX": 180,
     "initPositionY": 65,
-    "initWidth": 700,
-    "initHeight": 540,
-    "minWidth": 200,
-    "minHeight": 160,
-    "component": "ProfileContent",
+    "initWidth": 960,
+    "initHeight": 800,
+    "minWidth": 340,
+    "minHeight": 400,
+    "component": "MyComputer",
     "leftMenuType": "default",
     "mode": "overview"
   },
@@ -446,6 +446,62 @@
     "minWidth": 320,
     "minHeight": 260,
     "component": "PictureViewer",
+    "leftMenuType": ""
+  },
+  {
+    "id": "paint",
+    "title": {
+      "en": "Paint",
+      "fr": "Paint"
+    },
+    "subtitle": {
+      "en": "A hand-drawn introduction. Make it your own.",
+      "fr": "Une présentation dessinée à la main. À vous de jouer."
+    },
+    "imgSrc": "/img/icons/paint/paint.webp",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": false,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "paint",
+    "iconSrc": "/img/icons/paint/paint.webp",
+    "initPositionX": 160,
+    "initPositionY": 50,
+    "initWidth": 1080,
+    "initHeight": 840,
+    "minWidth": 340,
+    "minHeight": 360,
+    "component": "Paint",
+    "leftMenuType": ""
+  },
+  {
+    "id": "gift",
+    "title": {
+      "en": "gift.exe",
+      "fr": "gift.exe"
+    },
+    "subtitle": {
+      "en": "A little keepsake for stopping by",
+      "fr": "Un petit souvenir de votre visite"
+    },
+    "imgSrc": "/img/icons/gift/gift.png",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": true,
+    "isSearchVisible": false,
+    "headerPosition": "right",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "gift",
+    "iconSrc": "/img/icons/gift/gift.png",
+    "initPositionX": 150,
+    "initPositionY": 45,
+    "initWidth": 1080,
+    "initHeight": 860,
+    "minWidth": 340,
+    "minHeight": 400,
+    "component": "Gift",
     "leftMenuType": ""
   }
 ]

@@ -43,6 +43,91 @@ const saveNotes = () => {
 }
 const actions = computed(() => {
   const name = (props.dropdownItems[active.value] || '').toLowerCase()
+  if (props.id === 'computer') {
+    const fr = props.dropdownItems.includes('Fichier')
+    const item = (en, french, detail) => ({ name: fr ? french : en, action: () => window.dispatchEvent(new CustomEvent('computer-command', { detail })) })
+    if (['file', 'fichier'].includes(name))
+      return [item('Open', 'Ouvrir', 'open'), item('Properties', 'Propriétés', 'properties'), { name: fr ? 'Fermer' : 'Close', action: () => emit('close') }]
+    if (['edit', 'édition'].includes(name)) return [item('Search…', 'Rechercher…', 'search')]
+    if (['view', 'affichage'].includes(name))
+      return [
+        item('Tiles', 'Mosaïques', 'tiles'),
+        item('Details', 'Détails', 'list'),
+        item('Show / Hide Task Pane', 'Afficher / masquer le volet', 'folders'),
+        item('Back', 'Retour', 'back'),
+        item('Forward', 'Suivant', 'forward'),
+        item('My Computer', 'Poste de travail', 'home')
+      ]
+    if (['favorites', 'favoris'].includes(name))
+      return ['myProjects', 'myCV', 'music', 'gift'].map((id) => ({
+        name: { myProjects: fr ? 'Mes projets' : 'My Projects', myCV: fr ? 'Mon CV' : 'My CV', music: 'Windows Media Player', gift: 'gift.exe' }[id],
+        action: () => openWindow(id)
+      }))
+    if (['tools', 'outils'].includes(name)) return [item('System Properties', 'Propriétés système', 'system')]
+    return [item('Help Topics', 'Rubriques d’aide', 'help'), item('System Properties', 'Propriétés système', 'system')]
+  }
+  if (props.id === 'gift') {
+    const fr = props.dropdownItems.includes('Fichier')
+    const item = (en, french, detail) => ({ name: fr ? french : en, action: () => window.dispatchEvent(new CustomEvent('gift-command', { detail })) })
+    if (['file', 'fichier'].includes(name))
+      return [
+        item('New Certificate', 'Nouveau certificat', 'new'),
+        item('Save as Image…', 'Enregistrer l’image…', 'save'),
+        { name: fr ? 'Fermer' : 'Close', action: () => emit('close') }
+      ]
+    if (['view', 'affichage'].includes(name))
+      return [
+        item('Back', 'Retour', 'back'),
+        item('Forward', 'Suivant', 'forward'),
+        item('Fit to Window', 'Ajuster à la fenêtre', 'fit'),
+        item('Actual Size', 'Taille réelle', 'actual'),
+        item('Show / Hide Status Bar', 'Afficher / masquer la barre d’état', 'status')
+      ]
+    return [item('About gift.exe', 'À propos de gift.exe', 'help')]
+  }
+  if (props.id === 'paint') {
+    const fr = props.dropdownItems.includes('Fichier')
+    const item = (en, french, detail) => ({ name: fr ? french : en, action: () => window.dispatchEvent(new CustomEvent('paint-command', { detail })) })
+    if (['file', 'fichier'].includes(name))
+      return [
+        item('New', 'Nouveau', 'new'),
+        item('Open…', 'Ouvrir…', 'open'),
+        item('Save as PNG…', 'Enregistrer en PNG…', 'save'),
+        item('Restore About Me', 'Restaurer À propos de moi', 'reset'),
+        { name: fr ? 'Fermer' : 'Close', action: () => emit('close') }
+      ]
+    if (['edit', 'édition'].includes(name))
+      return [
+        item('Undo', 'Annuler', 'undo'),
+        item('Redo', 'Rétablir', 'redo'),
+        item('Select All', 'Tout sélectionner', 'selectAll'),
+        item('Delete Selection', 'Effacer la sélection', 'delete')
+      ]
+    if (['view', 'affichage'].includes(name))
+      return [
+        item('Show / Hide Toolbox', 'Afficher / masquer les outils', 'toolbox'),
+        item('Show / Hide Color Box', 'Afficher / masquer la palette', 'colors'),
+        item('Show / Hide Status Bar', 'Afficher / masquer la barre d’état', 'status'),
+        item('Zoom In', 'Agrandir', 'zoomIn'),
+        item('Zoom Out', 'Réduire', 'zoomOut'),
+        item('Actual Size', 'Taille réelle', 'actual'),
+        item('Fit to Window', 'Ajuster à la fenêtre', 'fit')
+      ]
+    if (name === 'image')
+      return [
+        item('Flip Horizontal', 'Retourner horizontalement', 'flipH'),
+        item('Flip Vertical', 'Retourner verticalement', 'flipV'),
+        item('Rotate 90°', 'Pivoter de 90°', 'rotate'),
+        item('Clear Image', 'Effacer l’image', 'clear'),
+        item('Attributes…', 'Attributs…', 'attributes')
+      ]
+    if (['colors', 'couleurs'].includes(name))
+      return [
+        item('Swap Foreground / Background', 'Inverser premier plan / arrière-plan', 'swap'),
+        item('Show / Hide Color Box', 'Afficher / masquer la palette', 'colors')
+      ]
+    return [item('Paint Help', 'Aide de Paint', 'help')]
+  }
   if (props.id === 'myCV') {
     const command = (detail) => () => window.dispatchEvent(new CustomEvent('pdf-reader-command', { detail }))
     if (['file', 'fichier'].includes(name))

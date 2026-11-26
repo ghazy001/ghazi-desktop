@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { ref, shallowRef, provide, onMounted, nextTick } from 'vue'
+import { ref, shallowRef, provide, onMounted, nextTick, defineAsyncComponent } from 'vue'
 import { useWindowsStore } from '@/stores/windowsStore.js'
 import { useVolumeStore } from '@/stores/volumeStore.js'
 import { useLocaleStore } from '@/stores/localeStore'
@@ -74,6 +74,10 @@ import Window from '@/layouts/Window.vue'
 import windowsData from '@/data/windows-data.json'
 import ClippyModal from '@/components/Modals/ClippyModal.vue'
 
+const Paint = defineAsyncComponent(() => import('@/components/Windows/Paint/Paint.vue'))
+const MyComputer = defineAsyncComponent(() => import('@/components/Windows/MyComputer/MyComputer.vue'))
+const Gift = defineAsyncComponent(() => import('@/components/Windows/Gift/Gift.vue'))
+
 const showHeader = ref(false)
 const windows = ref([])
 const windowsStore = useWindowsStore()
@@ -99,6 +103,7 @@ const activeWindow = ref(null)
 
 // Create components from data json
 const components = {
+  MyComputer: shallowRef(MyComputer),
   MyProjects: shallowRef(MyProjects),
   ContactMe: shallowRef(ContactMe),
   MyCV: shallowRef(MyCV),
@@ -107,6 +112,8 @@ const components = {
   Pictures: shallowRef(Pictures),
   Notepad: shallowRef(Notepad),
   Doom: shallowRef(Doom),
+  Paint: shallowRef(Paint),
+  Gift: shallowRef(Gift),
   Music: shallowRef(Music),
   Terminal: shallowRef(Terminal),
   InternetExplorer: shallowRef(InternetExplorer),

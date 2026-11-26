@@ -13,6 +13,9 @@ npm run check:content
 npm run check:pdf-navigation
 npm run check:project-files
 npm run check:doom
+npm run check:paint
+npm run check:gift
+npm run check:computer
 npm run build
 npm run preview
 ```
@@ -54,3 +57,9 @@ Serve `dist` with an SPA fallback to `index.html`; the existing Nginx configurat
 ## Attribution
 
 Adapted from [Paul Jaguin's Windows XP template](https://github.com/UnMugViolet/portfolio). The original MIT license is retained in `LICENSE`. Windows XP imagery, icons, and sounds belong to their respective owners.
+
+Paint is available on the desktop and Start menu with the supplied icon and a classic XP toolbox, palette, menus, scrollable workspace and status bar. It opens a handwritten About Me canvas, drawn from the verified profile in English or French with the locally bundled Caveat font. Pencil, brush, spray, eraser, fill, color picker, text, shapes, curves, polygon and selection movement work on the actual canvas. Undo/redo, zoom, image attributes, flips/rotation, local image opening and PNG export are available. Space + drag pans the canvas; two fingers pan on touch screens. Save a PNG before closing to keep edits; File → Restore About Me returns to the original introduction. Drawing code is loaded only when Paint opens; font licensing is in `public/fonts/caveat/OFL.txt`.
+
+`gift.exe` is a classic XP welcome wizard on the desktop and Start menu, using the supplied gift icon. Visitors enter a name and receive a personalized Certificate of Visit with an issue date, souvenir number, gold seal and Ghazi signature. Save as Image downloads the exact preview as a 2000 × 2240 PNG. The app supports English/French, long Unicode names, Back/Forward navigation, fit/actual-size preview, and shortcuts to My Projects/My CV. It generates the image locally with the bundled handwriting font; recipient names are neither submitted nor persisted. Closing starts a fresh wizard next time.
+
+My Computer is an XP drive explorer: GHAZI_XP (C:) contains profile/document applications and a real-profile README, PROJECTS (D:) opens the existing eight project folders, MEDIA (E:) contains music/pictures and the two recorded demos, and the XP_EXTRAS (F:) CD drive launches the creative/game applications. Shared folders and the original portfolio network location remain functional. Tiles/Details views, selection details, Back/Forward/Up, editable addresses, global portfolio search, Properties dialogs, and a collapsible task pane work within the existing window manager. These are virtual portfolio drives; no real disk capacity or hardware details are fabricated. Copy and drive configuration live in `src/data/computer-data.json`.

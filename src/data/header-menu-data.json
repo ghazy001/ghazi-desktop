@@ -43,6 +43,18 @@
     "pdf-reader": {
       "en": ["File", "View", "Go To", "Zoom", "Favorites", "Settings", "Help"],
       "fr": ["Fichier", "Affichage", "Aller à", "Zoom", "Favoris", "Paramètres", "Aide"]
+    },
+    "paint": {
+      "en": ["File", "Edit", "View", "Image", "Colors", "Help"],
+      "fr": ["Fichier", "Édition", "Affichage", "Image", "Couleurs", "Aide"]
+    },
+    "gift": {
+      "en": ["File", "View", "Help"],
+      "fr": ["Fichier", "Affichage", "Aide"]
+    },
+    "computer": {
+      "en": ["File", "Edit", "View", "Favorites", "Tools", "Help"],
+      "fr": ["Fichier", "Édition", "Affichage", "Favoris", "Outils", "Aide"]
     }
   }
 }

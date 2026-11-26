@@ -16,7 +16,12 @@
     "check:content": "node scripts/verify-portfolio.mjs",
     "check:pdf-navigation": "node scripts/verify-pdf-navigation.mjs",
     "check:project-files": "node scripts/verify-project-files.mjs",
-    "check:doom": "node scripts/verify-doom.mjs"
+    "check:doom": "node scripts/verify-doom.mjs",
+    "check:paint": "node scripts/verify-paint.mjs",
+    "check:gift": "node scripts/verify-gift.mjs",
+    "check:computer": "node scripts/verify-computer.mjs",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "check:contact": "node --test tests/contact.test.mjs tests/server.test.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

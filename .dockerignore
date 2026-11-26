@@ -5,6 +5,7 @@ dist
 .gitignore
 README.md
 .env
+.env.*
 .nyc_output
 coverage
 .cache
@@ -13,3 +14,5 @@ coverage
 *.log
 .DS_Store
 Thumbs.db
+
+output
