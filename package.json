@@ -21,7 +21,8 @@
     "check:gift": "node scripts/verify-gift.mjs",
     "check:computer": "node scripts/verify-computer.mjs",
     "start": "node --env-file-if-exists=.env server/index.mjs",
-    "check:contact": "node --test tests/contact.test.mjs tests/server.test.mjs"
+    "check:contact": "node --test tests/contact.test.mjs tests/server.test.mjs",
+    "check:documents": "node scripts/verify-documents.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

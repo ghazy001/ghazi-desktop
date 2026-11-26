@@ -56,7 +56,6 @@ import Minesweeper from '@/components/Windows/Minesweeper.vue'
 import MyCV from '@/components/Windows/MyCV/MyCV.vue'
 import ContactMe from '@/components/Windows/ContactMe.vue'
 import MyProjects from '@/components/Windows/MyProjects.vue'
-import Documents from '@/components/Windows/Documents/Documents.vue'
 import Pictures from '@/components/Windows/Pictures.vue'
 import Notepad from '@/components/Windows/Notepad.vue'
 import Doom from '@/components/Windows/Doom.vue'
@@ -75,6 +74,7 @@ import windowsData from '@/data/windows-data.json'
 import ClippyModal from '@/components/Modals/ClippyModal.vue'
 
 const Paint = defineAsyncComponent(() => import('@/components/Windows/Paint/Paint.vue'))
+const Documents = defineAsyncComponent(() => import('@/components/Windows/Documents/Documents.vue'))
 const MyComputer = defineAsyncComponent(() => import('@/components/Windows/MyComputer/MyComputer.vue'))
 const Gift = defineAsyncComponent(() => import('@/components/Windows/Gift/Gift.vue'))
 

@@ -43,6 +43,37 @@ const saveNotes = () => {
 }
 const actions = computed(() => {
   const name = (props.dropdownItems[active.value] || '').toLowerCase()
+  if (props.id === 'documents') {
+    const fr = props.dropdownItems.includes('Fichier')
+    const item = (en, french, detail) => ({ name: fr ? french : en, action: () => window.dispatchEvent(new CustomEvent('documents-command', { detail })) })
+    if (['file', 'fichier'].includes(name))
+      return [
+        item('Open', 'Ouvrir', 'open'),
+        item('Save a Copy…', 'Enregistrer une copie…', 'save'),
+        item('Properties', 'Propriétés', 'properties'),
+        { name: fr ? 'Fermer' : 'Close', action: () => emit('close') }
+      ]
+    if (['edit', 'édition'].includes(name)) return [item('Copy Filename', 'Copier le nom du fichier', 'copy'), item('Search…', 'Rechercher…', 'search')]
+    if (['view', 'affichage'].includes(name))
+      return [
+        item('Tiles', 'Mosaïques', 'tiles'),
+        item('Details', 'Détails', 'list'),
+        item('Sort by Name', 'Trier par nom', 'name'),
+        item('Sort by Size', 'Trier par taille', 'size'),
+        item('Show / Hide Task Pane', 'Afficher / masquer le volet', 'folders'),
+        item('Back', 'Retour', 'back'),
+        item('Forward', 'Suivant', 'forward'),
+        item('Up', 'Dossier parent', 'up')
+      ]
+    if (['favorites', 'favoris'].includes(name))
+      return [item('My Documents', 'Mes documents', 'home'), { name: fr ? 'Mon CV' : 'My CV', action: () => openWindow('myCV') }]
+    if (['tools', 'outils'].includes(name))
+      return [
+        { name: fr ? 'Poste de travail' : 'My Computer', action: () => openWindow('computer') },
+        { name: 'Outlook Express', action: () => openWindow('contact') }
+      ]
+    return [item('Help Topics', 'Rubriques d’aide', 'help')]
+  }
   if (props.id === 'computer') {
     const fr = props.dropdownItems.includes('Fichier')
     const item = (en, french, detail) => ({ name: fr ? french : en, action: () => window.dispatchEvent(new CustomEvent('computer-command', { detail })) })

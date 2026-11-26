@@ -16,6 +16,7 @@ npm run check:doom
 npm run check:paint
 npm run check:gift
 npm run check:computer
+npm run check:documents
 npm run check:contact
 npm run build
 npm run preview
@@ -64,6 +65,8 @@ Paint is available on the desktop and Start menu with the supplied icon and a cl
 `gift.exe` is a classic XP welcome wizard on the desktop and Start menu, using the supplied gift icon. Visitors enter a name and receive a personalized Certificate of Visit with an issue date, souvenir number, gold seal and Ghazi signature. Save as Image downloads the exact preview as a 2000 × 2240 PNG. The app supports English/French, long Unicode names, Back/Forward navigation, fit/actual-size preview, and shortcuts to My Projects/My CV. It generates the image locally with the bundled handwriting font; recipient names are neither submitted nor persisted. Closing starts a fresh wizard next time.
 
 My Computer is an XP drive explorer: GHAZI_XP (C:) contains profile/document applications and a real-profile README, PROJECTS (D:) opens the existing eight project folders, MEDIA (E:) contains music/pictures and the two recorded demos, and the XP_EXTRAS (F:) CD drive launches the creative/game applications. Shared folders and the original portfolio network location remain functional. Tiles/Details views, selection details, Back/Forward/Up, editable addresses, global portfolio search, Properties dialogs, and a collapsible task pane work within the existing window manager. These are virtual portfolio drives; no real disk capacity or hardware details are fabricated. Copy and drive configuration live in `src/data/computer-data.json`.
+
+My Documents uses the same XP Explorer style, with the original CV, About Me and Contact text files, a Professional Profile folder, seven credential folders, and shortcuts to projects, pictures, music and the original portfolio. Text opens in Notepad, badges in Picture and Fax Viewer, and the CV in the existing reader. Search includes document contents; Back/Forward/Up, editable folder addresses, Tiles/Details, sorting, Properties and Save a Copy are available. Six credentials include their actual badge and verification link; the CV-only Hashgraph credential contains a source-backed text record. The catalog derives professional facts from `profile-data.json`; English/French labels and measured asset sizes live in `documents-data.json`. `check:documents` validates files, assets, source facts, search and navigation.
 
 ## Outlook Express / Resend
 
