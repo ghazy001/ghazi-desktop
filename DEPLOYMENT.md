@@ -1,66 +1,45 @@
-# Deploy to Railway
+# Deploy the portfolio and email API to Railway
 
-This portfolio uses the existing multi-stage Dockerfile: Node.js 24 builds the Vue app, and Nginx serves the built files on port **35000**. Railway builds the container remotely; a running local Docker daemon is not required. No database or persistent volume is needed.
+The Dockerfile builds Vue with Node.js 24, then runs a single Node HTTP server for both the portfolio and Outlook Express’s `/api/contact` endpoint. No database, volume or extra service is needed. It listens on Railway’s `PORT`, defaulting to **35000**, so existing domain target-port settings can stay at 35000. The legacy nginx.conf is no longer the Docker runtime: a static-only deployment cannot send email.
 
-## Deploy the local folder
+## Update your existing GitHub-connected service
 
-Railway CLI is already installed on this computer. Run these commands in Terminal, one at a time:
+1. In Railway, open the existing portfolio service → Variables.
+2. Add `RESEND_API_KEY` using your private Resend key. The local `.env` file is ignored by Git and excluded from Docker; Railway does not receive it when you push.
+3. Add `RESEND_FROM_EMAIL` with the value `Ghazi XP <onboarding@resend.dev>`.
+4. Keep `PORT=35000` and the public domain target port at 35000. Use the repository’s Dockerfile and leave custom start/build command overrides empty.
+5. Push the updated project to GitHub, then deploy the latest commit (or Redeploy if Railway already sees it).
+6. Optionally set the Railway healthcheck path to `/healthz`.
+7. Open `/office`, compose a message in Outlook Express and press Send. A sent dialog means Resend accepted the message; inbox arrival may take a little time. Failed sends keep the draft.
+
+The recipient is fixed server-side to `ghazysaoudi007@gmail.com` from `src/data/profile-data.json`. The user confirmed this is also the Resend account email. No sender domain is verified yet, so the default sender can deliver only to that account email. Visitors can use their own email in From; it becomes Reply-To so replies go to the visitor. Do not put a visitor’s Gmail address in the Resend sender field. When you verify a sending domain, update RESEND_FROM_EMAIL to an address on that domain.
+
+## Deploy through the CLI instead
+
+The CLI session inspected during this change had expired and the folder was not linked. Reconnect explicitly to your existing project/service:
 
 ```sh
 cd /Users/ghazi.saoudi/Downloads/portfolio-windows
 railway login
+railway link
+railway up
 ```
 
-Complete sign-in in your browser. The previous CLI session expired, so a fresh login is needed.
+Choose the intended existing portfolio service during linking. Set the secret variables through Railway’s Variables screen before deploying. Do not put the real key into a shell command, source file or commit.
 
-Create a project and choose your Railway workspace when prompted:
+## Local use
+
+The private `.env` file contains the local key and sender. Start the usual Vite development server with `npm run dev`; its server-side middleware handles `/api/contact`. For production behavior locally:
 
 ```sh
-railway init --name ghazi-windows-xp
+npm run build
+npm start
 ```
 
-Create the web service with the port used by nginx.conf:
+Open `http://localhost:35000/office`. Vite’s `npm run preview` is a static-only preview and does not provide email delivery.
 
-```sh
-railway add --service portfolio-windows --variables "PORT=35000"
-```
+`npm run check:contact` runs mocked delivery and HTTP/static-server tests without sending any real email. It covers fixed recipients, Reply-To, idempotency, errors, rate limits, request size limits, secret-file blocking, SPA fallback, gzip and byte-range media delivery.
 
-Upload the source and deploy:
+Keep the original ghazi-saoudi.vercel.app online: Internet Explorer and the two project demo recordings still use it.
 
-```sh
-railway up --service portfolio-windows
-```
-
-Railway detects the root Dockerfile automatically. Keep custom build and start commands empty: the Dockerfile runs npm ci, npm run build and Nginx. Wait for the deployment to become active; inspect Build Logs or Deploy Logs in the dashboard if it fails.
-
-Generate the public HTTPS address:
-
-```sh
-railway domain --service portfolio-windows --port 35000
-```
-
-Open the URL printed by Railway. The root URL shows the boot/login sequence; append /office to go directly to the desktop. Check CV page 2/search, project descriptions and images, video playback, music, and refreshing /office.
-
-## Later updates
-
-From the same folder, run:
-
-```sh
-railway up --service portfolio-windows
-```
-
-To inspect runtime logs:
-
-```sh
-railway logs --service portfolio-windows
-```
-
-The CLI method does not configure GitHub automatic deployments. You can later connect a repository through the service's Settings → Source. If deploying through GitHub, keep Dockerfile, nginx.conf, package files, src and public in the repository root; do not upload node_modules or dist. Set PORT=35000 and the public domain's target port to 35000.
-
-## Optional custom domain
-
-In the service's Settings → Networking, choose Custom Domain, enter your domain and set target port 35000. Add the DNS records Railway provides at your domain registrar and wait for verification/HTTPS provisioning.
-
-Keep the original ghazi-saoudi.vercel.app online: the embedded original portfolio and the two on-demand project demo videos still use it.
-
-References: [Dockerfile detection](https://docs.railway.com/services), [CLI deployment](https://docs.railway.com/cli/up), [public domains](https://docs.railway.com/networking/public-networking).
+References: [Resend Send Email](https://resend.com/docs/api-reference/emails/send-email), [default sender restrictions](https://resend.com/docs/knowledge-base/403-error-resend-dev-domain), [Railway public networking](https://docs.railway.com/networking/public-networking/specs-and-limits).

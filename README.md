@@ -16,6 +16,7 @@ npm run check:doom
 npm run check:paint
 npm run check:gift
 npm run check:computer
+npm run check:contact
 npm run build
 npm run preview
 ```
@@ -48,11 +49,11 @@ The PDF reader uses PDF.js's legacy browser build and reads text streams through
 - `public/pdf/Ghazi_Saoudi_CV_EN.pdf`: original, unmodified English CV.
 - `MIGRATION.md`: sources, mappings, discrepancies, and verification results.
 
-The interface supports English and French. Professional prose preserves the published English source. Outlook Express uses the supplied classic compose-window reference: original toolbar icons, recessed To/From/Subject fields, formatting toolbar, full-height editor and status bar, with no attachment field or extra profile footer. Text formatting, clipboard actions, Undo, validation and the shared XP window controls are functional. No credentials or backend are required: Send opens a plain-text draft in the visitor's email application, where actual delivery happens. Clipboard permissions depend on the visitor's browser; keyboard shortcuts remain available.
+The interface supports English and French. Professional prose preserves the published English source. Outlook Express uses the supplied classic compose-window reference: original toolbar icons, recessed To/From/Subject fields, formatting toolbar, full-height editor and status bar, with no attachment field or extra profile footer. Text formatting, clipboard actions, Undo, validation and the shared XP window controls are functional. Send now calls the same-origin `/api/contact` endpoint, which delivers a plain-text email through Resend to Ghazi’s fixed inbox. The visitor’s From address becomes Reply-To. Credentials are server-only environment variables; see `DEPLOYMENT.md`. Successful sending clears the message; failures keep the draft for a safe retry. The compose window keeps its XP styling and adds native-looking sent/error dialogs. Clipboard permissions depend on the visitor's browser; keyboard shortcuts remain available.
 
 Videos are loaded on demand from the original portfolio; copied screenshots, illustrations, photos, badges, and the CV are served locally. Original image captions distinguish illustrations from application screenshots. No tracking is configured.
 
-Serve `dist` with an SPA fallback to `index.html`; the existing Nginx configuration and Dockerfile support that setup. This migration does not publish or replace the existing Vercel portfolio.
+The Dockerfile now runs one Node.js 24 HTTP server for both `dist` and the contact API on `PORT` (35000 by default). It preserves `/office` SPA routes, JavaScript module/WASM MIME types, gzip text responses, caching and byte-range media/PDF requests. `nginx.conf` remains a legacy static-only configuration; using it alone will not provide the email API. This migration does not replace the existing Vercel portfolio.
 
 ## Attribution
 
@@ -63,3 +64,9 @@ Paint is available on the desktop and Start menu with the supplied icon and a cl
 `gift.exe` is a classic XP welcome wizard on the desktop and Start menu, using the supplied gift icon. Visitors enter a name and receive a personalized Certificate of Visit with an issue date, souvenir number, gold seal and Ghazi signature. Save as Image downloads the exact preview as a 2000 × 2240 PNG. The app supports English/French, long Unicode names, Back/Forward navigation, fit/actual-size preview, and shortcuts to My Projects/My CV. It generates the image locally with the bundled handwriting font; recipient names are neither submitted nor persisted. Closing starts a fresh wizard next time.
 
 My Computer is an XP drive explorer: GHAZI_XP (C:) contains profile/document applications and a real-profile README, PROJECTS (D:) opens the existing eight project folders, MEDIA (E:) contains music/pictures and the two recorded demos, and the XP_EXTRAS (F:) CD drive launches the creative/game applications. Shared folders and the original portfolio network location remain functional. Tiles/Details views, selection details, Back/Forward/Up, editable addresses, global portfolio search, Properties dialogs, and a collapsible task pane work within the existing window manager. These are virtual portfolio drives; no real disk capacity or hardware details are fabricated. Copy and drive configuration live in `src/data/computer-data.json`.
+
+## Outlook Express / Resend
+
+For local development, keep `RESEND_API_KEY` and `RESEND_FROM_EMAIL` in the ignored `.env` file; `npm run dev` exposes the API through a server-only Vite middleware. For a built local preview, run `npm run build` then `npm start`. `npm run preview` is Vite’s static preview and does not send mail. Never prefix the key with `VITE_` or put it in `src/`. Docker excludes `.env` files; configure the two variables in Railway before redeploying.
+
+The recipient is fixed to `profile-data.json` and cannot be overridden by the browser. Incoming JSON has size and field limits, cross-site browser submissions are rejected, a honeypot filters basic bots, and in-memory per-IP/global sending limits protect the inbox. Railway’s X-Real-IP is trusted only in a Railway runtime. Limits apply per running instance; use a shared limiter if scaling to multiple replicas. A stable Resend idempotency key accompanies retries so an uncertain timeout does not send the same draft twice within Resend’s retention window. No message contents or credentials are logged. Formatting controls still edit the composer, while the delivered message uses plain text.
