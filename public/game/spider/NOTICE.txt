@@ -1,0 +1,15 @@
+Original Windows XP Spider Solitaire artwork and sounds
+
+Source: https://github.com/esc0rtd3w/xp-cards
+Revision: 33a6d492ffa63f0b16b1ad982930c16d367f6bbb
+Resources: spider.exe (read statically, never executed)
+Copyright 1998-2000 Microsoft Corporation. All rights reserved.
+
+The source repository describes its files as archival and provides no
+open-source license. These resources are not covered by this portfolio's
+MIT license. No Windows executables are hosted by this portfolio.
+
+PNGs are lossless decodings of the original bitmap/icon resources.
+WAV files are copied unchanged. sources.json records individual hashes.
+The browser gameplay code is a separate implementation.
+Reproduce with scripts/extract-xp-spider.py and Python with Pillow.

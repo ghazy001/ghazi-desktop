@@ -45,8 +45,8 @@
         <div class="absolute bottom-0 h-12 w-full">
           <div class="header-bot-background h-full flex justify-end items-center">
             <div class="flex h-5/6 gap-3 mr-2">
-              <HeaderDisconnect @click="turnOffHeader" class="cursor-pointer" />
-              <HeaderShutdown @click="shutdown" class="cursor-pointer" />
+              <HeaderDisconnect @select="requestPower('logoff')" class="cursor-pointer" />
+              <HeaderShutdown @select="requestPower('shutdown')" class="cursor-pointer" />
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
 <script setup>
 import profile from '@/data/profile-data.json'
 import { ref, watchEffect } from 'vue'
-import { useVolumeStore } from '@/stores/volumeStore.js'
+import { useConnectionStore } from '@/stores/connectionStore'
 import { useLocaleStore } from '@/stores/localeStore'
 
 import ProfilePicture from '@/components/ProfilePicture.vue'
@@ -68,7 +68,7 @@ import HeaderShutdown from '@/components/Buttons/HeaderShutdown.vue'
 import HeaderDisconnect from '@/components/Buttons/HeaderDisconnect.vue'
 
 const emit = defineEmits()
-const volumeStore = useVolumeStore()
+const session = useConnectionStore()
 const localeStore = useLocaleStore()
 
 const props = defineProps({
@@ -94,9 +94,9 @@ const toggleWindow = (buttonName) => {
   emit('open-window', buttonName)
 }
 
-const shutdown = () => {
-  volumeStore.playAudio(['/sounds/shutdown-windows.mp3'])
-  volumeStore.unmuteAudio()
+function requestPower(kind) {
+  session.requestPower(kind)
+  turnOffHeader()
 }
 
 const getLocalizedTitle = (entity) => {

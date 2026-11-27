@@ -1,0 +1,28 @@
+{
+  "en": {
+    "newGame": "New Game",
+    "restart": "Restart This Game",
+    "undo": "Undo",
+    "hint": "Hint",
+    "deal": "Deal",
+    "help": "How to Play",
+    "options": "Options…",
+    "about": "About Spider…",
+    "difficulty": "Difficulty…",
+    "large": "Larger cards in narrow windows",
+    "sound": "Use sound effects"
+  },
+  "fr": {
+    "newGame": "Nouvelle partie",
+    "restart": "Recommencer",
+    "undo": "Annuler",
+    "hint": "Indice",
+    "deal": "Distribuer",
+    "help": "Comment jouer",
+    "options": "Options…",
+    "about": "À propos de Spider…",
+    "difficulty": "Difficulté…",
+    "large": "Grandes cartes dans les fenêtres étroites",
+    "sound": "Utiliser les effets sonores"
+  }
+}

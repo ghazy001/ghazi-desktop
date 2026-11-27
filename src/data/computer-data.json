@@ -1,4 +1,14 @@
 {
+  "driveIcons": {
+    "system": "/img/icons/drives/local-disk-c.ico",
+    "projects": "/img/icons/drives/local-disk-d.ico",
+    "media": "/img/icons/drives/green-drive.ico",
+    "disc": "/img/icons/drives/optical-drive.ico",
+    "blue": "/img/icons/drives/blue-drive.ico",
+    "network": "/img/icons/drives/network-drive.ico",
+    "disconnected": "/img/icons/drives/disconnected-network-drive.ico",
+    "missing": "/img/icons/drives/missing-drive.ico"
+  },
   "drives": [
     {
       "id": "C:",
@@ -19,7 +29,7 @@
       "id": "F:",
       "label": "XP_EXTRAS",
       "icon": "disc",
-      "apps": ["paint", "gift", "doom", "minesweeper", "notepad", "terminal"],
+      "apps": ["paint", "gift", "doom", "spider", "minesweeper", "notepad", "terminal"],
       "description": { "en": "Games, creative tools & surprises", "fr": "Jeux, outils créatifs et surprises" }
     }
   ],

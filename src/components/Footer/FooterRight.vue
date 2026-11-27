@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import { useVolumeStore } from '@/stores/volumeStore'
-import { useI18n } from 'vue-i18n'
+import { useLocaleStore } from '@/stores/localeStore'
 import CurrentTime from './CurrentTime.vue'
 import NotificationModal from '@/components/Modals/NotificationModal.vue'
 import MusicVolumeModal from '@/components/Modals/MusicVolumeModal.vue'
@@ -9,7 +9,7 @@ import LanguageModal from '@/components/Modals/LanguageModal.vue'
 
 const volumeStore = useVolumeStore()
 const volume = computed(() => volumeStore.volume)
-const { locale } = useI18n()
+const localeStore = useLocaleStore()
 
 const localeNames = {
   en: 'EN',
@@ -22,7 +22,10 @@ const originalTitle = ref('Mode plein écran')
 const isVolumeSettingsDisplayed = ref(false)
 const isLanguageSettingsDisplayed = ref(false)
 const musicModalRef = ref(null)
-const currentLocale = computed(() => locale.value)
+const languageRoot = ref(null)
+const languageButton = ref(null)
+const volumeButton = ref(null)
+const currentLocale = computed(() => localeStore.currentLocale)
 
 const enterFullScreen = () => {
   if (isFullScreen.value) {
@@ -53,19 +56,34 @@ const toggleMusicModal = () => {
   }
 }
 
-const handleClickOutside = (event) => {
+function closeLanguage(restoreFocus = false) {
+  isLanguageSettingsDisplayed.value = false
+  if (restoreFocus) nextTick(() => languageButton.value?.focus())
+}
+function selectLanguage(language) {
+  localeStore.setLocale(language)
+  closeLanguage(true)
+}
+function handleOutside(event) {
   const { target } = event
-  if (musicModalRef.value && !musicModalRef.value.$el.contains(target)) {
-    isVolumeSettingsDisplayed.value = false
+  if (!languageRoot.value?.contains(target)) closeLanguage()
+  if (event.type === 'pointerdown' && !musicModalRef.value?.$el.contains(target) && !volumeButton.value?.contains(target)) isVolumeSettingsDisplayed.value = false
+}
+function handleEscape(event) {
+  if (event.key === 'Escape' && isLanguageSettingsDisplayed.value) {
+    event.preventDefault()
+    closeLanguage(true)
   }
 }
-
 onMounted(() => {
-  document.body.addEventListener('click', handleClickOutside)
+  document.addEventListener('pointerdown', handleOutside)
+  document.addEventListener('focusin', handleOutside)
+  document.addEventListener('keydown', handleEscape)
 })
-
 onUnmounted(() => {
-  document.body.removeEventListener('click', handleClickOutside)
+  document.removeEventListener('pointerdown', handleOutside)
+  document.removeEventListener('focusin', handleOutside)
+  document.removeEventListener('keydown', handleEscape)
 })
 
 const volumeIconSrc = computed(() => {
@@ -74,10 +92,16 @@ const volumeIconSrc = computed(() => {
 
 // Function to toggle the language modal
 const toggleLanguageModal = () => {
-  isLanguageSettingsDisplayed.value = !isLanguageSettingsDisplayed.value
+  if (isLanguageSettingsDisplayed.value) closeLanguage()
+  else openLanguage()
   if (isLanguageSettingsDisplayed.value) {
     isVolumeSettingsDisplayed.value = false
   }
+}
+
+function openLanguage() {
+  isLanguageSettingsDisplayed.value = true
+  isVolumeSettingsDisplayed.value = false
 }
 
 const flagSrc = computed(() => {
@@ -86,24 +110,64 @@ const flagSrc = computed(() => {
 </script>
 
 <template>
-  <div class="absolute right-0 text-white h-full flex items-center px-1.5 sm:px-3 gap-0.5 bg-footer-right-component footer-left-shadow select-none">
-    <div class="flex flex-row items-center justify-center gap-px">
-      <button @click="toggleLanguageModal" aria-label="Language" class="flex items-center">
+  <div class="relative shrink-0 text-white h-full flex items-center px-1.5 sm:px-3 gap-0.5 bg-footer-right-component footer-left-shadow select-none">
+    <div ref="languageRoot" class="relative h-full flex items-center">
+      <button
+        ref="languageButton"
+        @click="toggleLanguageModal"
+        @keydown.down.prevent="openLanguage"
+        @keydown.up.prevent="openLanguage"
+        aria-label="Language"
+        :title="`${$t('common.language')}: ${localeNames[currentLocale]}`"
+        :aria-expanded="isLanguageSettingsDisplayed"
+        aria-haspopup="menu"
+        aria-controls="taskbar-languages"
+        class="taskbar-language-toggle"
+      >
         <img
           class="w-4 h-3 cursor-pointer"
           :src="flagSrc"
           :alt="$t('alt.currLang') + ' ' + localeNames[currentLocale]"
           :title="$t('alt.currLang') + ' ' + localeNames[currentLocale]"
         />
+        <span aria-hidden="true">{{ localeNames[currentLocale] }}</span>
       </button>
+      <LanguageModal v-if="isLanguageSettingsDisplayed" :currentLocale="currentLocale" @select="selectLanguage" @close="closeLanguage(true)" />
     </div>
     <button @click="enterFullScreen" aria-label="Full screen">
       <img class="w-4 h-4 cursor-pointer" src="/img/icons/full-screen-icon-sm.webp" alt="" :title="originalTitle" />
     </button>
-    <button @click.stop="toggleMusicModal" aria-label="Volume"><img class="w-4 h-4 mt-px cursor-pointer" :src="volumeIconSrc" alt="" title="Volume" /></button>
+    <button ref="volumeButton" @click.stop="toggleMusicModal" aria-label="Volume">
+      <img class="w-4 h-4 mt-px cursor-pointer" :src="volumeIconSrc" alt="" title="Volume" />
+    </button>
     <MusicVolumeModal v-if="isVolumeSettingsDisplayed" ref="musicModalRef" />
-    <LanguageModal v-if="isLanguageSettingsDisplayed" :currentLocale="currentLocale" />
     <NotificationModal class="md:block z-fmax" />
     <CurrentTime />
   </div>
 </template>
+
+<style scoped>
+.taskbar-language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 5px;
+  border: 1px solid transparent;
+  color: white;
+  font:
+    11px Tahoma,
+    Arial,
+    sans-serif;
+}
+.taskbar-language-toggle:hover,
+.taskbar-language-toggle[aria-expanded='true'] {
+  border-color: #6bc1ef;
+  background: #147ac1;
+  box-shadow: inset 1px 1px #0865a6;
+}
+.taskbar-language-toggle:focus-visible {
+  outline: 1px dotted white;
+  outline-offset: -3px;
+}
+</style>

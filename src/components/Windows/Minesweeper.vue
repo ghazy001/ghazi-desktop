@@ -57,6 +57,8 @@
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { useConnectionStore } from '@/stores/connectionStore'
+const session = useConnectionStore()
 
 let timer = ref(0)
 const rows = 9
@@ -295,6 +297,7 @@ const numberConverter = (num) => {
 }
 const startTimer = () => {
   timerInterval = setInterval(() => {
+    if (!session.desktopActive) return
     if (timer.value < 999) {
       timer.value++
     } else {

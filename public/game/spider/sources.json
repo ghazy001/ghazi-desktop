@@ -1,0 +1,639 @@
+{
+  "source": "https://github.com/esc0rtd3w/xp-cards",
+  "revision": "33a6d492ffa63f0b16b1ad982930c16d367f6bbb",
+  "binary": "spider.exe",
+  "binarySha256": "d309a839843ccd8b9edef7a271a611eb7794f83a825b69a87cc259c9ede87288",
+  "cardSize": [
+    71,
+    96
+  ],
+  "suitOrder": [
+    "clubs",
+    "diamonds",
+    "hearts",
+    "spades"
+  ],
+  "records": [
+    {
+      "file": "card-1.png",
+      "resource": [
+        2,
+        "CARD1",
+        1033
+      ],
+      "sha256": "e82d60febf9843029ca764748e44982ed8a96b3cc2ae725c3f337b26a1e42fb2",
+      "bytes": 493
+    },
+    {
+      "file": "card-2.png",
+      "resource": [
+        2,
+        "CARD2",
+        1033
+      ],
+      "sha256": "66a6894572b0ee6c3b4ff49b11ab428cdf2e5a8c2bf53c7ebee35106287762e3",
+      "bytes": 536
+    },
+    {
+      "file": "card-3.png",
+      "resource": [
+        2,
+        "CARD3",
+        1033
+      ],
+      "sha256": "80516613b6ab2fe36fc95f8f6b936e1320f808bdb76b1601e0f584d295350263",
+      "bytes": 581
+    },
+    {
+      "file": "card-4.png",
+      "resource": [
+        2,
+        "CARD4",
+        1033
+      ],
+      "sha256": "281bd546cd03ac1272ce7355abc92523b2ee25baae47cf8b5f22e63a4d554f31",
+      "bytes": 568
+    },
+    {
+      "file": "card-5.png",
+      "resource": [
+        2,
+        "CARD5",
+        1033
+      ],
+      "sha256": "3f42ef648824e88337af49f5e493ee199c3e848e8170e08ba4c4996909e167c6",
+      "bytes": 621
+    },
+    {
+      "file": "card-6.png",
+      "resource": [
+        2,
+        "CARD6",
+        1033
+      ],
+      "sha256": "760ecb3723066781cc4f92cf0f4ee6b0523a4f25488686b84e5b7cdbbc54a2df",
+      "bytes": 591
+    },
+    {
+      "file": "card-7.png",
+      "resource": [
+        2,
+        "CARD7",
+        1033
+      ],
+      "sha256": "574a118faaf5fe9982fc1254e71e6a51e59528b6e52f9b2d02dd40a70e0c30b6",
+      "bytes": 627
+    },
+    {
+      "file": "card-8.png",
+      "resource": [
+        2,
+        "CARD8",
+        1033
+      ],
+      "sha256": "97f1ee1852eab8e3d16f2c0e924b32fd17e5373d8d043225053bc4932f0af81e",
+      "bytes": 639
+    },
+    {
+      "file": "card-9.png",
+      "resource": [
+        2,
+        "CARD9",
+        1033
+      ],
+      "sha256": "afa0ffe4e2c0d44f9457d7d7db5b7a7d440db8f6c9bb0a28f066301751c6cc08",
+      "bytes": 692
+    },
+    {
+      "file": "card-10.png",
+      "resource": [
+        2,
+        "CARD10",
+        1033
+      ],
+      "sha256": "74e0085803c7068b4f242c8db90c67c0aec129b5e7e385db0e6237762ce0626a",
+      "bytes": 722
+    },
+    {
+      "file": "card-11.png",
+      "resource": [
+        2,
+        "CARD11",
+        1033
+      ],
+      "sha256": "a889816d96c0bfc9929b5406ba7c2bfa3c1f2feb876d98ac6fe855a6d5151884",
+      "bytes": 1649
+    },
+    {
+      "file": "card-12.png",
+      "resource": [
+        2,
+        "CARD12",
+        1033
+      ],
+      "sha256": "75d9d13d24c7f62fc47ae982c7ba046a217e8d702bca593519a7e5ae6e1610af",
+      "bytes": 1871
+    },
+    {
+      "file": "card-13.png",
+      "resource": [
+        2,
+        "CARD13",
+        1033
+      ],
+      "sha256": "e3094c82a2292174baecfd4f1ff7ba6fab19913613efb135d456dba33259c4cc",
+      "bytes": 1553
+    },
+    {
+      "file": "card-14.png",
+      "resource": [
+        2,
+        "CARD14",
+        1033
+      ],
+      "sha256": "9915aa44fd7634938dd893acc31f0143362563e21b5c37a0d49c63d38545c185",
+      "bytes": 477
+    },
+    {
+      "file": "card-15.png",
+      "resource": [
+        2,
+        "CARD15",
+        1033
+      ],
+      "sha256": "3107193d79ee2633e081f109c66930fdc54e5bf0b825015270d18194579625b3",
+      "bytes": 492
+    },
+    {
+      "file": "card-16.png",
+      "resource": [
+        2,
+        "CARD16",
+        1033
+      ],
+      "sha256": "57681621617a027995cab66dbc52790b0ce298fda53e7cbfa83d7d28edb0cf10",
+      "bytes": 532
+    },
+    {
+      "file": "card-17.png",
+      "resource": [
+        2,
+        "CARD17",
+        1033
+      ],
+      "sha256": "8808ef028924f65a56ed446505d583ed3833904b325e1fdd0e56bb9fc1d0ba44",
+      "bytes": 534
+    },
+    {
+      "file": "card-18.png",
+      "resource": [
+        2,
+        "CARD18",
+        1033
+      ],
+      "sha256": "5a04d7d8f7c933b3c6ce87454cbf313995da820d84ab4a8b7ee5442eed3b7bbf",
+      "bytes": 599
+    },
+    {
+      "file": "card-19.png",
+      "resource": [
+        2,
+        "CARD19",
+        1033
+      ],
+      "sha256": "c75fd2893d9178b815152cc4169fba00fb7a6b838eaef3340a2a0b23be70537b",
+      "bytes": 538
+    },
+    {
+      "file": "card-20.png",
+      "resource": [
+        2,
+        "CARD20",
+        1033
+      ],
+      "sha256": "7e4fa4a431215277cde5e012f52726c5bd172875c7deb7af93f1f4c81e3bd51e",
+      "bytes": 566
+    },
+    {
+      "file": "card-21.png",
+      "resource": [
+        2,
+        "CARD21",
+        1033
+      ],
+      "sha256": "81d20ccc584e078d1d032d258c39bd05f441b4c13882da4272c6c2b668c06f26",
+      "bytes": 642
+    },
+    {
+      "file": "card-22.png",
+      "resource": [
+        2,
+        "CARD22",
+        1033
+      ],
+      "sha256": "999ee6fda43bb27c4b6bf9408d320b909e3ccf1b97ae123280d284114b24f924",
+      "bytes": 630
+    },
+    {
+      "file": "card-23.png",
+      "resource": [
+        2,
+        "CARD23",
+        1033
+      ],
+      "sha256": "32640c92a5fda01875a41f5d3a61e3198a3d65597a4f705b7734571aa5c633c9",
+      "bytes": 646
+    },
+    {
+      "file": "card-24.png",
+      "resource": [
+        2,
+        "CARD24",
+        1033
+      ],
+      "sha256": "bb009f835a86938b6c0c0cc489447de1c7f120fa97407da3e4790763b6ab0f28",
+      "bytes": 1518
+    },
+    {
+      "file": "card-25.png",
+      "resource": [
+        2,
+        "CARD25",
+        1033
+      ],
+      "sha256": "9fe3087c1ef0b0bb70683830c2134972b3f9018f70d8da81f56d5e700c334dd0",
+      "bytes": 1750
+    },
+    {
+      "file": "card-26.png",
+      "resource": [
+        2,
+        "CARD26",
+        1033
+      ],
+      "sha256": "3674f51c2a4933fdeeb1233cc8d2177a84055e4f8235dfce7cf1e32160326efc",
+      "bytes": 1708
+    },
+    {
+      "file": "card-27.png",
+      "resource": [
+        2,
+        "CARD27",
+        1033
+      ],
+      "sha256": "a166f1c75b070c8a651ae7cc7fe691cb7397fb9fb2ed386cbd42a31321f07c89",
+      "bytes": 483
+    },
+    {
+      "file": "card-28.png",
+      "resource": [
+        2,
+        "CARD28",
+        1033
+      ],
+      "sha256": "52354ad4ee6ffc925046ae54c46108db97ee6898cb40ac45685563d54c0646df",
+      "bytes": 504
+    },
+    {
+      "file": "card-29.png",
+      "resource": [
+        2,
+        "CARD29",
+        1033
+      ],
+      "sha256": "ab19cdb616d6f85e75460f8266726b3f2158c9ea7b6721dd6367dc194a9029eb",
+      "bytes": 557
+    },
+    {
+      "file": "card-30.png",
+      "resource": [
+        2,
+        "CARD30",
+        1033
+      ],
+      "sha256": "7d825686558cedd5070f7a4714e966f3a4d4d58d40fb005aa361bdb2b48c45ca",
+      "bytes": 546
+    },
+    {
+      "file": "card-31.png",
+      "resource": [
+        2,
+        "CARD31",
+        1033
+      ],
+      "sha256": "a5e17dfedc69914903bb44bdaf38255ae259bd33d4cb5decff3ef0f38eb61d37",
+      "bytes": 593
+    },
+    {
+      "file": "card-32.png",
+      "resource": [
+        2,
+        "CARD32",
+        1033
+      ],
+      "sha256": "3c02a0e7c22cbdddf0612392ff94690eed44d002253fc4e680fae35dec9f0300",
+      "bytes": 565
+    },
+    {
+      "file": "card-33.png",
+      "resource": [
+        2,
+        "CARD33",
+        1033
+      ],
+      "sha256": "1d18d1366ff635546a2b5e3b716825756aacc65801b03e9814eb26827927de41",
+      "bytes": 604
+    },
+    {
+      "file": "card-34.png",
+      "resource": [
+        2,
+        "CARD34",
+        1033
+      ],
+      "sha256": "663ad41a185bdf58b443f7e3d6e5b808e693f53b3dfb14c1846d6ede777cd666",
+      "bytes": 603
+    },
+    {
+      "file": "card-35.png",
+      "resource": [
+        2,
+        "CARD35",
+        1033
+      ],
+      "sha256": "73e829c12bb2fe664126e7a66367404e1efe34aec96dec5251383fd8958f01a3",
+      "bytes": 669
+    },
+    {
+      "file": "card-36.png",
+      "resource": [
+        2,
+        "CARD36",
+        1033
+      ],
+      "sha256": "e6aeb4ab1cab891d28a01e2068bea1a46ca6dbffec1ecd66431c9a766c9997d6",
+      "bytes": 694
+    },
+    {
+      "file": "card-37.png",
+      "resource": [
+        2,
+        "CARD37",
+        1033
+      ],
+      "sha256": "1aa13f23249ab8251ad8be9a745f050827560a4e71eb9b191f3b4f27dd93b19b",
+      "bytes": 1698
+    },
+    {
+      "file": "card-38.png",
+      "resource": [
+        2,
+        "CARD38",
+        1033
+      ],
+      "sha256": "7d170a932b4c4362409ed124f7208cf2264fd005f16e6359ec0730dadd964795",
+      "bytes": 1755
+    },
+    {
+      "file": "card-39.png",
+      "resource": [
+        2,
+        "CARD39",
+        1033
+      ],
+      "sha256": "ab30e7d94a6d1da5aa66b01677e170d3bd3d5cb9114d1549ba7b404be163abab",
+      "bytes": 1798
+    },
+    {
+      "file": "card-40.png",
+      "resource": [
+        2,
+        "CARD40",
+        1033
+      ],
+      "sha256": "d5da50af4398d465f86dbd867587f53371bdd03f9f42101e743939e8f107647e",
+      "bytes": 738
+    },
+    {
+      "file": "card-41.png",
+      "resource": [
+        2,
+        "CARD41",
+        1033
+      ],
+      "sha256": "c1f15ecf647682b7a7225bfd69215747fdf09b6fce1d345cc29292f551eabdb6",
+      "bytes": 532
+    },
+    {
+      "file": "card-42.png",
+      "resource": [
+        2,
+        "CARD42",
+        1033
+      ],
+      "sha256": "e847086da81c22c64c7c91fa31f095f77cf960fb67fc355943946900341f04a1",
+      "bytes": 593
+    },
+    {
+      "file": "card-43.png",
+      "resource": [
+        2,
+        "CARD43",
+        1033
+      ],
+      "sha256": "30ee852201be3504c2c3342c10603b8386b1236b96c3842f2b2e1eec8f754d2c",
+      "bytes": 590
+    },
+    {
+      "file": "card-44.png",
+      "resource": [
+        2,
+        "CARD44",
+        1033
+      ],
+      "sha256": "ccdc599277ba43d349b0cc7d88cdf1590eab4719037aee7b332ef20989bd14e3",
+      "bytes": 647
+    },
+    {
+      "file": "card-45.png",
+      "resource": [
+        2,
+        "CARD45",
+        1033
+      ],
+      "sha256": "847f54e953f17f70439d0b54bbfd09b24be307d5056a38d824dcb84fc8d6722f",
+      "bytes": 625
+    },
+    {
+      "file": "card-46.png",
+      "resource": [
+        2,
+        "CARD46",
+        1033
+      ],
+      "sha256": "3e859669062c903df5f8070eafde0c2fa6cd9e45e896e5b6569fa0d4c164e3a3",
+      "bytes": 652
+    },
+    {
+      "file": "card-47.png",
+      "resource": [
+        2,
+        "CARD47",
+        1033
+      ],
+      "sha256": "387fb485d354b008a84f75bfe7c2b6ccd49053d13ec73d3f147023a731d20ef1",
+      "bytes": 664
+    },
+    {
+      "file": "card-48.png",
+      "resource": [
+        2,
+        "CARD48",
+        1033
+      ],
+      "sha256": "d7911dc8276f270dda565b34b7a7518042c01cdea48304f6cb981230fd701bf3",
+      "bytes": 707
+    },
+    {
+      "file": "card-49.png",
+      "resource": [
+        2,
+        "CARD49",
+        1033
+      ],
+      "sha256": "66c65c1061bf5ec208587f8c94123d9cad7367b41d1fac44a674b64737b59917",
+      "bytes": 760
+    },
+    {
+      "file": "card-50.png",
+      "resource": [
+        2,
+        "CARD50",
+        1033
+      ],
+      "sha256": "e8ef1a23d9f5d4445e43626b0d6cac63f52e2a813156faae19fbf8417f70a8f2",
+      "bytes": 1572
+    },
+    {
+      "file": "card-51.png",
+      "resource": [
+        2,
+        "CARD51",
+        1033
+      ],
+      "sha256": "7c1a5d081f8054d136f5426ec4b12b8a84afe75c46d3f60deb4c1e6b74e92524",
+      "bytes": 1719
+    },
+    {
+      "file": "card-52.png",
+      "resource": [
+        2,
+        "CARD52",
+        1033
+      ],
+      "sha256": "cd879b6d41bbaa397f35a81f3bbda4108e50036b26060fb3db0fba5a01e9f0c7",
+      "bytes": 1536
+    },
+    {
+      "file": "back.png",
+      "resource": [
+        2,
+        "CARDBACK",
+        1033
+      ],
+      "sha256": "db360f6cbecf7709a407a1d544eb366629adad1f3681adbf49f6dfa2fdb5ede1",
+      "bytes": 8939
+    },
+    {
+      "file": "felt.png",
+      "resource": [
+        2,
+        "FELT",
+        1033
+      ],
+      "sha256": "3201617c3b817e39f3337e558c142ac68227a04623197c3cece01b72eae782cc",
+      "bytes": 2276
+    },
+    {
+      "file": "about.png",
+      "resource": [
+        2,
+        106,
+        1033
+      ],
+      "sha256": "0713f302cbf8296af5d380a83b115fd32cd41ae9659a91668754c4bca32897ee",
+      "bytes": 47891
+    },
+    {
+      "file": "icon.png",
+      "resource": [
+        14,
+        103,
+        1033
+      ],
+      "sha256": "202919dc441f1f6475deba8d3dca4e84d25562d03713bbfb12a7d71d5486e955",
+      "bytes": 3283
+    },
+    {
+      "file": "sound-124.wav",
+      "resource": [
+        "WAVE",
+        124,
+        1033
+      ],
+      "sha256": "43c87d11954346b02fadfcfa0103d3ecfb6f9be21816ed0aff0c4c7138808419",
+      "bytes": 5004
+    },
+    {
+      "file": "sound-125.wav",
+      "resource": [
+        "WAVE",
+        125,
+        1033
+      ],
+      "sha256": "537575cf00806e0712eb271e0fe6f33b090186878661edec9e7f3535132e5e06",
+      "bytes": 3346
+    },
+    {
+      "file": "sound-126.wav",
+      "resource": [
+        "WAVE",
+        126,
+        1033
+      ],
+      "sha256": "6be415fc39e7d77bebe7228dc4e97a4447d79c41b7b994367d3cba2485ccc72e",
+      "bytes": 43058
+    },
+    {
+      "file": "sound-127.wav",
+      "resource": [
+        "WAVE",
+        127,
+        1033
+      ],
+      "sha256": "1d307efbfac101b7d11d37c9c9c0e9e26b514cacda3489c95ee8b1018ac1cfac",
+      "bytes": 7754
+    },
+    {
+      "file": "sound-128.wav",
+      "resource": [
+        "WAVE",
+        128,
+        1033
+      ],
+      "sha256": "564985bb6f083969752c99b66b0fc752b56ff3c8a82fa88cf291aca5e7ba2539",
+      "bytes": 2578
+    },
+    {
+      "file": "sound-129.wav",
+      "resource": [
+        "WAVE",
+        129,
+        1033
+      ],
+      "sha256": "18bc62150edbb6bc61908d59222f44729fa60292f4ace7c615a6667ce6bdf676",
+      "bytes": 171100
+    }
+  ],
+  "notice": "Original Microsoft Windows XP resources from the owner-selected archival repository. The repository supplies no open-source license. No Windows executable is served or executed by this website."
+}

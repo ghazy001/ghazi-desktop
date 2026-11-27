@@ -1,8 +1,10 @@
 <script setup>
 import { computed, ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { useConnectionStore } from '@/stores/connectionStore'
 import projects from '@/data/projects-data.json'
 import { projectFiles } from '@/lib/project-files.mjs'
 import PictureIcon from './PictureIcon.vue'
+const session = useConnectionStore()
 const props = defineProps({ file: Object })
 const emit = defineEmits(['caption-change'])
 const fallback = projectFiles(projects.categories[0].projects[0]).find((file) => file.kind === 'image')
@@ -74,6 +76,15 @@ const toggleSlide = () => {
   clearInterval(timer)
   if (playing.value) timer = setInterval(() => choose(index.value + 1), 4000)
 }
+watch(
+  () => session.powerPhase === 'running',
+  (active) => {
+    if (!active) {
+      playing.value = false
+      clearInterval(timer)
+    }
+  }
+)
 const print = () => {
   const win = window.open(image.value.src, '_blank', 'noopener,noreferrer')
   if (win) win.focus()

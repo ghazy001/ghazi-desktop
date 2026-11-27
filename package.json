@@ -22,7 +22,9 @@
     "check:computer": "node scripts/verify-computer.mjs",
     "start": "node --env-file-if-exists=.env server/index.mjs",
     "check:contact": "node --test tests/contact.test.mjs tests/server.test.mjs",
-    "check:documents": "node scripts/verify-documents.mjs"
+    "check:documents": "node scripts/verify-documents.mjs",
+    "check:spider": "node scripts/verify-spider.mjs",
+    "check:session": "node scripts/verify-session.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

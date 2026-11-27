@@ -106,7 +106,7 @@ export function computerCatalog({ config, profile, projects, playlist, apps }, l
     {
       id: 'network-portfolio',
       name: copy.portfolio,
-      icon: '/img/icons/side-menu/networking-icon.webp',
+      icon: config.driveIcons.network,
       type: copy.networkType,
       description: profile.website,
       app: 'internet',

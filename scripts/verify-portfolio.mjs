@@ -11,6 +11,7 @@ assert.equal(projects.length, 8)
 assert.equal(profile.experience.length, 4)
 assert.equal(profile.education.length, 2)
 assert.equal(profile.certifications.length, 7)
+assert.ok(ids.has('spider'))
 assert.equal(ids.size, windows.length)
 for (const w of windows) {
   for (const key of ['imgSrc', 'iconSrc']) assert.ok(existsSync(new URL(`../public${w[key]}`, import.meta.url)), `${w.id}: ${key}`)

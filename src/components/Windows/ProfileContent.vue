@@ -3,8 +3,6 @@ import { computed, inject } from 'vue'
 import { useLocaleStore } from '@/stores/localeStore'
 import profile from '@/data/profile-data.json'
 import windows from '@/data/windows-data.json'
-import EducationItem from './MyCV/EducationItem.vue'
-import WorkExperienceItem from './MyCV/WorkExperienceItem.vue'
 import WindowLeftMenu from './WindowLeftMenu.vue'
 const props = defineProps({ mode: { type: String, default: 'overview' }, leftMenuType: String })
 const openWindow = inject('openWindow')
@@ -55,24 +53,6 @@ const skillGroups = computed(() =>
               : 'Double-click a desktop icon to open an application. On mobile, tap once.'
           }}
         </p>
-      </template>
-      <template v-else-if="mode === 'about'">
-        <h1>{{ profile.name }}</h1>
-        <p>{{ profile.specialization }}</p>
-        <p>{{ profile.location }}</p>
-        <p v-for="paragraph in profile.bio" :key="paragraph">{{ paragraph }}</p>
-        <h2>{{ $t('windows.cv.education') }}</h2>
-        <EducationItem v-for="item in profile.education" :key="item.degree" :education="item" />
-        <h2>{{ $t('windows.cv.proExperience') }}</h2>
-        <WorkExperienceItem v-for="item in profile.experience" :key="item.company" :workExperience="item" />
-        <h2>Focus</h2>
-        <p>{{ profile.focus }}</p>
-        <h2>{{ locale.currentLocale === 'fr' ? 'Langues' : 'Languages' }}</h2>
-        <ul>
-          <li v-for="language in profile.languages" :key="language.name">{{ language.name }} — {{ language.level }}</li>
-        </ul>
-        <h2>{{ locale.currentLocale === 'fr' ? 'Qualités professionnelles' : 'Professional strengths' }}</h2>
-        <p>{{ profile.softSkills.join(' · ') }}</p>
       </template>
       <template v-else-if="mode === 'skills'">
         <h1>{{ locale.currentLocale === 'fr' ? 'Compétences techniques' : 'Technical skills' }}</h1>

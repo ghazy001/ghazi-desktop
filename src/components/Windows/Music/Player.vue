@@ -1,8 +1,10 @@
 <script setup>
-import { computed, inject, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, inject, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useVolumeStore } from '@/stores/volumeStore'
+import { useConnectionStore } from '@/stores/connectionStore'
 import { useLocaleStore } from '@/stores/localeStore'
 import MediaIcon from './MediaIcon.vue'
+const session = useConnectionStore()
 const props = defineProps({ playlist: { type: Array, required: true } })
 const emit = defineEmits(['track-change', 'show-library', 'toggle-playlist'])
 const maximize = inject('toggleWindowMaximize', () => {})
@@ -23,6 +25,7 @@ const french = computed(() => locale.currentLocale === 'fr')
 const formatTime = (value) => `${String(Math.floor(value / 60)).padStart(2, '0')}:${String(Math.floor(value % 60)).padStart(2, '0')}`
 let request = 0
 const play = async () => {
+  if (session.powerPhase !== 'running') return
   const activeRequest = ++request
   try {
     error.value = ''
@@ -90,6 +93,15 @@ const handleCommand = (event) => {
   if (event.detail === 'repeat') repeat.value = !repeat.value
   if (event.detail === 'mute') toggleMute()
 }
+watch(
+  () => session.powerPhase === 'running',
+  (active) => {
+    if (!active) {
+      request++
+      audio.value?.pause()
+    }
+  }
+)
 onMounted(() => window.addEventListener('music-playback', handleCommand))
 onBeforeUnmount(() => {
   request++

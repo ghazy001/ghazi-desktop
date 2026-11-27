@@ -55,6 +55,10 @@
     "computer": {
       "en": ["File", "Edit", "View", "Favorites", "Tools", "Help"],
       "fr": ["Fichier", "Édition", "Affichage", "Favoris", "Outils", "Aide"]
+    },
+    "spider": {
+      "en": ["Game", "Deal!", "Help"],
+      "fr": ["Jeu", "Distribuer !", "Aide"]
     }
   }
 }

@@ -1,0 +1,488 @@
+.xp-about {
+  height: calc(100% - 48px);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  container-type: inline-size;
+  background: #ece9d8;
+  color: #1a1a1a;
+  font:
+    13px Tahoma,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+  user-select: text;
+}
+.about-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 20px;
+  background: linear-gradient(100deg, #fff 45%, #e6edf9);
+  border-bottom: 1px solid #aca899;
+  flex-shrink: 0;
+}
+.about-banner h1 {
+  font:
+    bold 20px 'Trebuchet MS',
+    Tahoma,
+    sans-serif;
+  color: #123f89;
+}
+.about-banner p {
+  font-size: 12px;
+  color: #53637d;
+  margin-top: 2px;
+}
+.about-banner > img {
+  object-fit: contain;
+}
+.about-banner .about-windows-logo {
+  margin-left: auto;
+}
+.about-sheet {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 14px 15px 0;
+}
+.about-tabs {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  padding-left: 3px;
+  flex-shrink: 0;
+}
+.about-tabs button {
+  padding: 5px 14px;
+  border: 1px solid #919b9c;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(#fff, #ece9d8);
+  position: relative;
+  font-size: 12px;
+  color: #111;
+  white-space: nowrap;
+}
+.about-tabs button[aria-selected='true'] {
+  background: #fff;
+  padding-top: 7px;
+  margin-bottom: -1px;
+  border-top: 3px solid #e8a746;
+  z-index: 1;
+}
+.about-tabs button:hover {
+  border-top-color: #e8a746;
+}
+.xp-about button:focus-visible,
+.about-job summary:focus-visible {
+  outline: 1px dotted #111;
+  outline-offset: -4px;
+}
+.about-panel {
+  border: 1px solid #919b9c;
+  box-shadow: 1px 1px 0 white;
+  background: #fff;
+  padding: 22px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+.about-panel:focus-visible {
+  outline: 1px dotted #7b93b9;
+  outline-offset: -4px;
+}
+.about-identity {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d4dce8;
+}
+.about-photo {
+  flex-shrink: 0;
+  padding: 4px;
+  margin: 0;
+  background: white;
+  border: 1px solid #aaa;
+  box-shadow: 2px 2px 0 #e3e3e3;
+}
+.about-photo img {
+  width: 100px;
+  height: 116px;
+  object-fit: cover;
+  object-position: center 32%;
+  display: block;
+}
+.about-name {
+  min-width: 0;
+}
+.about-eyebrow {
+  color: #61738d;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.about-name h2 {
+  font:
+    bold 29px 'Trebuchet MS',
+    Tahoma,
+    sans-serif;
+  color: #123f89;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+.about-role {
+  color: #243953;
+  font-size: 13px;
+}
+.about-location {
+  color: #737373;
+  font-size: 12px;
+  margin-top: 7px;
+}
+.about-intro {
+  padding: 20px 0 5px;
+}
+.about-panel h3 {
+  color: #16448d;
+  font:
+    bold 17px 'Trebuchet MS',
+    Tahoma,
+    sans-serif;
+  margin: 0 0 8px;
+}
+.about-panel p {
+  overflow-wrap: anywhere;
+}
+.about-fieldset {
+  border: 1px solid #c5c9d0;
+  border-radius: 3px;
+  padding: 12px 16px 14px;
+  margin-top: 18px;
+  min-width: 0;
+}
+.about-fieldset legend {
+  color: #123f89;
+  padding: 0 6px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.about-fieldset p + p {
+  margin-top: 10px;
+}
+.about-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 18px 0 0;
+}
+.xp-about .xp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 29px;
+  font-size: 12px;
+  padding: 4px 12px;
+  white-space: normal;
+}
+.xp-about .xp-button img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.about-profile-actions .xp-button:first-child {
+  box-shadow: inset 0 0 0 1px #a7bbda;
+}
+.about-section-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 22px;
+}
+.about-section-title > img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+.about-section-title h2 {
+  font:
+    bold 20px 'Trebuchet MS',
+    Tahoma,
+    sans-serif;
+  color: #123f89;
+}
+.about-section-title p {
+  font-size: 12px;
+  color: #68727f;
+  margin-top: 4px;
+}
+.about-career {
+  border-left: 1px solid #b5c6e0;
+  margin-left: 11px;
+  padding-left: 20px;
+}
+.about-job {
+  position: relative;
+  border: 1px solid #c5d0df;
+  margin-bottom: 14px;
+  background: #fff;
+}
+.about-job summary {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  background: linear-gradient(#f8fbff, #edf2f9);
+  list-style: none;
+}
+.about-job summary::-webkit-details-marker {
+  display: none;
+}
+.about-job summary > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.about-job summary strong {
+  display: block;
+  color: #17468f;
+  font-size: 13px;
+}
+.about-job summary::after {
+  content: '+';
+  color: #3a65a6;
+  font-size: 16px;
+  line-height: 1.2;
+}
+.about-job[open] summary::after {
+  content: '−';
+}
+.about-job-mark {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  top: 18px;
+  left: -26px;
+  border: 1px solid #31589b;
+  background: #6699dc;
+  box-shadow: 0 0 0 3px #fff;
+}
+.about-company {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.about-date {
+  font-size: 11px;
+  color: #5b6675;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.about-job-body {
+  border-top: 1px solid #cbd6e6;
+  padding: 14px 16px;
+}
+.about-job-body ul {
+  padding-left: 18px;
+  list-style: disc;
+}
+.about-job-body li + li {
+  margin-top: 8px;
+}
+.about-stack {
+  border-top: 1px solid #e5e9f0;
+  padding-top: 10px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: #53647c;
+}
+.about-stack strong {
+  font-size: 11px;
+  color: #16448d;
+}
+.about-school {
+  margin-bottom: 24px;
+  padding: 18px;
+}
+.about-school h3 {
+  font-size: 17px;
+}
+.about-school p {
+  color: #5c6775;
+}
+.about-credential-button {
+  margin-top: 4px;
+}
+.about-languages {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) 2fr;
+  gap: 7px 15px;
+}
+.about-languages dt {
+  font-weight: bold;
+  color: #3d506c;
+}
+.about-languages dd {
+  margin: 0;
+}
+.about-strengths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 20px;
+  list-style: square;
+  padding-left: 16px;
+}
+.about-paint {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  border: 1px solid #c6d1e2;
+  background: #f5f8fc;
+  padding: 13px 16px;
+  width: 100%;
+  margin-top: 22px;
+  color: #17468f;
+}
+.about-paint:hover {
+  border-color: #316ac5;
+  background: #eaf2fd;
+}
+.about-paint > img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.about-paint span span {
+  display: block;
+  font-size: 12px;
+  color: #67768a;
+  margin-top: 3px;
+}
+.about-source {
+  border-top: 1px solid #e0e3e8;
+  padding-top: 12px;
+  margin-top: 25px;
+  font-size: 11px;
+  color: #7b7b7b;
+}
+.about-footer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 15px;
+  flex-shrink: 0;
+}
+.about-footer > span {
+  margin-right: auto;
+  font-size: 11px;
+  color: #667079;
+}
+@container (max-width: 650px) {
+  .about-sheet {
+    padding: 10px 9px 0;
+  }
+  .about-panel {
+    padding: 17px;
+  }
+  .about-date {
+    white-space: normal;
+    max-width: 105px;
+  }
+  .about-strengths {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@container (max-width: 450px) {
+  .about-banner {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .about-banner h1 {
+    font-size: 18px;
+  }
+  .about-banner > img {
+    width: 32px;
+    height: 32px;
+  }
+  .about-tabs {
+    gap: 1px;
+    padding-left: 0;
+  }
+  .about-tabs button {
+    font-size: 11px;
+    padding: 6px 8px;
+    flex: 1;
+  }
+  .about-panel {
+    padding: 16px 12px;
+  }
+  .about-identity {
+    gap: 14px;
+    align-items: start;
+  }
+  .about-photo img {
+    width: 74px;
+    height: 88px;
+  }
+  .about-name h2 {
+    font-size: 23px;
+  }
+  .about-role {
+    font-size: 12px;
+  }
+  .about-eyebrow {
+    font-size: 10px;
+  }
+  .about-location {
+    margin-top: 5px;
+  }
+  .about-intro {
+    padding-top: 16px;
+  }
+  .about-fieldset {
+    padding: 10px 12px 12px;
+  }
+  .about-section-title {
+    align-items: start;
+  }
+  .about-section-title h2 {
+    font-size: 18px;
+  }
+  .about-career {
+    margin-left: 5px;
+    padding-left: 13px;
+  }
+  .about-job-mark {
+    left: -19px;
+  }
+  .about-job summary {
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 6px;
+  }
+  .about-date {
+    max-width: none;
+    width: 100%;
+    order: 2;
+  }
+  .about-job-body {
+    padding: 12px;
+  }
+  .about-footer {
+    padding: 9px;
+  }
+  .about-footer > span {
+    display: none;
+  }
+  .about-paint {
+    padding: 11px;
+  }
+}

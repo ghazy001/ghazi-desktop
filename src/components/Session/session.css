@@ -1,0 +1,343 @@
+.xp-session-desktop {
+  min-height: 100svh;
+  transition: filter 0.35s ease;
+}
+.xp-session-desktop.is-power-dialog {
+  filter: grayscale(0.9) brightness(0.52);
+}
+.xp-power-overlay,
+.xp-session-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483640;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.xp-power-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: #0001;
+}
+.xp-power-dialog {
+  width: 380px;
+  max-width: 100%;
+  color: white;
+  background: #5b7edc;
+  border: 1px solid #152b74;
+  box-shadow:
+    0 0 0 1px #aec7ff,
+    4px 6px 14px #0007;
+}
+.xp-power-dialog > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 65px;
+  padding: 11px 18px;
+  border-bottom: 1px solid #96b4ed;
+  background: linear-gradient(90deg, #103691, #1649a6);
+}
+.xp-power-dialog h1 {
+  font:
+    21px/1.2 'Trebuchet MS',
+    Tahoma,
+    sans-serif;
+  color: white;
+}
+.xp-power-dialog > header img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+.xp-power-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 27px 14px 14px;
+  gap: 9px;
+  background: linear-gradient(110deg, #4b75cc, #7190df);
+}
+.xp-power-options.xp-power-two {
+  grid-template-columns: repeat(2, 1fr);
+  padding-left: 34px;
+  padding-right: 34px;
+}
+.xp-power-options button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  color: white;
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 6px 2px;
+  min-height: 91px;
+  cursor: pointer;
+}
+.xp-power-options button > img,
+.xp-power-options button > svg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(1px 2px 1px #16377870);
+}
+.xp-power-options button:hover > img,
+.xp-power-options button:hover > svg {
+  filter: brightness(1.12) drop-shadow(1px 2px 1px #16377870);
+}
+.xp-power-options button:hover span {
+  text-decoration: underline;
+}
+.xp-power-options button:focus-visible {
+  outline: 1px dotted white;
+  outline-offset: -2px;
+}
+.xp-power-hint {
+  min-height: 54px;
+  padding: 4px 22px 13px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #eef4ff;
+  background: #6286d6;
+}
+.xp-power-dialog > footer {
+  background: linear-gradient(90deg, #0e3391, #164aa6);
+  border-top: 1px solid #abc4ff;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.xp-power-dialog > footer > span {
+  font-size: 10px;
+  color: #c9dcff;
+  flex: 1;
+}
+.xp-power-dialog .xp-button {
+  color: #111;
+  padding: 3px 14px;
+  min-width: 72px;
+  font:
+    12px Tahoma,
+    Arial,
+    sans-serif;
+}
+.xp-power-dialog .xp-button:focus-visible {
+  outline: 1px dotted #333;
+  outline-offset: -4px;
+}
+.xp-session-screen {
+  background: #000;
+  overflow: auto;
+}
+.xp-session-transition {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: radial-gradient(ellipse at 25% 15%, #91a9e8, #5b80dc 68%);
+}
+.xp-session-top {
+  height: 12svh;
+  min-height: 45px;
+  background: #07349c;
+  border-bottom: 2px solid #b5caff;
+}
+.xp-session-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px;
+}
+.xp-session-center > h1 {
+  margin-top: 35px;
+  font:
+    19px/1.5 Tahoma,
+    Arial,
+    sans-serif;
+  text-align: center;
+}
+.xp-session-wait {
+  display: flex;
+  gap: 5px;
+  margin-top: 18px;
+}
+.xp-session-wait i {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #d9e5ff;
+  animation: xp-wait-pulse 1s infinite;
+}
+.xp-session-wait i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.xp-session-wait i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.xp-session-transition > footer {
+  background: #06329c;
+  border-top: 2px solid #d5ab73;
+  min-height: 14svh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 6vw;
+  gap: 20px;
+  font-size: 13px;
+}
+.xp-power-off {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #030303;
+  text-align: center;
+  color: #e7ac65;
+}
+.xp-power-off .login-brand {
+  opacity: 0.45;
+  transform: scale(0.82);
+  transform-origin: center;
+}
+.xp-safe-off {
+  margin: 24px 0 30px;
+  font:
+    16px/1.6 'Courier New',
+    monospace;
+}
+.xp-safe-off h1 {
+  font: inherit;
+}
+.xp-safe-off p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.xp-power-on {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #111;
+  min-height: 36px;
+  padding: 5px 14px;
+  font:
+    12px Tahoma,
+    Arial,
+    sans-serif;
+}
+.xp-power-on img {
+  width: 22px;
+  height: 22px;
+}
+.xp-power-goodbye {
+  color: #888;
+  margin-top: 27px;
+  font-size: 12px;
+}
+.xp-session-off .xp-safe-off {
+  animation: xp-power-fade 0.3s ease-out both;
+}
+.xp-standby {
+  min-height: 100svh;
+  background: radial-gradient(ellipse at 50% 35%, #15294c, #030915 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  color: #bacce7;
+  text-align: center;
+}
+.xp-standby > svg {
+  width: 58px;
+  height: 58px;
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+.xp-standby h1 {
+  color: white;
+  font:
+    23px 'Trebuchet MS',
+    Tahoma,
+    sans-serif;
+}
+.xp-standby p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+.xp-standby .xp-button {
+  color: #111;
+  padding: 5px 22px;
+  margin-top: 28px;
+}
+.xp-standby small {
+  display: block;
+  color: #6f85a4;
+  font-size: 11px;
+  margin-top: 18px;
+}
+@keyframes xp-wait-pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes xp-power-fade {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 430px) {
+  .xp-power-dialog > header {
+    padding: 10px 14px;
+  }
+  .xp-power-dialog h1 {
+    font-size: 19px;
+  }
+  .xp-power-options {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 3px;
+  }
+  .xp-power-options button {
+    font-size: 12px;
+  }
+  .xp-power-hint {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .xp-power-dialog > footer > span {
+    max-width: 170px;
+  }
+  .xp-session-center > h1 {
+    font-size: 16px;
+  }
+  .xp-session-transition > footer {
+    font-size: 11px;
+  }
+  .xp-power-goodbye {
+    max-width: 260px;
+    line-height: 1.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xp-session-desktop {
+    transition: none;
+  }
+  .xp-session-wait i,
+  .xp-session-off .xp-safe-off {
+    animation: none;
+  }
+}

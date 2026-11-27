@@ -32,7 +32,10 @@
           :is="window.component"
           :leftMenuType="window.leftMenuType"
           :mode="window.mode"
-          v-bind="{ ...(window.file ? { file: window.file } : {}), ...(window.id === 'doom' ? { active: window.visible && activeWindow === 'doom' } : {}) }"
+          v-bind="{
+            ...(window.file ? { file: window.file } : {}),
+            ...(['doom', 'spider'].includes(window.id) ? { active: session.desktopActive && window.visible && activeWindow === window.id } : {})
+          }"
           @caption-change="window.caption = $event"
         />
       </Window>
@@ -43,7 +46,8 @@
 </template>
 
 <script setup>
-import { ref, shallowRef, provide, onMounted, nextTick, defineAsyncComponent } from 'vue'
+import { ref, shallowRef, provide, onMounted, nextTick, defineAsyncComponent, computed } from 'vue'
+import { useConnectionStore } from '@/stores/connectionStore'
 import { useWindowsStore } from '@/stores/windowsStore.js'
 import { useVolumeStore } from '@/stores/volumeStore.js'
 import { useLocaleStore } from '@/stores/localeStore'
@@ -73,6 +77,8 @@ import Window from '@/layouts/Window.vue'
 import windowsData from '@/data/windows-data.json'
 import ClippyModal from '@/components/Modals/ClippyModal.vue'
 
+const Spider = defineAsyncComponent(() => import('@/components/Windows/Spider/Spider.vue'))
+const AboutMe = defineAsyncComponent(() => import('@/components/Windows/AboutMe/AboutMe.vue'))
 const Paint = defineAsyncComponent(() => import('@/components/Windows/Paint/Paint.vue'))
 const Documents = defineAsyncComponent(() => import('@/components/Windows/Documents/Documents.vue'))
 const MyComputer = defineAsyncComponent(() => import('@/components/Windows/MyComputer/MyComputer.vue'))
@@ -81,10 +87,12 @@ const Gift = defineAsyncComponent(() => import('@/components/Windows/Gift/Gift.v
 const showHeader = ref(false)
 const windows = ref([])
 const windowsStore = useWindowsStore()
+const session = useConnectionStore()
 const volumeStore = useVolumeStore()
 const localeStore = useLocaleStore()
 
 onMounted(() => {
+  if (session.powerPhase === 'running') session.login()
   // Ensure the localeStore is updated with the correct locale from localStorage
   const storedLocale = localStorage.getItem('currentLocale') || 'en'
   localeStore.setLocale(storedLocale)
@@ -104,6 +112,8 @@ const activeWindow = ref(null)
 // Create components from data json
 const components = {
   MyComputer: shallowRef(MyComputer),
+  AboutMe: shallowRef(AboutMe),
+  Spider: shallowRef(Spider),
   MyProjects: shallowRef(MyProjects),
   ContactMe: shallowRef(ContactMe),
   MyCV: shallowRef(MyCV),
@@ -269,7 +279,15 @@ const handleOutsideClick = (event) => {
 provide('browserPageTitle', ref(profile.name))
 provide('browserLocation', ref(profile.website))
 provide('highestZIndex', highestZIndex)
-provide('activeWindow', activeWindow)
+provide(
+  'activeWindow',
+  computed({
+    get: () => (session.desktopActive ? activeWindow.value : null),
+    set: (value) => {
+      activeWindow.value = value
+    }
+  })
+)
 provide('openWindow', openWindow)
 provide('openFile', openFile)
 provide('activateWindow', handleWindowClick)

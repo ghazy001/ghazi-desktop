@@ -3,6 +3,8 @@ import { ref, computed, inject, onMounted, onUnmounted } from 'vue'
 import profile from '@/data/profile-data.json'
 import browserLinks from '@/data/browser-links.js'
 import cvReader from '@/data/cv-reader-data.json'
+import aboutData from '@/data/about-data.json'
+import spiderData from '@/data/spider-menu-data.json'
 const props = defineProps({ id: String, dropdownItems: { type: Array, default: () => [] }, windowsHeaderLogo: { type: Boolean, default: true } })
 const emit = defineEmits(['close', 'minimize', 'maximize'])
 const openWindow = inject('openWindow')
@@ -41,8 +43,53 @@ const saveNotes = () => {
   a.click()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
+function activateMenu(index) {
+  if (props.id === 'spider' && ['Deal!', 'Distribuer !'].includes(props.dropdownItems[index])) {
+    active.value = null
+    window.dispatchEvent(new CustomEvent('spider-command', { detail: 'deal' }))
+  } else active.value = active.value === index ? null : index
+}
 const actions = computed(() => {
   const name = (props.dropdownItems[active.value] || '').toLowerCase()
+  if (props.id === 'spider') {
+    const fr = props.dropdownItems.includes('Jeu')
+    const copy = spiderData[fr ? 'fr' : 'en']
+    const command = (name, detail) => ({ name, action: () => window.dispatchEvent(new CustomEvent('spider-command', { detail })) })
+    if (['game', 'jeu'].includes(name))
+      return [
+        command(copy.newGame + '… (F2)', 'new'),
+        command(copy.restart + '…', 'restart'),
+        command(copy.undo + ' (Ctrl+Z)', 'undo'),
+        command(copy.deal + ' (D)', 'deal'),
+        command(copy.hint + ' (M)', 'hint'),
+        command(copy.difficulty + ' (F3)', 'new'),
+        command(copy.options + ' (F5)', 'options'),
+        { name: fr ? 'Quitter' : 'Exit', action: () => emit('close') }
+      ]
+    return [command(copy.help + ' (F1)', 'help'), command(copy.about, 'about')]
+  }
+  if (props.id === 'about') {
+    const fr = props.dropdownItems.includes('Fichier')
+    const copy = aboutData[fr ? 'fr' : 'en']
+    if (['file', 'fichier'].includes(name))
+      return [
+        { name: copy.cv, action: () => openWindow('myCV') },
+        { name: copy.projects, action: () => openWindow('myProjects') },
+        { name: copy.contact, action: () => openWindow('contact') },
+        { name: fr ? 'Fermer' : 'Close', action: () => emit('close') }
+      ]
+    if (['view', 'affichage'].includes(name))
+      return aboutData.tabs.map((id) => ({
+        name: copy[id],
+        action: () => window.dispatchEvent(new CustomEvent('about-command', { detail: id }))
+      }))
+    if (['tools', 'outils'].includes(name))
+      return [
+        { name: copy.paint, action: () => openWindow('paint') },
+        { name: copy.credentials, action: () => openWindow('certifications') },
+        { name: fr ? 'Mes compétences' : 'My Skills', action: () => openWindow('skills') }
+      ]
+  }
   if (props.id === 'documents') {
     const fr = props.dropdownItems.includes('Fichier')
     const item = (en, french, detail) => ({ name: fr ? french : en, action: () => window.dispatchEvent(new CustomEvent('documents-command', { detail })) })
@@ -307,10 +354,10 @@ const actions = computed(() => {
     <div class="w-full h-full px-0.5 pt-0.5 pb-px flex items-center border-window-header-right border-window-header-bot">
       <div v-for="(item, index) in dropdownItems" :key="index" class="relative h-full">
         <button
-          @click="active = active === index ? null : index"
+          @click="activateMenu(index)"
           class="h-full small-p hover:bg-dropdown hover:text-white px-1.5 flex items-center cursor-pointer"
-          :aria-expanded="active === index"
-          aria-haspopup="menu"
+          :aria-expanded="id === 'spider' && ['Deal!', 'Distribuer !'].includes(item) ? undefined : active === index"
+          :aria-haspopup="id === 'spider' && ['Deal!', 'Distribuer !'].includes(item) ? undefined : 'menu'"
         >
           {{ item }}
         </button>

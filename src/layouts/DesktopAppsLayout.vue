@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watchEffect, onUnmounted } from 'vue'
+import { computed, ref, watchEffect, onMounted, onUnmounted } from 'vue'
 import { useLocaleStore } from '@/stores/localeStore'
 
 const emit = defineEmits()
@@ -12,6 +12,25 @@ const props = defineProps({
 })
 
 const localEntities = ref([])
+const desktop = ref(null)
+const desktopHeight = ref(Math.max(0, window.innerHeight - 32))
+let desktopObserver
+// Keep the original two-column ordering, then wrap overflow into more columns.
+const rowCount = computed(() => Math.max(1, Math.floor((desktopHeight.value - 24 - 12 + 20) / 90)))
+const columnCount = computed(() => Math.max(2, Math.ceil(desktopEntities.value.length / rowCount.value)))
+function iconPosition(index) {
+  const paired = rowCount.value * 2
+  return index < paired
+    ? { gridRow: Math.floor(index / 2) + 1, gridColumn: (index % 2) + 1 }
+    : { gridRow: ((index - paired) % rowCount.value) + 1, gridColumn: Math.floor((index - paired) / rowCount.value) + 3 }
+}
+onMounted(() => {
+  desktopObserver = new ResizeObserver(() => {
+    desktopHeight.value = desktop.value.clientHeight
+  })
+  desktopObserver.observe(desktop.value)
+})
+onUnmounted(() => desktopObserver?.disconnect())
 
 watchEffect(() => {
   localEntities.value = [...props.entities]
@@ -51,7 +70,7 @@ const getLocalizedTitle = (entity) => {
 
 // If click occurs somewhere else, remove the active state
 const clearDesktopSelection = (e) => {
-  if (!e.target.closest('.grid')) {
+  if (!e.target.closest('.desktop-icons')) {
     localEntities.value.forEach((entity) => {
       entity.isActive = false
     })
@@ -62,11 +81,15 @@ onUnmounted(() => window.removeEventListener('click', clearDesktopSelection))
 </script>
 
 <template>
-  <section class="absolute top-0 left-0 overflow-auto" style="max-height: calc(100dvh - 2rem)">
-    <div class="grid grid-cols-2 gap-5 pt-6 pl-6">
+  <section ref="desktop" class="desktop-shortcuts absolute top-0 left-0 overflow-x-auto" aria-label="Desktop" style="height: calc(100dvh - 2rem); max-width: 100vw">
+    <div
+      class="desktop-icons grid gap-5 pt-6 pl-6 pr-4 pb-3"
+      :style="{ gridTemplateRows: `repeat(${rowCount}, 70px)`, gridTemplateColumns: `repeat(${columnCount}, max-content)` }"
+    >
       <button
-        v-for="entity in desktopEntities"
+        v-for="(entity, index) in desktopEntities"
         :key="entity.id"
+        :style="iconPosition(index)"
         class="flex flex-col gap-2 items-center w-full cursor-pointer"
         @click="isMobile ? removeFilterAndToggle(entity) : toggleEffect(entity)"
         @dblclick="!isMobile && removeFilterAndToggle(entity)"
@@ -75,7 +98,7 @@ onUnmounted(() => window.removeEventListener('click', clearDesktopSelection))
         :class="{ active: entity.isActive }"
       >
         <img
-          class="w-11 h-11"
+          class="w-11 h-11 object-contain shrink-0"
           :style="{
             ...entity.imageStyle,
             filter: entity.isActive ? 'opacity(0.5)' : 'opacity(1)'
@@ -84,7 +107,7 @@ onUnmounted(() => window.removeEventListener('click', clearDesktopSelection))
           :alt="getLocalizedTitle(entity)"
         />
         <p
-          class="text-white text-xs font-normal py-px px-1"
+          class="text-white text-xs font-normal py-px px-1 whitespace-nowrap"
           :style="{
             ...entity.textStyle,
             backgroundColor: entity.isActive ? '#0B61FF' : 'transparent',
