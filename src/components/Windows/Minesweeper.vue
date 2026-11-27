@@ -56,9 +56,10 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useConnectionStore } from '@/stores/connectionStore'
 const session = useConnectionStore()
+const props = defineProps({ active: { type: Boolean, default: true } })
 
 let timer = ref(0)
 const rows = 9
@@ -181,9 +182,12 @@ onMounted(() => {
   document.addEventListener('mousemove', handleMouseMove)
   resetGame()
   window.addEventListener('minesweeper-new-game', resetGame)
+  document.addEventListener('visibilitychange', syncTimer)
 })
 
 onBeforeUnmount(() => {
+  clearInterval(timerInterval)
+  document.removeEventListener('visibilitychange', syncTimer)
   window.removeEventListener('minesweeper-new-game', resetGame)
   document.removeEventListener('mouseup', handleGlobalMouseUp)
   document.removeEventListener('mousemove', handleMouseMove)
@@ -296,8 +300,10 @@ const numberConverter = (num) => {
   }
 }
 const startTimer = () => {
+  clearInterval(timerInterval)
+  if (!props.active || !session.desktopActive || document.hidden || !gameRunning.value) return
   timerInterval = setInterval(() => {
-    if (!session.desktopActive) return
+    if (!props.active || !session.desktopActive || document.hidden) return
     if (timer.value < 999) {
       timer.value++
     } else {
@@ -305,6 +311,11 @@ const startTimer = () => {
     }
   }, 1000)
 }
+
+function syncTimer() {
+  startTimer()
+}
+watch([() => props.active, () => session.desktopActive, gameRunning], syncTimer)
 
 const resetTimer = () => {
   clearInterval(timerInterval)

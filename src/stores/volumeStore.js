@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
+import { storedValue, storeValue } from '../lib/browser-storage.mjs'
 
 export const useVolumeStore = defineStore('volume', {
   state: () => {
-    let volume = parseFloat(localStorage.getItem('volume'))
-    if (isNaN(volume)) {
+    let volume = parseFloat(storedValue('volume'))
+    if (!Number.isFinite(volume) || volume < 0 || volume > 1) {
       volume = 0.2
-      localStorage.setItem('volume', volume.toString())
+      storeValue('volume', volume.toString())
     }
     return {
       volume: volume,
@@ -15,7 +16,7 @@ export const useVolumeStore = defineStore('volume', {
   actions: {
     setVolume(newVolume) {
       this.volume = newVolume
-      localStorage.setItem('volume', newVolume)
+      storeValue('volume', newVolume)
       Object.values(this.audioElements).forEach((audio) => {
         audio.volume = newVolume
       })

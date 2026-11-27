@@ -1,0 +1,26 @@
+{
+  "before": {
+    "entry": "/assets/index-BLxbmfFU.js",
+    "entryBytes": 512230,
+    "entryGzipBytes": 203308,
+    "initialBootDelayMs": 12000,
+    "profileImageBytes": 2037069,
+    "fontsBytes": 2909196
+  },
+  "after": {
+    "entry": "/assets/index-B4DHPcQt.js",
+    "entryBytes": 216285,
+    "entryGzipBytes": 79302,
+    "initialBootDelayMs": 2550,
+    "profileImageBytes": 73901,
+    "fontsBytes": 1238268
+  },
+  "reductions": {
+    "entryBytes": 57.8,
+    "entryGzipBytes": 61,
+    "initialBootDelayMs": 78.8,
+    "profileImageBytes": 96.4,
+    "fontsBytes": 57.4
+  },
+  "note": "Build transfer sizes and configured boot animation delays; not a device FPS or time-to-interactive benchmark."
+}

@@ -1,46 +1,56 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useConnectionStore } from '@/stores/connectionStore'
-
-// Components
+import { loadDesktop, loadComputer } from '@/lib/load-desktop'
+import boot from '@/data/boot-data.json'
 import MetaUpdater from '../MetaUpdater.vue'
 import Step1Loading from '../components/Loading/Step1Loading.vue'
 import Step2Loading from '../components/Loading/Step2Loading.vue'
 import Step3Loading from '../components/Loading/Step3Loading.vue'
 import Login from '../components/Loading/Login.vue'
-
-const showStep1 = ref(false)
-const showStep2 = ref(false)
-const showStep3 = ref(false)
-const showStep4 = ref(false)
+const showStep1 = ref(false),
+  showStep2 = ref(false),
+  showStep3 = ref(false),
+  showStep4 = ref(false)
 const connectionStore = useConnectionStore()
-
-const startLoading = () => {
-  // Step 1: Show bg black
+let bootTimer,
+  warmTimer,
+  disposed = false
+const later = (fn, delay) => {
+  bootTimer = setTimeout(() => {
+    if (!disposed) fn()
+  }, delay)
+}
+function startLoading() {
   showStep1.value = true
-  setTimeout(() => {
-    // Step 2: Show loading bar
+  later(() => {
     showStep1.value = false
     showStep2.value = true
-    setTimeout(() => {
-      // Step 3: Show loading blue
+    later(() => {
       showStep2.value = false
       showStep3.value = true
-      setTimeout(() => {
-        // Step 4: Show connection lobby
+      later(() => {
         showStep3.value = false
         showStep4.value = true
-      }, 2000)
-    }, 8000)
-  }, 2000)
+      }, boot.welcomeMs)
+    }, boot.loadingMs)
+  }, boot.blankMs)
 }
-
 onMounted(() => {
-  if (connectionStore.status === 'restart') {
-    startLoading()
-  } else {
-    showStep4.value = true
+  if (connectionStore.status === 'restart') startLoading()
+  else showStep4.value = true
+  // Warm only the desktop shell and default folder while the logon screen is visible.
+  // Other apps stay unloaded until opened. Respect data-saving connections.
+  if (!navigator.connection?.saveData && !['slow-2g', '2g'].includes(navigator.connection?.effectiveType)) {
+    warmTimer = setTimeout(() => {
+      if (!disposed) Promise.all([loadDesktop(), loadComputer()]).catch(() => {})
+    }, boot.warmMs)
   }
+})
+onBeforeUnmount(() => {
+  disposed = true
+  clearTimeout(bootTimer)
+  clearTimeout(warmTimer)
 })
 </script>
 

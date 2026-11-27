@@ -1,50 +1,54 @@
 // Fonts
 @font-face {
+  font-display: swap;
     font-family: 'Helvetica BlackItalic';
     font-weight: 400;
-    src: local("Helvetica BlackItalic"), url('/fonts/Helvetica-BlackItalic-Regular.ttf') format('truetype');
+    src: local("Helvetica BlackItalic"), url('/fonts/Helvetica-BlackItalic-Regular.woff2') format("woff2"), url('/fonts/Helvetica-BlackItalic-Regular.ttf') format('truetype');
 }
 @font-face {
+  font-display: swap;
     font-family: 'Franklin Gothic Medium';
     font-weight: 400;
-    src: local("Franklin Gothic Medium"), url('/fonts/Franklin Gothic Medium Regular.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Franklin Gothic Medium';
-    font-weight: 400;
-    src: local("Franklin Gothic Medium"), url('/fonts/Franklin Gothic Medium Regular.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Tahoma';
-    font-weight: 400;
-    src: local("Tahoma"), url('/fonts/tahoma.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Tahoma';
-    font-weight: 700;
-    src: local("Tahoma Bold"), url('/fonts/tahomabd.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Verdana';
-    font-weight: 400;
-    src: local("Verdana"), url('/fonts/verdanabd.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Trebuchet MS';
-    font-style: normal;
-    font-weight: 400;
-    src: local("Trebuchet MS"), url('/fonts/trebuc.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Trebuchet MS';
-    font-style: normal;
-    font-weight: 600;
-    src: local("Trebuchet MS"), url('/fonts/trebucbd.ttf') format('truetype');
+    src: local("Franklin Gothic Medium"), url('/fonts/Franklin Gothic Medium Regular.woff2') format("woff2"), url('/fonts/Franklin Gothic Medium Regular.ttf') format('truetype');
 }
 
 @font-face {
+  font-display: swap;
+    font-family: 'Tahoma';
+    font-weight: 400;
+    src: local("Tahoma"), url('/fonts/tahoma.woff2') format("woff2"), url('/fonts/tahoma.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+    font-family: 'Tahoma';
+    font-weight: 700;
+    src: local("Tahoma Bold"), url('/fonts/tahomabd.woff2') format("woff2"), url('/fonts/tahomabd.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+    font-family: 'Verdana';
+    font-weight: 400;
+    src: local("Verdana"), url('/fonts/verdanabd.woff2') format("woff2"), url('/fonts/verdanabd.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+    font-family: 'Trebuchet MS';
+    font-style: normal;
+    font-weight: 400;
+    src: local("Trebuchet MS"), url('/fonts/trebuc.woff2') format("woff2"), url('/fonts/trebuc.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+    font-family: 'Trebuchet MS';
+    font-style: normal;
+    font-weight: 600;
+    src: local("Trebuchet MS"), url('/fonts/trebucbd.woff2') format("woff2"), url('/fonts/trebucbd.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
     font-family: 'Trebuchet MS pixelated';
-    src: local("Trebuchet MS pixelated"), url('/fonts/ms-sans-serif/MS Sans Serif.ttf') format('truetype');
+    src: local("Trebuchet MS pixelated"), url('/fonts/ms-sans-serif/MS Sans Serif.woff2') format("woff2"), url('/fonts/ms-sans-serif/MS Sans Serif.ttf') format('truetype');
 }
 
 

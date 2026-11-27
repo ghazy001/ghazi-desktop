@@ -142,3 +142,23 @@ for (const [suit, offset] of [
 console.log(
   'Original xp-cards resources verified: 52 correctly mapped card faces, spider back, felt, original icon/About artwork and six WAV resources; all 62 checksums match.'
 )
+
+const { dragThreshold, dropColumnAtPoint, dragScroll } = await import('../src/lib/spider-drag.mjs')
+const viewport = { left: 10, right: 810, top: 20, bottom: 600 }
+const boxes = Array.from({ length: 10 }, (_, i) => ({ left: 22 + i * 78, right: 93 + i * 78, top: 32, bottom: 470 }))
+assert.equal(dragThreshold({ x: 0, y: 0 }, { x: 2, y: 2 }), false)
+assert.equal(dragThreshold({ x: 0, y: 0 }, { x: 4, y: 0 }), true)
+assert.equal(dragThreshold({ x: 0, y: 0 }, { x: 4, y: 0 }, 'touch'), false)
+assert.equal(dragThreshold({ x: 0, y: 0 }, { x: 8, y: 0 }, 'touch'), true)
+assert.equal(dropColumnAtPoint({ x: 45, y: 430 }, viewport, boxes), 0, 'The open space below the cards remains a drop target')
+assert.equal(dropColumnAtPoint({ x: 96, y: 200 }, viewport, boxes), 0, 'Small gaps between columns are forgiving')
+assert.equal(dropColumnAtPoint({ x: -10, y: 200 }, viewport, boxes), null)
+assert.equal(dropColumnAtPoint({ x: 45, y: 550 }, viewport, boxes), null, 'Stock area is not a tableau destination')
+assert.equal(dropColumnAtPoint({ x: NaN, y: 200 }, viewport, boxes), null)
+const shifted = boxes.map((r) => ({ left: r.left - 150, right: r.right - 150, top: r.top - 100, bottom: r.bottom - 100 }))
+assert.equal(dropColumnAtPoint({ x: 45, y: 200 }, viewport, shifted), 2, 'Drop geometry tracks horizontal and vertical scrolling')
+assert.deepEqual(dragScroll({ x: 400, y: 300 }, viewport), { x: 0, y: 0 })
+assert.ok(dragScroll({ x: 11, y: 599 }, viewport).x < 0)
+assert.ok(dragScroll({ x: 11, y: 599 }, viewport).y > 0)
+assert.deepEqual(dragScroll({ x: -50, y: 700 }, viewport), { x: 0, y: 0 })
+console.log('Drag controls verified: mouse/touch thresholds, full-column targets, gaps, clipping, scrolled coordinates and edge scrolling.')

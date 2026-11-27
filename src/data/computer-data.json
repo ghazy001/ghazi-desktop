@@ -14,7 +14,7 @@
       "id": "C:",
       "label": "GHAZI_XP",
       "icon": "system",
-      "apps": ["about", "skills", "myCV", "documents", "certifications", "contact"],
+      "apps": ["assistant", "about", "skills", "myCV", "documents", "certifications", "contact"],
       "description": { "en": "Profile, skills & documents", "fr": "Profil, compétences et documents" }
     },
     { "id": "D:", "label": "PROJECTS", "icon": "projects", "description": { "en": "Software engineering projects", "fr": "Projets de génie logiciel" } },

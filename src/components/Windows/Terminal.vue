@@ -1,160 +1,141 @@
-<template>
-  <div class="relative right-0 h-full flex">
-    <div
-      @click="focusInput"
-      ref="terminalContainer"
-      class="w-full h-full pt-6 mt-0.5 bg-black overflow-y-scroll outline-none resize-none px-1 font-trebuchet-pixel text-sm hover:cursor-text"
-    >
-      <div v-for="(entry, index) in history" :key="index">
-        <div class="flex items-center">
-          <span class="text-white font-bold mr-1 text-sm">C:\></span>
-          <span class="text-white">{{ entry.command }}</span>
-        </div>
-        <div class="text-white" v-if="entry.output" v-html="formatOutput(entry.output)"></div>
-      </div>
-      <div class="flex items-center w-full">
-        <span class="text-white font-bold mr-1 text-sm">C:\></span>
-        <input
-          ref="commandInput"
-          v-model="currentCommand"
-          @keyup.enter="executeCommand"
-          @keydown.tab.prevent="autoComplete"
-          @keydown.up.prevent="getPreviousCommand"
-          @keydown.down.prevent="getNextCommand"
-          class="bg-black text-white outline-none font-trebuchet-pixel text-sm w-11/12"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
-import { ref, nextTick } from 'vue'
-import { useRouter } from 'vue-router'
-import { useConnectionStore } from '@/stores/connectionStore'
-import terminalData from '@/data/terminal-data.json'
-import profile from '@/data/profile-data.json'
-
-const history = ref([])
-const commandHistory = ref([])
-const currentCommand = ref('')
-const commandInput = ref(null)
-const terminalContainer = ref(null)
-const availableCommands = ['help', 'clear', 'dir', 'ipconfig', 'systeminfo', 'Get-Disk', 'sudo', 'rm', 'whoami', 'projects', 'contact']
-const historyIndex = ref(-1)
-const router = useRouter()
-const connectionStore = useConnectionStore()
-
-const executeCommand = async () => {
-  if (currentCommand.value.trim() === '') return
-
-  const command = currentCommand.value.trim()
-  commandHistory.value.push(command)
-  historyIndex.value = commandHistory.value.length
-  let output = ''
-
-  // Handle the command execution logic here
-  switch (command) {
-    case 'whoami':
-      output = `${profile.name}\n${profile.title}`
-      break
-    case 'contact':
-      output = `${profile.email}\n${profile.github}\n${profile.linkedin}`
-      break
-    case 'projects':
-      output = 'Explore My Projects from the desktop or Start menu.'
-      break
-    case 'help':
-      output = 'Available commands:\n' + availableCommands.join('\t')
-      break
-    case 'clear':
-      history.value = []
-      currentCommand.value = ''
-      await nextTick()
-      scrollToBottom()
-      return
-    case 'systeminfo':
-      output = terminalData.systeminfo.result
-      currentCommand.value = ''
-      break
-    case 'Get-Disk':
-      output = terminalData.diskinfo.result
-      currentCommand.value = ''
-      break
-    case 'dir':
-      output = terminalData.dir.result
-      currentCommand.value = ''
-      break
-    case 'ipconfig':
-      output = terminalData.ipconfig.result
-      currentCommand.value = ''
-      break
-    case 'sudo':
-    case 'rm':
-      output = terminalData.hint.result
-      currentCommand.value = ''
-      break
-    case 'sudo rm -rf /':
-      output = terminalData.meme.result
-      currentCommand.value = ''
-      connectionStore.status = 'restart'
-      setTimeout(() => {
-        router.push('/')
-      }, 2000)
-      break
-    default:
-      output = `${command}` + terminalData.error
+import { ref, watch, nextTick, inject } from 'vue'
+import { useAssistantStore, portfolioProjects } from '@/stores/assistantStore'
+import { useGoBackStore } from '@/stores/goBackStore'
+import { commandCatalog } from '@/lib/portfolio-terminal.mjs'
+const store = useAssistantStore(),
+  navigation = useGoBackStore(),
+  openWindow = inject('openWindow')
+const input = ref(''),
+  field = ref(null),
+  scroll = ref(null),
+  recall = ref([]),
+  index = ref(0)
+function execute() {
+  if (!input.value.trim()) return
+  recall.value.push(input.value)
+  index.value = recall.value.length
+  store.run(input.value, openWindow, navigation)
+  input.value = ''
+}
+function move(delta) {
+  index.value = Math.max(0, Math.min(recall.value.length, index.value + delta))
+  input.value = recall.value[index.value] || ''
+}
+function complete() {
+  const match = [...commandCatalog(portfolioProjects), 'clear'].filter((c) => c.startsWith(input.value.toLowerCase()))
+  if (match.length === 1) input.value = match[0]
+}
+watch(
+  () => store.terminal.at(-1),
+  async () => {
+    await nextTick()
+    if (scroll.value) scroll.value.scrollTop = scroll.value.scrollHeight
   }
-
-  history.value.push({ command, output })
-  currentCommand.value = ''
-  await nextTick()
-  scrollToBottom()
-}
-
-const focusInput = () => {
-  commandInput.value.focus()
-}
-
-const autoComplete = () => {
-  const input = currentCommand.value.trim()
-  if (input === '') return
-
-  const matches = availableCommands.filter((cmd) => cmd.startsWith(input))
-
-  if (matches.length === 1) {
-    currentCommand.value = matches[0]
-  } else if (matches.length > 1) {
-    const possibilities = matches.join(', ')
-    history.value.push({ command: input, output: `${possibilities}` })
-  }
-}
-
-const formatOutput = (output) => {
-  let formattedOutput = output.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')
-  formattedOutput = formattedOutput.replace(/\t/g, '&emsp;')
-  formattedOutput = formattedOutput.replace(/\f/g, '&ensp;')
-  return formattedOutput
-}
-
-const getPreviousCommand = () => {
-  if (historyIndex.value > 0) {
-    historyIndex.value--
-    currentCommand.value = commandHistory.value[historyIndex.value]
-  }
-}
-
-const getNextCommand = () => {
-  if (historyIndex.value < commandHistory.value.length - 1) {
-    historyIndex.value++
-    currentCommand.value = commandHistory.value[historyIndex.value]
-  } else {
-    historyIndex.value = commandHistory.value.length
-    currentCommand.value = ''
-  }
-}
-
-const scrollToBottom = () => {
-  terminalContainer.value.scrollTop = terminalContainer.value.scrollHeight
-}
+)
 </script>
+<template>
+  <main class="portfolio-terminal" ref="scroll" @click="!$event.target.closest('button') && field?.focus()">
+    <header><span>Microsoft Windows XP [Portfolio Edition]</span><button @click="openWindow('assistant')">Open MSN</button></header>
+    <p>Ghazi Saoudi — Software Engineer<br />Virtual portfolio console. Type <b>help</b> to begin.</p>
+    <div v-for="(entry, i) in store.terminal" :key="i" class="console-entry">
+      <div><span v-if="entry.source === 'assistant'" class="console-source">[Assistant] </span>C:\Ghazi&gt; {{ entry.command }}</div>
+      <pre :class="{ 'console-error': entry.error }">{{ entry.output }}</pre>
+    </div>
+    <form @submit.prevent="execute">
+      <label for="portfolio-command">C:\Ghazi&gt;</label
+      ><input
+        id="portfolio-command"
+        ref="field"
+        v-model="input"
+        maxlength="160"
+        aria-label="Portfolio command"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        @keydown.up.prevent="move(-1)"
+        @keydown.down.prevent="move(1)"
+        @keydown.tab.prevent="complete"
+      />
+    </form>
+  </main>
+</template>
+<style scoped>
+.portfolio-terminal {
+  height: calc(100% - 28px);
+  margin-top: 28px;
+  background: #0c0c0c;
+  color: #e6e6e6;
+  overflow: auto;
+  padding: 14px 16px;
+  user-select: text;
+  font:
+    14px/1.55 'Lucida Console',
+    Consolas,
+    monospace;
+}
+.portfolio-terminal header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+.portfolio-terminal button {
+  color: #a6d4ff;
+  text-decoration: underline;
+  font: inherit;
+  font-size: 11px;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.portfolio-terminal p {
+  margin-bottom: 22px;
+}
+.console-entry {
+  margin: 0 0 16px;
+}
+.console-entry pre {
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 4px 0 0;
+  color: #ddd;
+}
+.console-source {
+  color: #90c8ff;
+}
+.console-entry pre.console-error {
+  color: #ffbf83;
+}
+.portfolio-terminal form {
+  display: flex;
+  gap: 9px;
+  align-items: start;
+}
+.portfolio-terminal input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: white;
+  min-width: 0;
+  flex: 1;
+  font: inherit;
+  caret-color: #fff;
+}
+.portfolio-terminal :focus-visible {
+  outline: 1px dotted #a6d4ff;
+  outline-offset: 2px;
+}
+@media (max-width: 500px) {
+  .portfolio-terminal {
+    padding: 10px;
+    font-size: 12px;
+  }
+  .portfolio-terminal header {
+    flex-wrap: wrap;
+  }
+}
+</style>

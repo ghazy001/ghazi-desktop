@@ -6,6 +6,7 @@ import data from '@/data/spider-data.json'
 import menuData from '@/data/spider-menu-data.json'
 import { RANKS, newGame, cloneGame, movable, canMove, move, deal, dealError, undo, hints, readSave } from '@/lib/spider-solitaire.mjs'
 import PlayingCard from './PlayingCard.vue'
+import { dragThreshold, dropColumnAtPoint, dragScroll } from '@/lib/spider-drag.mjs'
 import './spider.css'
 const props = defineProps({ active: { type: Boolean, default: true } })
 const locale = useLocaleStore(),
@@ -40,8 +41,20 @@ const root = ref(null),
   pageHidden = ref(document.hidden)
 const tableWidth = ref(900),
   tableHeight = ref(500),
-  dragFrom = ref(null),
+  dragging = ref(null),
+  dragPoint = ref({ x: 0, y: 0 }),
+  dragTarget = ref(null),
   largeCards = ref(saved?.largeCards === true)
+let pointer = null,
+  dragFrame = 0,
+  suppressClickUntil = 0
+const draggedCards = computed(() => (dragging.value ? game.value.columns[dragging.value.from].slice(dragging.value.index) : []))
+const dragOffsets = computed(() =>
+  dragging.value
+    ? layouts.value[dragging.value.from].tops.slice(dragging.value.index).map((top) => top - layouts.value[dragging.value.from].tops[dragging.value.index])
+    : []
+)
+const validDrop = computed(() => dragging.value && dragTarget.value !== null && canMove(game.value, dragging.value.from, dragging.value.index, dragTarget.value))
 const won = computed(() => game.value.completed.length === 8)
 const paused = computed(() => !props.active || pageHidden.value || !!dialog.value)
 const cardWidth = computed(() => Math.min(71, (Math.max(tableWidth.value, largeCards.value ? 720 : 0) - 24 - 9 * 8) / 10))
@@ -76,6 +89,7 @@ const status = computed(() =>
     : copy.value[message.value]
 )
 const activeWindow = inject('activeWindow', ref(null))
+const activateWindow = inject('activateWindow', null)
 let observer, timer, previousFocus
 const audioPlayers = new Map()
 function cardName(card) {
@@ -128,6 +142,7 @@ watch(
   () => props.active,
   (active) => {
     if (!active) {
+      cancelDrag()
       stopSounds()
       save()
     }
@@ -140,7 +155,7 @@ function clearSelection() {
   selected.value = null
   hint.value = null
   hintMessage.value = null
-  dragFrom.value = null
+  cancelDrag()
 }
 function apply(next, key) {
   if (!next || won.value) return false
@@ -168,7 +183,7 @@ function moveTo(from, index, to) {
   return true
 }
 function choose(column, index) {
-  if (dialog.value || won.value) return
+  if (paused.value || won.value) return
   started.value = true
   if (selected.value && selected.value.from !== column) {
     moveTo(selected.value.from, selected.value.index, column)
@@ -187,12 +202,13 @@ function choose(column, index) {
   hint.value = null
   say('selected')
 }
-function chooseColumn(column) {
+function chooseColumn(column, event) {
+  if (paused.value || won.value || (event?.detail && performance.now() < suppressClickUntil)) return
   if (selected.value) moveTo(selected.value.from, selected.value.index, column)
   else say('selectFirst')
 }
 function dealCards() {
-  if (won.value || dialog.value) return
+  if (won.value || paused.value || dragging.value) return
   const error = dealError(game.value)
   if (error) {
     say(error)
@@ -223,6 +239,7 @@ function showHint() {
   nextTick(() => root.value?.querySelector(`[data-card="${game.value.columns[move.from][move.index].id}"]`)?.scrollIntoView({ block: 'nearest', inline: 'nearest' }))
 }
 function openDialog(kind) {
+  cancelDrag()
   previousFocus = document.activeElement
   if (kind === 'new') difficulty.value = game.value.suits
   dialog.value = kind
@@ -270,20 +287,116 @@ function cardKey(event, column, index) {
     if (game.value.columns[column][next]?.up) focusCard(column, next)
   }
 }
-function startDrag(event, from, index) {
-  if (dialog.value || !movable(game.value.columns[from], index) || won.value) {
-    event.preventDefault()
+function clickCard(event, from, index) {
+  if (event.detail && performance.now() < suppressClickUntil) return
+  choose(from, index)
+}
+function finishPointer() {
+  const captured = pointer
+  pointer = null
+  cancelAnimationFrame(dragFrame)
+  dragFrame = 0
+  dragging.value = null
+  dragTarget.value = null
+  try {
+    if (captured?.element.hasPointerCapture(captured.id)) captured.element.releasePointerCapture(captured.id)
+  } catch {
+    /* Closing or resizing the window can remove the captured element. */
+  }
+}
+function cancelDrag() {
+  if (dragging.value) {
+    suppressClickUntil = performance.now() + 350
+    selected.value = null
+  }
+  finishPointer()
+}
+function pointerDown(event, from, index) {
+  if (event.button !== 0 || !event.isPrimary || dialog.value || pageHidden.value || won.value || !movable(game.value.columns[from], index)) return
+  cancelDrag()
+  if (activeWindow.value !== 'spider') activateWindow?.('spider')
+  const rect = event.currentTarget.getBoundingClientRect()
+  pointer = {
+    id: event.pointerId,
+    type: event.pointerType,
+    from,
+    index,
+    element: event.currentTarget,
+    start: { x: event.clientX, y: event.clientY },
+    point: { x: event.clientX, y: event.clientY },
+    grabX: event.clientX - rect.left,
+    grabY: event.clientY - rect.top,
+    width: rect.width,
+    scrollLeft: table.value.scrollLeft,
+    scrollTop: table.value.scrollTop,
+    columns: [...root.value.querySelectorAll('.spider-column')].map((el) => el.getBoundingClientRect())
+  }
+  try {
+    event.currentTarget.setPointerCapture(event.pointerId)
+  } catch {
+    pointer = null
+  }
+}
+function hitColumn(point) {
+  if (!pointer || !table.value) return null
+  const dx = pointer.scrollLeft - table.value.scrollLeft,
+    dy = pointer.scrollTop - table.value.scrollTop
+  return dropColumnAtPoint(
+    point,
+    table.value.getBoundingClientRect(),
+    pointer.columns.map((r) => ({ left: r.left + dx, right: r.right + dx, top: r.top + dy, bottom: r.bottom + dy }))
+  )
+}
+function paintDrag() {
+  dragFrame = 0
+  if (!pointer || !dragging.value) return
+  if (paused.value) {
+    cancelDrag()
     return
   }
-  dragFrom.value = { from, index }
-  selected.value = { from, index }
-  hint.value = null
-  event.dataTransfer.effectAllowed = 'move'
-  event.dataTransfer.setData('text/plain', `${from}:${index}`)
+  const scroller = table.value,
+    rect = scroller.getBoundingClientRect(),
+    step = dragScroll(pointer.point, rect)
+  const left = scroller.scrollLeft,
+    top = scroller.scrollTop
+  scroller.scrollLeft += step.x
+  scroller.scrollTop += step.y
+  dragPoint.value = { x: pointer.point.x - pointer.grabX, y: pointer.point.y - pointer.grabY }
+  dragTarget.value = hitColumn(pointer.point)
+  if (scroller.scrollLeft !== left || scroller.scrollTop !== top) dragFrame = requestAnimationFrame(paintDrag)
 }
-function drop(column) {
-  if (dragFrom.value) moveTo(dragFrom.value.from, dragFrom.value.index, column)
-  dragFrom.value = null
+function pointerMove(event) {
+  if (!pointer || event.pointerId !== pointer.id) return
+  pointer.point = { x: event.clientX, y: event.clientY }
+  if (!dragging.value) {
+    if (!dragThreshold(pointer.start, pointer.point, pointer.type)) return
+    if (paused.value) {
+      cancelDrag()
+      return
+    }
+    dragPoint.value = { x: event.clientX - pointer.grabX, y: event.clientY - pointer.grabY }
+    dragging.value = { from: pointer.from, index: pointer.index, width: pointer.width }
+    selected.value = { from: pointer.from, index: pointer.index }
+    hint.value = null
+    started.value = true
+  }
+  if (event.cancelable) event.preventDefault()
+  if (!dragFrame) dragFrame = requestAnimationFrame(paintDrag)
+}
+function pointerUp(event) {
+  if (!pointer || event.pointerId !== pointer.id) return
+  const source = dragging.value,
+    target = hitColumn({ x: event.clientX, y: event.clientY })
+  const allowed = !paused.value && source && target !== null && canMove(game.value, source.from, source.index, target)
+  if (source) suppressClickUntil = performance.now() + 350
+  finishPointer()
+  if (!source) return // A short press keeps the normal click/tap and keyboard interaction.
+  selected.value = null
+  if (allowed) moveTo(source.from, source.index, target)
+  else if (target !== source.from) say('invalid')
+}
+function lostPointer(event) {
+  if (pointer?.id === event.pointerId) cancelDrag()
 }
 function command(event) {
   if (activeWindow.value !== 'spider' || dialog.value) return
@@ -340,6 +453,7 @@ function keydown(event) {
       dealCards()
     }
     if (event.key === 'Escape') {
+      event.preventDefault()
       clearSelection()
       say('ready')
     }
@@ -347,15 +461,21 @@ function keydown(event) {
 }
 function visibility() {
   pageHidden.value = document.hidden
-  if (document.hidden) stopSounds()
+  if (document.hidden) {
+    cancelDrag()
+    stopSounds()
+  }
   save()
 }
 onMounted(() => {
   observer = new ResizeObserver(() => {
+    if (tableWidth.value !== table.value.clientWidth || tableHeight.value !== table.value.clientHeight) cancelDrag()
     tableWidth.value = table.value.clientWidth
     tableHeight.value = table.value.clientHeight
   })
   observer.observe(table.value)
+  window.addEventListener('blur', cancelDrag)
+  window.addEventListener('resize', cancelDrag)
   window.addEventListener('spider-command', command)
   window.addEventListener('keydown', keydown)
   document.addEventListener('visibilitychange', visibility)
@@ -368,9 +488,12 @@ onMounted(() => {
   if (dialog.value) nextTick(() => dialogRoot.value?.querySelector('input:checked,button')?.focus())
 })
 onBeforeUnmount(() => {
+  cancelDrag()
   save()
   observer?.disconnect()
   clearInterval(timer)
+  window.removeEventListener('blur', cancelDrag)
+  window.removeEventListener('resize', cancelDrag)
   window.removeEventListener('spider-command', command)
   window.removeEventListener('keydown', keydown)
   document.removeEventListener('visibilitychange', visibility)
@@ -383,7 +506,7 @@ onBeforeUnmount(() => {
 })
 </script>
 <template>
-  <div ref="root" class="xp-spider" :class="{ 'spider-large-cards': largeCards }">
+  <div ref="root" class="xp-spider" :class="{ 'spider-large-cards': largeCards, 'spider-dragging': !!dragging }">
     <nav class="spider-toolbar" :aria-label="copy.newTitle">
       <button @click="openDialog('new')">{{ copy.newGame }}</button><button :disabled="!history.length" @click="undoMove">{{ copy.undo }}</button
       ><button @click="showHint">{{ copy.hint }}</button><button :disabled="!game.stock.length || won" @click="dealCards">{{ copy.deal }}</button><i></i
@@ -400,19 +523,22 @@ onBeforeUnmount(() => {
             v-for="(column, c) in game.columns"
             :key="c"
             class="spider-column"
-            :class="{ 'spider-hint-target': hint?.to === c }"
-            :style="{ height: `${layouts[c].height}px` }"
+            :class="{
+              'spider-hint-target': hint?.to === c,
+              'spider-drop-allowed': dragging && canMove(game, dragging.from, dragging.index, c),
+              'spider-drop-target': dragTarget === c && validDrop,
+              'spider-drop-invalid': dragTarget === c && dragging && dragging.from !== c && !validDrop
+            }"
+            :style="{ height: `${Math.max(layouts[c].height, boardHeight - 150)}px` }"
             :data-column="c"
-            @dragover.prevent
-            @drop.prevent="drop(c)"
-            @click.self="chooseColumn(c)"
+            @click.self="chooseColumn(c, $event)"
           >
             <button
               v-if="!column.length"
               class="spider-empty"
               :data-empty="c"
               :aria-label="`${copy.empty} ${c + 1}`"
-              @click="chooseColumn(c)"
+              @click="chooseColumn(c, $event)"
               @keydown="cardKey($event, c, -1)"
             >
               <span>{{ c + 1 }}</span>
@@ -421,7 +547,12 @@ onBeforeUnmount(() => {
               <button
                 v-if="card.up"
                 class="spider-card-button"
-                :class="{ 'spider-selected': selected?.from === c && selected.index <= index, 'spider-hint-card': hint?.from === c && hint.index <= index }"
+                :class="{
+                  'spider-selected': selected?.from === c && selected.index <= index,
+                  'spider-hint-card': hint?.from === c && hint.index <= index,
+                  'spider-drag-source': dragging?.from === c && dragging.index <= index,
+                  'spider-card-movable': movable(column, index)
+                }"
                 :style="{ top: `${layouts[c].tops[index]}px` }"
                 :data-card="card.id"
                 :data-rank="card.rank"
@@ -430,11 +561,15 @@ onBeforeUnmount(() => {
                 :aria-label="cardLabel(card, c)"
                 :aria-pressed="selected?.from === c && selected.index <= index"
                 :tabindex="index === column.length - 1 ? 0 : -1"
-                :draggable="movable(column, index)"
-                @click.stop="choose(c, index)"
+                :draggable="false"
+                @click.stop="clickCard($event, c, index)"
                 @keydown="cardKey($event, c, index)"
-                @dragstart="startDrag($event, c, index)"
-                @dragend="dragFrom = null"
+                @pointerdown="pointerDown($event, c, index)"
+                @pointermove="pointerMove"
+                @pointerup="pointerUp"
+                @pointercancel="lostPointer"
+                @lostpointercapture="lostPointer"
+                @dragstart.prevent
               >
                 <PlayingCard :card="card" />
               </button>
@@ -472,6 +607,24 @@ onBeforeUnmount(() => {
         >{{ copy.time }}: {{ clock }}<template v-if="paused && started"> · {{ copy.paused }}</template></span
       ><span>{{ game.suits === 1 ? '♠' : game.suits === 2 ? '♥ ♠' : '♦ ♣ ♥ ♠' }}</span>
     </footer>
+    <Teleport to="body">
+      <div
+        v-if="dragging"
+        class="spider-drag-preview"
+        :class="{ 'spider-drag-compact': cardWidth < 42 }"
+        aria-hidden="true"
+        :style="{
+          width: `${dragging.width}px`,
+          height: `${(dragOffsets.at(-1) || 0) + cardHeight}px`,
+          transform: `translate3d(${dragPoint.x}px, ${dragPoint.y}px, 0)`,
+          '--card-h': `${cardHeight}px`
+        }"
+      >
+        <PlayingCard v-for="(card, i) in draggedCards" :key="card.id" :card="card" :style="{ top: `${dragOffsets[i]}px` }" />
+        <span v-if="draggedCards.length > 1" class="spider-drag-count">{{ draggedCards.length }}</span>
+      </div>
+    </Teleport>
+    <div v-if="dragging" class="spider-drag-instruction" role="status">{{ validDrop ? copy.dropReady : copy.dragHelp }}</div>
     <div v-if="dialog" class="spider-dialog-shade" @keydown.stop>
       <section
         ref="dialogRoot"

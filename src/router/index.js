@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Loader from '../views/Loader.vue'
-import Office from '../views/Office.vue'
+import { loadDesktop } from '../lib/load-desktop'
 import profile from '@/data/profile-data.json'
 const meta = {
   title: `${profile.name} | ${profile.title}`,
@@ -16,7 +16,7 @@ export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'home', component: Loader, meta },
-    { path: '/office', name: 'Office', component: Office, meta },
+    { path: '/office', name: 'Office', component: loadDesktop, meta },
     { path: '/:pathMatch(.*)*', redirect: '/office' }
   ]
 })

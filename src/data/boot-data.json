@@ -1,0 +1,6 @@
+{
+  "blankMs": 200,
+  "loadingMs": 2000,
+  "welcomeMs": 350,
+  "warmMs": 300
+}

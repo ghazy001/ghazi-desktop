@@ -1,15 +1,16 @@
 import { defineStore } from 'pinia'
+import { restoredWindows, storeValue } from '../lib/browser-storage.mjs'
 
 export const useWindowsStore = defineStore('windows', {
   state: () => ({
-    openWindowIds: JSON.parse(localStorage.getItem('windows')) || []
+    openWindowIds: restoredWindows()
   }),
   actions: {
     saveState() {
-      localStorage.setItem('windows', JSON.stringify(this.openWindowIds))
+      storeValue('windows', JSON.stringify(this.openWindowIds))
     },
     loadState() {
-      this.openWindowIds = JSON.parse(localStorage.getItem('windows')) || []
+      this.openWindowIds = restoredWindows()
     },
     addWindowStore(windowId) {
       if (!this.openWindowIds.includes(windowId)) {

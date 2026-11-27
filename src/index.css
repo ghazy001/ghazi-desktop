@@ -309,3 +309,7 @@ summary:focus-visible {
   background: #316ac5;
   color: white;
 }
+
+/* Prevent embedded pages and text selection from stealing a window gesture. */
+body.xp-window-gesture iframe { pointer-events: none !important; }
+body.xp-window-gesture * { cursor: inherit !important; user-select: none !important; }

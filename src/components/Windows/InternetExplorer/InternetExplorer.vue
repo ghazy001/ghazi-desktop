@@ -1,11 +1,12 @@
 <script setup>
-import { computed, inject, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import profile from '@/data/profile-data.json'
 import configuration from '@/data/browser-data.json'
 import favorites from '@/data/browser-links.js'
 import { normalizeWebAddress, frameRestriction } from '@/lib/internet-explorer.mjs'
 import { useLocaleStore } from '@/stores/localeStore'
 import BrowserIcon from './BrowserIcon.vue'
+const props = defineProps({ file: Object })
 const locale = useLocaleStore()
 const french = computed(() => locale.currentLocale === 'fr')
 const home = { name: profile.name, url: normalizeWebAddress(profile.website, profile.website), icon: '/img/icons/explorer-icon-sm.webp' }
@@ -68,6 +69,13 @@ const navigate = (value, label) => {
     message.value = french.value ? 'Entrez une adresse Web HTTP ou HTTPS valide.' : 'Please enter a valid HTTP or HTTPS website address.'
   }
 }
+watch(
+  () => props.file,
+  (file) => {
+    if (file?.kind === 'link') navigate(file.url, file.name)
+  },
+  { immediate: true }
+)
 const back = () => {
   if (canBack.value) {
     position.value--
@@ -125,8 +133,8 @@ const handleCommand = (event) => {
   if (command === 'links') linksVisible.value = !linksVisible.value
   if (command === 'about') about.value = true
 }
+if (props.file?.kind !== 'link') start()
 onMounted(() => {
-  start()
   window.addEventListener('browser-command', handleCommand)
 })
 onBeforeUnmount(() => window.removeEventListener('browser-command', handleCommand))
@@ -189,8 +197,12 @@ onBeforeUnmount(() => window.removeEventListener('browser-command', handleComman
     <div class="ie-browser-area">
       <aside v-if="pane" class="ie-side-pane">
         <div class="ie-pane-heading">
-          <strong>{{ pane === 'favorites' ? (french ? 'Favoris' : 'Favorites') : french ? 'Historique' : 'History' }}</strong
-          ><button @click="pane = ''" aria-label="Close sidebar">×</button>
+          <strong>{{ pane === 'favorites' ? (french ? 'Favoris' : 'Favorites') : french ? 'Historique' : 'History' }}</strong><button
+            @click="pane = ''"
+            aria-label="Close sidebar"
+          >
+            ×
+          </button>
         </div>
         <div class="ie-pane-items">
           <button v-for="page in pane === 'favorites' ? favorites : visited" :key="page.url" @click="navigate(page.url, page.name)">
@@ -232,8 +244,12 @@ onBeforeUnmount(() => window.removeEventListener('browser-command', handleComman
           </p>
           <p class="ie-page-url">{{ current.url }}</p>
           <div class="ie-error-actions">
-            <a class="xp-button" :href="current.url" target="_blank" rel="noopener noreferrer">{{ french ? 'Ouvrir le site' : 'Open Website' }}</a
-            ><button v-if="!restriction" class="xp-button" @click="start">{{ french ? 'Réessayer' : 'Try Again' }}</button
+            <a class="xp-button" :href="current.url" target="_blank" rel="noopener noreferrer">{{ french ? 'Ouvrir le site' : 'Open Website' }}</a><button
+              v-if="!restriction"
+              class="xp-button"
+              @click="start"
+            >
+              {{ french ? 'Réessayer' : 'Try Again' }}</button
             ><button class="xp-button" @click="navigate(home.url, home.name)">{{ french ? 'Page d’accueil' : 'Home Page' }}</button>
           </div>
         </section>
@@ -254,8 +270,7 @@ onBeforeUnmount(() => window.removeEventListener('browser-command', handleComman
       </main>
     </div>
     <footer class="ie-statusbar">
-      <span role="status" aria-live="polite">{{ status }}</span
-      ><span v-if="loading" class="ie-progress"><i></i><i></i><i></i><i></i><i></i></span
+      <span role="status" aria-live="polite">{{ status }}</span><span v-if="loading" class="ie-progress"><i></i><i></i><i></i><i></i><i></i></span
       ><span class="ie-zone"><img src="/img/icons/explorer-icon-xs.webp" alt="" />Internet</span><span class="ie-resize-grip"></span>
     </footer>
     <div v-if="about || printing" class="ie-dialog-shade">
@@ -278,8 +293,7 @@ onBeforeUnmount(() => window.removeEventListener('browser-command', handleComman
         <div class="ie-dialog-actions">
           <a v-if="printing" class="xp-button" :href="current.url" target="_blank" rel="noopener noreferrer" @click="printing = false">{{
             french ? 'Ouvrir le site' : 'Open Website'
-          }}</a
-          ><button class="xp-button" @click="closeDialogs">OK</button>
+          }}</a><button class="xp-button" @click="closeDialogs">OK</button>
         </div>
       </section>
     </div>

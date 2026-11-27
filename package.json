@@ -24,7 +24,10 @@
     "check:contact": "node --test tests/contact.test.mjs tests/server.test.mjs",
     "check:documents": "node scripts/verify-documents.mjs",
     "check:spider": "node scripts/verify-spider.mjs",
-    "check:session": "node scripts/verify-session.mjs"
+    "check:session": "node scripts/verify-session.mjs",
+    "check:assistant": "node --test tests/chat.test.mjs",
+    "check:performance": "node --test tests/performance.test.mjs",
+    "report:performance": "node scripts/report-performance.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

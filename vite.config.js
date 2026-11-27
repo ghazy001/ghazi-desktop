@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { dirname, resolve } from 'node:path'
 
 import { defineConfig, loadEnv } from 'vite'
+import { chatDevPlugin } from './server/chat.mjs'
 import { contactDevPlugin } from './server/contact.mjs'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -10,6 +11,7 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
+    chatDevPlugin({ ...loadEnv(mode, process.cwd(), ''), ...process.env }),
     contactDevPlugin({ ...loadEnv(mode, process.cwd(), ''), ...process.env }),
     vue(),
     vueJsx(),

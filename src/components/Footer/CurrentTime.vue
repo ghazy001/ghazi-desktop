@@ -1,60 +1,34 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useLocaleStore } from '@/stores/localeStore'
-
-const localeStore = useLocaleStore()
-const formattedTime = ref('')
-let interval
-
-function getCurrentTime() {
-  const now = new Date()
-  if (localeStore.currentLocale === 'fr') {
-    return getFrenchTime(now)
-  } else {
-    return getEnglishTime(now)
-  }
-}
-
-const getFrenchTime = (now) => {
-  const hours = now.getHours()
-  const minutes = now.getMinutes()
-
-  return `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`
-}
-
-const getEnglishTime = (now) => {
-  const hours = now.getHours() % 12 || 12 // Convert 0 to 12 for 12-hour format
-  const minutes = now.getMinutes()
-  const amPm = now.getHours() >= 12 ? 'PM' : 'AM'
-
-  return `${hours}:${minutes < 10 ? '0' : ''}${minutes} ${amPm}`
-}
-
+import { useConnectionStore } from '@/stores/connectionStore'
+const locale = useLocaleStore(),
+  session = useConnectionStore(),
+  formattedTime = ref('')
+let timer
 function updateTime() {
-  formattedTime.value = getCurrentTime()
+  const now = new Date(),
+    hours = now.getHours(),
+    minutes = String(now.getMinutes()).padStart(2, '0')
+  formattedTime.value = locale.currentLocale === 'fr' ? `${String(hours).padStart(2, '0')}:${minutes}` : `${hours % 12 || 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`
 }
-
-onMounted(() => {
-  // Update the formattedTime property immediately
+function schedule() {
+  clearTimeout(timer)
+  if (document.hidden || session.powerPhase !== 'running') return
   updateTime()
-  // Update the formattedTime property every 2 seconds
-  interval = setInterval(updateTime, 2000)
+  timer = setTimeout(schedule, 60000 - (Date.now() % 60000) + 20)
+}
+onMounted(() => {
+  schedule()
+  document.addEventListener('visibilitychange', schedule)
 })
-
+watch(() => locale.currentLocale, updateTime)
+watch(() => session.powerPhase, schedule)
 onBeforeUnmount(() => {
-  // Clear the interval to stop updating when the component is unmounted
-  clearInterval(interval)
+  clearTimeout(timer)
+  document.removeEventListener('visibilitychange', schedule)
 })
-
-// Watch for changes in the locale and update the time immediately
-watch(
-  () => localeStore.currentLocale,
-  () => {
-    updateTime()
-  }
-)
 </script>
-
 <template>
   <div class="flex flex-row">
     <h4 class="mx-px text-xxs md:text-xs cursor-default">{{ formattedTime }}</h4>

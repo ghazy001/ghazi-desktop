@@ -5,7 +5,7 @@ import projects from '@/data/projects-data.json'
 import { projectFiles } from '@/lib/project-files.mjs'
 import PictureIcon from './PictureIcon.vue'
 const session = useConnectionStore()
-const props = defineProps({ file: Object })
+const props = defineProps({ file: Object, active: { type: Boolean, default: true } })
 const emit = defineEmits(['caption-change'])
 const fallback = projectFiles(projects.categories[0].projects[0]).find((file) => file.kind === 'image')
 const files = computed(() => props.file?.images || [fallback])
@@ -71,13 +71,16 @@ const changeZoom = (amount) => {
   zoom.value = Math.max(0.1, Math.min(5, factor.value + amount))
   fitMode.value = false
 }
+const scheduleSlides = () => {
+  clearInterval(timer)
+  if (playing.value && props.active && session.powerPhase === 'running' && !document.hidden) timer = setInterval(() => choose(index.value + 1), 4000)
+}
 const toggleSlide = () => {
   playing.value = !playing.value
-  clearInterval(timer)
-  if (playing.value) timer = setInterval(() => choose(index.value + 1), 4000)
+  scheduleSlides()
 }
 watch(
-  () => session.powerPhase === 'running',
+  () => session.powerPhase === 'running' && props.active,
   (active) => {
     if (!active) {
       playing.value = false
@@ -90,6 +93,7 @@ const print = () => {
   if (win) win.focus()
 }
 onMounted(() => {
+  document.addEventListener('visibilitychange', scheduleSlides)
   observer = new ResizeObserver(() => {
     if (stage.value.clientWidth) {
       areaWidth.value = stage.value.clientWidth
@@ -99,6 +103,7 @@ onMounted(() => {
   observer.observe(stage.value)
 })
 onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', scheduleSlides)
   observer?.disconnect()
   clearInterval(timer)
 })

@@ -1,7 +1,12 @@
 <template>
   <section
+    ref="windowRoot"
+    @lostpointercapture="endInteraction"
     class="absolute rounded-t-lg overflow-hidden select-none"
-    :class="[isActive ? 'bg-window-blue-active' : 'bg-window-blue-deactivated', { 'wmp-window': skin === 'media-player', 'ie-window': skin === 'internet-explorer' }]"
+    :class="[
+      isActive ? 'bg-window-blue-active' : 'bg-window-blue-deactivated',
+      { 'wmp-window': skin === 'media-player', 'ie-window': skin === 'internet-explorer', 'xp-window-interacting': interacting }
+    ]"
     :style="windowStyle"
     :id="id"
     role="dialog"
@@ -86,6 +91,8 @@ import WindowHeaderTools from '../components/Windows/WindowHeaderTools.vue'
 import WindowHeaderSearch from '../components/Windows/WindowHeaderSearch.vue'
 import WindowHeaderDropdown from '../components/Windows/WindowHeaderDropdown.vue'
 import menuHeaderData from '@/data/header-menu-data.json'
+import { createFrameScheduler } from '@/lib/frame-scheduler.mjs'
+import { dragWindowPosition, resizeWindowSize } from '@/lib/window-geometry.mjs'
 
 const emit = defineEmits()
 
@@ -144,203 +151,141 @@ watch(
   }
 )
 
-// App size constants
 const viewport = ref({ width: window.innerWidth, height: window.innerHeight - 32 })
-const updateViewport = () => {
-  viewport.value = { width: window.innerWidth, height: window.innerHeight - 32 }
-  windowWidth.value = Math.min(windowWidth.value, viewport.value.width)
-  windowHeight.value = Math.min(windowHeight.value, viewport.value.height)
-  windowPosition.value.x = Math.max(0, Math.min(windowPosition.value.x, viewport.value.width - windowWidth.value))
-  windowPosition.value.y = Math.max(0, Math.min(windowPosition.value.y, viewport.value.height - windowHeight.value))
-  windowTransform.value = `translate(${windowPosition.value.x}px, ${windowPosition.value.y}px)`
-}
-onMounted(() => window.addEventListener('resize', updateViewport))
-onUnmounted(() => {
-  window.removeEventListener('resize', updateViewport)
-  stopDrag()
-  stopResize()
-})
-
-// Dragging window constants
-const isDragging = ref(false)
-const initialMouseX = ref(0)
-const initialMouseY = ref(0)
-const throttleDelay = 16 // Update every 16ms (60 FPS)
-let lastUpdateTimestamp = 0
-
-// Window resizing constants
-const maximized = ref(false)
-
-// Window position and size
-const windowSize = { width: initWidth, height: initHeight }
+const windowRoot = ref(null)
 const windowPosition = ref({
   x: Math.max(0, Math.min(initPositionX, viewport.value.width - initWidth)),
   y: Math.max(0, Math.min(initPositionY, viewport.value.height - initHeight))
 })
-const windowWidth = ref(Math.min(windowSize.width, viewport.value.width))
-const windowHeight = ref(Math.min(windowSize.height, viewport.value.height))
-const windowTransform = ref(`translate(${windowPosition.value.x}px, ${windowPosition.value.y}px)`)
-
-// Window activeness
+// Keep desktop preferences intact when a narrow viewport temporarily fills the screen.
+const windowWidth = ref(initWidth),
+  windowHeight = ref(initHeight),
+  maximized = ref(false),
+  interacting = ref(false)
 const activeWindow = inject('activeWindow')
+const activateWindow = inject('activateWindow', null)
 const isActive = computed(() => id === activeWindow.value)
-
-// Window Z-index
-const highestZIndex = inject('highestZIndex')
-
-/**
- * Window style added to window component.
- * If maximized or mobile, window will take up the whole screen else it will take the size of the window json
- */
-const windowStyle = computed(() => {
-  const isMobile = viewport.value.width <= 768 // Mobile breakpoint pixel value
-  const sizeStyle =
-    maximized.value || isMobile
-      ? {
-          width: '100vw',
-          height: 'calc(100dvh - 2rem)',
-          top: '0',
-          left: '0'
-        }
-      : {
-          width: `${windowWidth.value}px`,
-          height: `${windowHeight.value}px`,
-          transform: windowTransform.value
-        }
-  return {
-    ...sizeStyle
+const windowStyle = computed(() =>
+  maximized.value || viewport.value.width <= 768
+    ? { width: '100vw', height: 'calc(100dvh - 2rem)', top: '0', left: '0' }
+    : {
+        width: `${Math.min(windowWidth.value, viewport.value.width)}px`,
+        height: `${Math.min(windowHeight.value, viewport.value.height)}px`,
+        transform: `translate3d(${windowPosition.value.x}px, ${windowPosition.value.y}px, 0)`
+      }
+)
+let gesture = null
+const frames = createFrameScheduler((point) => {
+  if (!gesture) return
+  if (gesture.direction === 'move') {
+    windowPosition.value = dragWindowPosition(gesture.start, point, gesture.origin, gesture.size, viewport.value)
+  } else {
+    const size = resizeWindowSize(
+      gesture.size,
+      { x: point.x - gesture.start.x, y: point.y - gesture.start.y },
+      gesture.direction,
+      { width: minWidth, height: minHeight },
+      viewport.value,
+      gesture.origin
+    )
+    windowWidth.value = size.width
+    windowHeight.value = size.height
   }
 })
-
-const toggleMaximize = () => {
-  if (resizable) maximized.value = !maximized.value
+function pointerMove(event) {
+  if (gesture?.pointerId !== event.pointerId) return
+  frames.push({ x: event.clientX, y: event.clientY })
 }
-
+function endInteraction(event) {
+  if (!gesture || (event?.pointerId !== undefined && event.pointerId !== gesture.pointerId)) return
+  if (event?.type === 'pointerup') frames.push({ x: event.clientX, y: event.clientY })
+  frames.flush()
+  const old = gesture
+  gesture = null
+  interacting.value = false
+  document.body.style.userSelect = old.selection
+  document.body.style.cursor = old.cursor
+  document.body.classList.remove('xp-window-gesture')
+  document.removeEventListener('pointermove', pointerMove)
+  document.removeEventListener('pointerup', endInteraction)
+  document.removeEventListener('pointercancel', endInteraction)
+  window.removeEventListener('blur', endInteraction)
+  try {
+    if (windowRoot.value?.hasPointerCapture(old.pointerId)) windowRoot.value.releasePointerCapture(old.pointerId)
+  } catch {
+    /* The window may have closed. */
+  }
+}
+function beginInteraction(event, direction) {
+  if (maximized.value || viewport.value.width <= 768 || event.button !== 0 || event.isPrimary === false) return
+  endInteraction()
+  event.preventDefault()
+  if (activateWindow) activateWindow(id)
+  else activeWindow.value = id
+  gesture = {
+    pointerId: event.pointerId,
+    direction,
+    start: { x: event.clientX, y: event.clientY },
+    origin: { ...windowPosition.value },
+    size: { width: Math.min(windowWidth.value, viewport.value.width), height: Math.min(windowHeight.value, viewport.value.height) },
+    selection: document.body.style.userSelect,
+    cursor: document.body.style.cursor
+  }
+  interacting.value = true
+  document.body.style.userSelect = 'none'
+  document.body.style.cursor = direction === 'move' ? 'grabbing' : direction === 'right' ? 'ew-resize' : direction === 'bottom' ? 'ns-resize' : 'nwse-resize'
+  document.body.classList.add('xp-window-gesture')
+  try {
+    windowRoot.value.setPointerCapture(event.pointerId)
+  } catch {
+    /* Document listeners still provide mouse support. */
+  }
+  document.addEventListener('pointermove', pointerMove)
+  document.addEventListener('pointerup', endInteraction)
+  document.addEventListener('pointercancel', endInteraction)
+  window.addEventListener('blur', endInteraction)
+}
+const startDrag = (event) => beginInteraction(event, 'move')
+const startResize = (event) => beginInteraction(event, event.currentTarget.dataset.direction)
+const toggleMaximize = () => {
+  if (resizable) {
+    endInteraction()
+    maximized.value = !maximized.value
+  }
+}
 provide('toggleWindowMaximize', toggleMaximize)
-
 const closeWindow = () => {
+  endInteraction()
   emit('close-window')
 }
-
 const toggleMinimize = () => {
+  endInteraction()
   emit('toggle-minimize')
 }
-
-const startDrag = (event) => {
-  if (maximized.value || viewport.value.width <= 768 || event.button !== 0) return
-  event.preventDefault()
-  isDragging.value = true
-  initialMouseX.value = event.clientX
-  initialMouseY.value = event.clientY
-
-  // Set the active window to the current window
-  activeWindow.value = id
-
-  // Increment the highestZIndex and set the zIndex of the current window to it
-
-  // Add mouseup event listener to the whole document to stop dragging
-  document.addEventListener('pointerup', stopDrag)
-  // Add mousemove event listener to the whole document for smoother dragging
-  document.addEventListener('pointermove', dragWindow)
+function updateViewport() {
+  endInteraction()
+  viewport.value = { width: window.innerWidth, height: window.innerHeight - 32 }
+  if (viewport.value.width > 768)
+    windowPosition.value = dragWindowPosition(
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      windowPosition.value,
+      { width: windowWidth.value, height: windowHeight.value },
+      viewport.value
+    )
 }
-
-const stopDrag = () => {
-  isDragging.value = false
-
-  // Remove mouseup and mousemove event listeners when dragging stops
-  document.removeEventListener('pointerup', stopDrag)
-  document.removeEventListener('pointermove', dragWindow)
-}
-
-const dragWindow = (event) => {
-  if (isDragging.value && !resizing.value) {
-    const currentTime = performance.now()
-    if (currentTime - lastUpdateTimestamp > throttleDelay) {
-      const deltaX = event.clientX - initialMouseX.value
-      const deltaY = event.clientY - initialMouseY.value
-
-      // Calculate the new window position
-      const newX = windowPosition.value.x + deltaX
-      const newY = windowPosition.value.y + deltaY
-
-      // Define the boundaries
-      const minX = 0 // Minimum X position
-      const minY = 0 // Minimum Y position
-      const maxX = viewport.value.width - Math.min(windowWidth.value, 160) // Maximum X position
-      const maxY = viewport.value.height - 28 // Maximum Y position
-
-      // Ensure the window stays within the boundaries
-      windowPosition.value.x = Math.min(Math.max(newX, minX), maxX)
-      windowPosition.value.y = Math.min(Math.max(newY, minY), maxY)
-
-      // Update the transform property
-      windowTransform.value = `translate(${windowPosition.value.x}px, ${windowPosition.value.y}px)`
-
-      initialMouseX.value = event.clientX
-      initialMouseY.value = event.clientY
-      lastUpdateTimestamp = currentTime
-    }
-  }
-}
-
-const resizing = ref(false)
-const initialWindowSize = ref({ width: 0, height: 0 })
-const resizeDirection = ref('')
-
-const startResize = (event) => {
-  if (maximized.value || viewport.value.width <= 768) return
-  event.preventDefault()
-  resizing.value = true
-  initialMouseX.value = event.clientX
-  initialMouseY.value = event.clientY
-  resizeDirection.value = event.target.dataset.direction
-
-  // Set the initial window size based on the current size
-  initialWindowSize.value = { width: windowWidth.value, height: windowHeight.value }
-
-  document.addEventListener('pointerup', stopResize)
-  document.addEventListener('pointermove', resizeWindow)
-}
-
-const stopResize = () => {
-  resizing.value = false
-
-  document.removeEventListener('pointerup', stopResize)
-  document.removeEventListener('pointermove', resizeWindow)
-
-  // Enable user selection
-  document.body.style.userSelect = ''
-}
-
-const resizeWindow = (event) => {
-  if (resizing.value) {
-    const deltaX = event.clientX - initialMouseX.value
-    const deltaY = event.clientY - initialMouseY.value
-
-    if (resizeDirection.value === 'right') {
-      let newWidth = initialWindowSize.value.width + deltaX
-      newWidth = Math.min(newWidth, viewport.value.width)
-      windowWidth.value = newWidth < minWidth ? minWidth : newWidth
-    } else if (resizeDirection.value === 'bottom') {
-      let newHeight = initialWindowSize.value.height + deltaY
-      newHeight = Math.min(newHeight, viewport.value.height)
-      windowHeight.value = newHeight < minHeight ? minHeight : newHeight
-    } else if (resizeDirection.value === 'corner') {
-      let newWidth = initialWindowSize.value.width + deltaX
-      let newHeight = initialWindowSize.value.height + deltaY
-      newWidth = Math.min(newWidth, viewport.value.width)
-      newHeight = Math.min(newHeight, viewport.value.height)
-      windowWidth.value = newWidth < minWidth ? minWidth : newWidth
-      windowHeight.value = newHeight < minHeight ? minHeight : newHeight
-    }
-
-    // Update the transform property
-    windowTransform.value = `translate(${windowPosition.value.x}px, ${windowPosition.value.y}px)`
-  }
-}
+onMounted(() => window.addEventListener('resize', updateViewport))
+onUnmounted(() => {
+  endInteraction()
+  frames.cancel()
+  window.removeEventListener('resize', updateViewport)
+})
 </script>
 
 <style scoped>
+.xp-window-interacting {
+  will-change: transform;
+}
 .text-header-shadow {
   text-shadow: 1px 1px 0px #09177f;
 }

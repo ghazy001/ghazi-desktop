@@ -29,6 +29,34 @@
     "mode": "overview"
   },
   {
+    "id": "assistant",
+    "title": {
+      "en": "MSN",
+      "fr": "MSN"
+    },
+    "subtitle": {
+      "en": "Your personal guide to my work",
+      "fr": "Votre guide pour découvrir mon travail"
+    },
+    "imgSrc": "/img/icons/assistant/msn.png",
+    "iconSrc": "/img/icons/assistant/msn.png",
+    "onDesktop": true,
+    "resizable": true,
+    "windowsHeaderLogo": false,
+    "isSearchVisible": false,
+    "headerPosition": "left",
+    "headerToolsId": "",
+    "menuHeaderItemsId": "none",
+    "initPositionX": 170,
+    "initPositionY": 45,
+    "initWidth": 980,
+    "initHeight": 760,
+    "minWidth": 340,
+    "minHeight": 400,
+    "component": "Assistant",
+    "leftMenuType": ""
+  },
+  {
     "id": "myProjects",
     "title": {
       "en": "My Projects",
@@ -348,17 +376,17 @@
     "onDesktop": false,
     "resizable": true,
     "windowsHeaderLogo": false,
-    "isSearchVisible": true,
+    "isSearchVisible": false,
     "headerPosition": "right",
     "headerToolsId": "",
     "menuHeaderItemsId": "none",
     "iconSrc": "/img/icons/cmd-icon-sm.webp",
     "initPositionX": 190,
-    "initPositionY": 310,
-    "initWidth": 525,
-    "initHeight": 350,
-    "minWidth": 200,
-    "minHeight": 160,
+    "initPositionY": 90,
+    "initWidth": 840,
+    "initHeight": 580,
+    "minWidth": 340,
+    "minHeight": 280,
     "component": "Terminal",
     "leftMenuType": ""
   },

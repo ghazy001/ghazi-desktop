@@ -17,7 +17,7 @@
     "clubs": "clubs",
     "diamonds": "diamonds",
     "of": "of",
-    "ready": "Build descending runs from King to Ace. Click a card, then its destination.",
+    "ready": "Drag a card or a same-suit run onto a card one rank higher, or into an empty column.",
     "selected": "Selected. Choose a destination column, or drag the cards.",
     "invalid": "Move onto a card one rank higher, or into an empty column. Only same-suit runs move together.",
     "stockEmpty": "No stock deals remain. Try moving cards or Undo.",
@@ -46,7 +46,7 @@
       "A complete same-suit King-to-Ace run is removed automatically. Clear all eight runs to win.",
       "Click the stock at the lower right to deal ten new cards. Every column must contain at least one card before dealing.",
       "Start at 500 points. Moves, deals and undo each cost 1 point; each completed run earns 100. Undo also removes any run bonus it reverses.",
-      "Click or tap a card and then the destination. You can also drag cards with a mouse. Arrow keys navigate cards; Enter or Space selects and moves. M or H shows a hint, D deals, Ctrl/⌘+Z undoes, F2 starts a new game, and Escape cancels selection.",
+      "Drag a card or a same-suit run with a mouse, finger or pen. Release over a destination column to move it. Hold near the table edges to scroll. Click/tap then click/tap the destination also works. Arrow keys navigate; Enter or Space selects and moves. M or H shows a hint, D deals, Ctrl/⌘+Z undoes, F2 starts a new game, and Escape cancels selection or dragging.",
       "Progress is saved in this browser. The timer pauses when the game is minimized, another app is active, a dialog is open, or the browser is hidden. Undo history keeps the latest 30 actions after reopening.",
       "For larger cards in a narrow window, choose Game → Options → Larger cards. Scroll the table sideways to reach the other columns."
     ],
@@ -61,7 +61,9 @@
     "newDone": "New game dealt. Good luck!",
     "artSource": "Original Windows XP artwork",
     "optionsTitle": "Spider Options",
-    "aboutTitle": "About Spider"
+    "aboutTitle": "About Spider",
+    "dragHelp": "Drag to a highlighted column. Escape cancels.",
+    "dropReady": "Release to move the cards."
   },
   "fr": {
     "difficulty": "Difficulté",
@@ -80,7 +82,7 @@
     "clubs": "trèfle",
     "diamonds": "carreau",
     "of": "de",
-    "ready": "Formez des suites du Roi à l’As. Choisissez une carte, puis sa destination.",
+    "ready": "Glissez une carte ou une suite de même enseigne sur la valeur supérieure de un, ou dans une colonne vide.",
     "selected": "Sélection effectuée. Choisissez une colonne ou faites glisser les cartes.",
     "invalid": "Posez la carte sur une valeur supérieure de un, ou dans une colonne vide. Seules les suites de même enseigne se déplacent ensemble.",
     "stockEmpty": "La pioche est vide. Déplacez des cartes ou annulez un coup.",
@@ -109,7 +111,7 @@
       "Une suite complète de même enseigne du Roi à l’As est retirée automatiquement. Terminez les huit suites pour gagner.",
       "Cliquez sur la pioche en bas à droite pour distribuer dix cartes. Aucune colonne ne doit être vide avant la distribution.",
       "Vous commencez avec 500 points. Déplacement, distribution et annulation coûtent chacun 1 point ; chaque suite terminée rapporte 100 points. Annuler retire aussi le bonus de la suite annulée.",
-      "Cliquez ou touchez une carte puis sa destination. La souris permet aussi de glisser les cartes. Les flèches parcourent les cartes ; Entrée ou Espace sélectionne et déplace. M ou H affiche un indice, D distribue, Ctrl/⌘+Z annule, F2 ouvre une nouvelle partie et Échap annule la sélection.",
+      "Glissez une carte ou une suite de même enseigne avec la souris, le doigt ou le stylet. Relâchez sur une colonne pour la déplacer. Maintenez près des bords pour faire défiler. Vous pouvez aussi sélectionner par clic ou toucher, puis choisir la destination. Les flèches parcourent les cartes ; Entrée ou Espace sélectionne et déplace. M ou H affiche un indice, D distribue, Ctrl/⌘+Z annule, F2 ouvre une partie et Échap annule la sélection ou le glissement.",
       "La progression est enregistrée dans ce navigateur. Le temps s’arrête si le jeu est réduit, une autre application est active, une boîte de dialogue est ouverte ou le navigateur est masqué. Les 30 dernières actions restent annulables après réouverture.",
       "Pour agrandir les cartes dans une fenêtre étroite, choisissez Jeu → Options → Grandes cartes. Faites défiler la table horizontalement pour atteindre les autres colonnes."
     ],
@@ -124,6 +126,8 @@
     "newDone": "Nouvelle partie distribuée. Bonne chance !",
     "artSource": "Graphismes originaux de Windows XP",
     "optionsTitle": "Options de Spider",
-    "aboutTitle": "À propos de Spider"
+    "aboutTitle": "À propos de Spider",
+    "dragHelp": "Glissez vers une colonne surlignée. Échap annule.",
+    "dropReady": "Relâchez pour déplacer les cartes."
   }
 }

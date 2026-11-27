@@ -2,8 +2,10 @@ import { createServer } from 'node:http'
 import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
 import { createContactHandler } from './contact.mjs'
+import { createChatHandler } from './chat.mjs'
 import { createStaticHandler } from './static.mjs'
-export function createAppServer({ directory = fileURLToPath(new URL('../dist', import.meta.url)), contact = {} } = {}) {
+export function createAppServer({ directory = fileURLToPath(new URL('../dist', import.meta.url)), contact = {}, chat = {} } = {}) {
+  const chatHandler = createChatHandler(chat)
   const send = createContactHandler(contact),
     serve = createStaticHandler(directory)
   const server = createServer(async (request, response) => {
@@ -14,6 +16,7 @@ export function createAppServer({ directory = fileURLToPath(new URL('../dist', i
         response.end('{"ok":true}')
         return
       }
+      if (path === '/api/chat') return await chatHandler(request, response)
       if (path === '/api/contact') return await send(request, response)
       if (path?.startsWith('/api/')) {
         response.writeHead(404, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' })

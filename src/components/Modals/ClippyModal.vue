@@ -1,6 +1,7 @@
 <script setup>
 import { ref, inject, onMounted, onUnmounted } from 'vue'
 import profile from '@/data/profile-data.json'
+import { storedValue, storeValue } from '@/lib/browser-storage.mjs'
 const openWindow = inject('openWindow')
 import { useI18n } from 'vue-i18n'
 
@@ -15,7 +16,7 @@ let timeoutId = null
 
 onMounted(() => {
   // Check if user has already dismissed the modal
-  const dismissed = localStorage.getItem(STORAGE_KEY)
+  const dismissed = storedValue(STORAGE_KEY)
   if (dismissed) {
     isDismissed.value = true
     return
@@ -38,7 +39,7 @@ const closeModal = () => {
 }
 
 const dismissForever = () => {
-  localStorage.setItem(STORAGE_KEY, 'true')
+  storeValue(STORAGE_KEY, 'true')
   isDismissed.value = true
   isVisible.value = false
 }

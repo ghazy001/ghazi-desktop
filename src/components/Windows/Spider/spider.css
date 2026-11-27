@@ -103,13 +103,7 @@
 }
 .spider-card-button {
   cursor: pointer;
-  touch-action: manipulation;
-}
-.spider-card-button[draggable='true'] {
-  cursor: grab;
-}
-.spider-card-button:active {
-  cursor: grabbing;
+  touch-action: none;
 }
 .spider-playing-card {
   position: relative;
@@ -478,4 +472,95 @@
       border-color: #fff7ba;
     }
   }
+}
+/* Pointer-driven stacks behave the same with a mouse, pen or finger. */
+.spider-card-button {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+.spider-card-movable {
+  cursor: grab;
+}
+.spider-dragging,
+.spider-dragging .spider-card-button {
+  cursor: grabbing;
+}
+.spider-drag-source {
+  opacity: 0.22;
+}
+.spider-drop-allowed::before {
+  border: 1px dashed #e1ed9c99;
+  background: #dbf5b009;
+}
+.spider-drop-target::before {
+  border: 2px solid #fff19a;
+  background: #edffbd27;
+  box-shadow: inset 0 0 0 1px #306a00;
+}
+.spider-drop-invalid::before {
+  border: 2px dashed #ecb29e;
+  background: #8c180e18;
+}
+.spider-drag-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483646;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(3px 5px 3px #0006);
+}
+.spider-drag-preview > .spider-playing-card {
+  position: absolute;
+  left: 0;
+  height: var(--card-h);
+}
+.spider-drag-count {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  min-width: 20px;
+  padding: 2px 5px;
+  border: 1px solid #665626;
+  background: #fffbd8;
+  color: #31270a;
+  font:
+    bold 11px Tahoma,
+    sans-serif;
+  text-align: center;
+}
+.spider-drag-instruction {
+  position: absolute;
+  left: 9px;
+  bottom: 36px;
+  max-width: calc(100% - 18px);
+  padding: 5px 9px;
+  border: 1px solid #616038;
+  background: #ffffe1;
+  color: #323115;
+  font:
+    11px/1.4 Tahoma,
+    sans-serif;
+  box-shadow: 1px 2px 2px #0003;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.spider-drag-compact .spider-compact-rank {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 2px;
+  left: 1px;
+  background: #fff;
+  padding: 0 1px;
+  font:
+    bold 11px/13px 'Times New Roman',
+    serif;
+}
+.spider-drag-compact .spider-compact-rank i {
+  font:
+    normal 10px/13px Georgia,
+    serif;
 }
